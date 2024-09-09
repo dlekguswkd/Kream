@@ -185,22 +185,24 @@
             <h2>필터</h2>
           </div>
           <h4>브랜드</h4>
-          <div class="filter-section">
-            <ul>
-              <li><input type="checkbox" /> & Other Stories</li>
-              <li><input type="checkbox" /> 032c</li>
-              <li><input type="checkbox" /> 1017 Alyx 9SM</li>
-              <li><input type="checkbox" /> Adidas</li>
-              <li><input type="checkbox" /> & Other Stories</li>
-              <li><input type="checkbox" /> 032c</li>
-              <li><input type="checkbox" /> 1017 Alyx 9SM</li>
-              <li><input type="checkbox" /> Adidas</li>
-              <li><input type="checkbox" /> & Other Stories</li>
-              <li><input type="checkbox" /> 032c</li>
-              <li><input type="checkbox" /> 1017 Alyx 9SM</li>
-              <li><input type="checkbox" /> Adidas</li>
-            </ul>
-          </div>
+          <c:forEach items="${requestScope.brandList}" var="MainVo">
+	          <div class="filter-section">
+	            <ul>
+	              <li><input type="checkbox" />${MainVo.brandName}</li>
+	            </ul>
+	          </div>
+          </c:forEach>
+          <!-- 	  <li><input type="checkbox" /> 032c</li>
+	              <li><input type="checkbox" /> 1017 Alyx 9SM</li>
+	              <li><input type="checkbox" /> Adidas</li>
+	              <li><input type="checkbox" /> & Other Stories</li>
+	              <li><input type="checkbox" /> 032c</li>
+	              <li><input type="checkbox" /> 1017 Alyx 9SM</li>
+	              <li><input type="checkbox" /> Adidas</li>
+	              <li><input type="checkbox" /> & Other Stories</li>
+	              <li><input type="checkbox" /> 032c</li>
+	              <li><input type="checkbox" /> 1017 Alyx 9SM</li>
+	              <li><input type="checkbox" /> Adidas</li> -->
 
           <h4>사이즈</h4>
           <div class="filter-section">

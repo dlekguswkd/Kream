@@ -23,13 +23,25 @@ public class MainService {
 		return mainList;
 	}
 	
-	/* 카테고리 리스트 */
-	public List<MainVo> exeCategoryList() {
-		System.out.println("MainService.exeCategoryList()");
+	
+	/* 브랜드 리스트 */
+	public List<MainVo> exeBrandList() {
+		System.out.println("MainService.exeBrandList()");
 		
-		List<MainVo> mainList = mainDao.selectList();
+		List<MainVo> brandList =mainDao.selectBrandList();
 		
-		return mainList;
+		return brandList;
 	}
+	
+	
+	/* 컬러 리스트 */
+	public List<MainVo> exeColorList() {
+		System.out.println("MainService.exeColorList()");
+		
+		List<MainVo> colorList =mainDao.selectColorList();
+		
+		return colorList;
+	}
+
 
 }

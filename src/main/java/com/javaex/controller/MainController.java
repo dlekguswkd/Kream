@@ -25,8 +25,15 @@ public class MainController {
 		System.out.println("MainController.mainForm()");
 		
 		List<MainVo> mainList = mainService.exeList();
-		
 		model.addAttribute("mainList", mainList);
+		
+		List<MainVo> brandList = mainService.exeBrandList();
+		model.addAttribute("brandList", brandList);
+		
+		List<MainVo> colorList = mainService.exeColorList();
+		model.addAttribute("colorList", colorList);
+		
+		System.out.println(colorList);
 		
 		return "main/MainPage";
 		

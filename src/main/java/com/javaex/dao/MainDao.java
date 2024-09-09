@@ -24,4 +24,23 @@ public class MainDao {
 		return mainList;
 	}
 	
+	
+	/* 브랜드 리스트 */
+	public List<MainVo> selectBrandList() {
+		System.out.println("MainDao.selectBrandList()");
+		
+		List<MainVo> brandList =sqlSession.selectList("main.selectBrandList");
+		
+		return brandList;
+	}
+	
+	/* 컬러 리스트 */
+	public List<MainVo> selectColorList() {
+		System.out.println("MainDao.selectColorList()");
+		
+		List<MainVo> colorList =sqlSession.selectList("main.selectColorList");
+		
+		return colorList;
+	}
+	
 }

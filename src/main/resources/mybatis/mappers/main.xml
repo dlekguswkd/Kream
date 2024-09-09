@@ -23,6 +23,25 @@
 	</select>
 	
 	
+	<!-- 브랜드 리스트 -->
+	<select id="selectBrandList" resultType="com.javaex.vo.MainVo">
+		<![CDATA[  
+			select brandNo,
+					brandName
+			from Brand
+		]]>
+	</select>
+	
+	
+	<!-- 컬러 리스트 -->
+	<select id="selectColorList" resultType="com.javaex.vo.MainVo">
+		<![CDATA[  
+			select colorNo,
+					colorName,
+        			colorCode
+			from Color
+		]]>
+	</select>
 	
 	
 	

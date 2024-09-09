@@ -107,7 +107,6 @@
     margin-bottom: 20px;
     max-height: 200px; 
     overflow-y: auto;  
-    
 }
 
 
@@ -191,22 +190,22 @@
     cursor: pointer;
 }
 
-.color-circle.black { background-color: black; }
-.color-circle.white { background-color: white; }
-.color-circle.gray { background-color: gray; }
-.color-circle.brown { background-color: brown; }
-.color-circle.blue { background-color: blue; }
-.color-circle.green { background-color: green; }
-.color-circle.yellow { background-color: yellow; }
-.color-circle.orange { background-color: orange; }
-.color-circle.purple { background-color: purple; }
-.color-circle.pink { background-color: pink; }
-.color-circle.navy { background-color: navy; }
+.color-circle.white { background-color: #ffffff; }
+.color-circle.black { background-color: #000000; }
+.color-circle.gray { background-color: #848484; }
+.color-circle.red { background-color: #ff0000; }
+.color-circle.yellow { background-color: #ffff00; }
+.color-circle.blue { background-color: #0000ff; }
+.color-circle.green { background-color: #088a4b; }
+.color-circle.pink { background-color: #fa58d0; }
+.color-circle.orange { background-color: #ff8000; }
+.color-circle.purple { background-color: #8000ff; }
+.color-circle.mint { background-color: #00ffff; }
+.color-circle.navy { background-color: #0b2161; }
+.color-circle.brown { background-color: #764e13; }
 .color-circle.magenta { background-color: magenta; }
 .color-circle.lightblue { background-color: lightblue; }
 .color-circle.cerulean { background-color: cornflowerblue; }
-.color-circle.mint { background-color: mintcream; }
-.color-circle.red { background-color: red; }
 .color-circle.darkblue { background-color: darkblue; }
 .color-circle.darkgreen { background-color: darkgreen; }
 
