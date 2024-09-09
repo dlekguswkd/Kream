@@ -21,5 +21,19 @@ public class UserDao {
 		return count;
 		
 	}
+	
+	
+	/* 로그인 */
+	public UserVo selectUser(UserVo userVo) {
+		System.out.println("UserDao.selectUser()");
+		
+		UserVo authUser = sqlSession.selectOne("user.selectByIdPw", userVo);
+		
+		return authUser;
+		
+	}
+	
+	
+	
 
 }

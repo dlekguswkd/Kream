@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class UserController {
 	
@@ -37,7 +39,7 @@ public class UserController {
 		System.out.println(userVo);
 	
 		// 포워드
-		return "";	// 메인페이지로 바꾸기
+		return "redirect:/user/loginform";
 	}
 	
 	// -----------------------------------------------------------------------------
@@ -47,11 +49,43 @@ public class UserController {
 	@RequestMapping(value = "/user/loginform", method = { RequestMethod.GET, RequestMethod.POST })
 	public String loginForm() {
 		System.out.println("UserController.loginForm()");
-
-		
-		
 		
 		return "user/loginForm";
 	}
+	
+	
+	/* 로그인 */
+	//http://localhost:8888/kream/user/login
+	@RequestMapping(value = "/user/login", method = { RequestMethod.GET, RequestMethod.POST })
+	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
+		System.out.println("UserController.loginForm()");
+		
+		UserVo authUser = userService.exeLogin(userVo);
+		
+		session.setAttribute("authUser", authUser);
+		System.out.println(authUser);
+		
+		return "redirect:/main/mainform";		
+	}
+	
+	
+	/* 로그아웃 */
+	//http://localhost:8888/kream/user/logout
+	@RequestMapping(value="/user/logout", method = {RequestMethod.GET, RequestMethod.POST})
+	public String logout(HttpSession session) {
+		System.out.println("UserController.logout()");
+		
+		session.invalidate();
+	
+		return "redirect:/main/mainform";		
+	}
+	
+	
+	
+	// -----------------------------------------------------------------------------
+	
+	
+	
+	
 	
 }
