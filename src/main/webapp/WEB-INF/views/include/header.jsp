@@ -18,8 +18,8 @@
                     <ul class="clearfix">
                         <li><a href="#"><strong>HOME</strong></a></li>
                         <li><a href="#">SHOP</a></li>
-                        <li><a href="#"><img id="search" src="../imgs/search.jpg"></a></li>
-                        <li><a href="#"><img id="cart" src="../imgs/cart.jpg"></a></li>
+                        <li><a href="#"><img id="search" src="${pageContext.request.contextPath}/assets/imgs/search.jpg"></a></li>
+                        <li><a href="#"><img id="cart" src="${pageContext.request.contextPath}/assets/imgs/cart.jpg"></a></li>
                     </ul>
                 </div>
             </div>

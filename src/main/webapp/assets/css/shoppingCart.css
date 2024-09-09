@@ -24,7 +24,7 @@
 	margin-left: 30px;
 	margin-top: 20px;
 	border-radius: 6px;
-	background-color: #f1f1f1;
+	background-color: #f0efef;
 }
 
 .product-info .content {
@@ -58,6 +58,7 @@
 
 /* 버튼 두개 (옵션, 삭제) */
 #full-content .btn2 {
+	display: flex;
 	margin: 30px 0px;
 }
 
@@ -76,7 +77,7 @@
 
 /* 구매 모달 창 */
 #buy-modal {
-	display: block;
+	display: none !important;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -206,7 +207,7 @@
 
 #full-content .btn2 .btnDelete {
 	font-size: 18px;
-	width: 400px;
+	width: 470px;
 	height: 45px;
 	background-color: #161515;
 	color: #fafafa;
@@ -305,6 +306,3 @@
 	font-size: 20px;
 	cursor: pointer;
 }
-
-/* 버튼 그림자 없애기 */
-/* outline: none; border: none; box-shadow: none; */

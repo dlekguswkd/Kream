@@ -1,12 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>장바구니</title>
-<link href="${pageContext.request.contextPath}/assets/css/reset3.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/assets/css/shoppingCart.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/reset3.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="${pageContext.request.contextPath}/assets/css/shoppingCart.css"
+	rel="stylesheet" type="text/css">
 
 <!-- Axios 라이브러리 포함 -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -32,7 +36,7 @@
 
 							<div class="product-info">
 
-								<img class="product-img" src="../imgs/Adidas Original Gazelle Auburn Clear Pink.webp">
+								<img src="${pageContext.request.contextPath}/upload/${ShoppingcartVo.saveName}" alt="prodImg" style="width:140px; background-color: #f0efef;" />
 
 								<div class="content">
 									<p class="product-nameE">${ShoppingcartVo.engName}</p>
@@ -50,10 +54,14 @@
 
 							<!-- 버튼 두개 (옵션, 삭제) -->
 							<div class="btn2">
-								<button class="btnOption" type="button" name="prodSize">사이즈 변경</button>
-								<form action="${pageContext.request.contextPath}/shoppingcart/delete" method="get">
+								<button class="btnOption" type="button" name="prodSize">사이즈
+									변경</button>
+								<form
+									action="${pageContext.request.contextPath}/shoppingcart/delete"
+									method="get">
 									<button class="btnDelete" type=submit>장바구니에서 삭제</button>
-									<input type="hidden" name="cartNo" value="${ShoppingcartVo.cartNo}" />
+									<input type="hidden" name="cartNo"
+										value="${ShoppingcartVo.cartNo}" />
 								</form>
 							</div>
 							<!--모달창 -->
@@ -65,7 +73,7 @@
 									</div>
 
 									<div class="product-info">
-										<img src="../imgs/Adidas Original Gazelle Auburn Clear Pink.webp" alt="" />
+										<img src="${pageContext.request.contextPath}/upload/${MainVo.saveName}" alt="shoes" />
 										<div>
 											<h2>Adidas Original Gazelle Auburn Clear Pink</h2>
 											<p class="product-id">아디다스 오리지널스 가젤 어번 클리어 핑크</p>
@@ -131,7 +139,8 @@
 						<li>배송 방법 및 쿠폰/포인트 적용 여부는 결제 시 선택할 수 있습니다.</li>
 						<li>총 결제금액은 배송 방법 및 쿠폰/포인트 적용 여부에 따라 달라질 수 있습니다.</li>
 						<li>예상 결제금액은 기본 배송 방법 및 일반 결제로 주문했을 때의 가격입니다.</li>
-						<li>장바구니에는 KREAM 배송 상품과 브랜드 배송 상품을 각각 최대 30개까지 담을 수 있으며, 상품은 최대 30일까지 보관됩니다.</li>
+						<li>장바구니에는 KREAM 배송 상품과 브랜드 배송 상품을 각각 최대 30개까지 담을 수 있으며, 상품은
+							최대 30일까지 보관됩니다.</li>
 					</ol>
 				</div>
 
@@ -152,26 +161,18 @@
 	<!-- //wrap -->
 
 	<script>
-	document.addEventListener("DOMContentLoaded", fuction() {
-		
-		// 사이즈 변경 모달창 띄우기 이벤트 등록
-		let listArea = document.querySelector("#buy-modal");
-    	listArea.addEventListener('click', callModal);
-	});
-	
-	// 모달창 띄우기
-	function callModal() {
-		
-		
-	}
-	
-	
-	
-	
-	
-	
-	
+		document.addEventListener("DOMContentLoaded", function() {
+			let btnOption = document.querySelector(".btnOption"); // 여러 개의 버튼을 선택
+			btnOption.addEventListener('click', callModal);
+		});
+
+		// 모달창 띄우기 함수
+		function callModal() {
+			let modalTag = document.querySelector('#buy-modal');
+			modalTag.style.display = 'block';
+		}
 	</script>
+
 
 </body>
 
