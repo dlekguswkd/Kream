@@ -75,17 +75,17 @@
 
 									<div class="size-grid">
 										<!-- 사이즈 버튼들 -->
-										<button id="size230" class="size-box" data-size="230">230</button>
-										<button id="size235" class="size-box" data-size="235">235</button>
-										<button id="size240" class="size-box" data-size="240">240</button>
-										<button id="size245" class="size-box" data-size="245">245</button>
-										<button id="size250" class="size-box" data-size="250">250</button>
-										<button id="size255" class="size-box" data-size="255">255</button>
-										<button id="size260" class="size-box" data-size="260">260</button>
-										<button id="size265" class="size-box" data-size="265">265</button>
-										<button id="size270" class="size-box" data-size="270">270</button>
-										<button id="size275" class="size-box" data-size="275">275</button>
-										<button id="size280" class="size-box" data-size="280">280</button>
+										<button id="size230" class="size-box" data-prodSize="230">230</button>
+										<button id="size235" class="size-box" data-prodSize="235">235</button>
+										<button id="size240" class="size-box" data-prodSize="240">240</button>
+										<button id="size245" class="size-box" data-prodSize="245">245</button>
+										<button id="size250" class="size-box" data-prodSize="250">250</button>
+										<button id="size255" class="size-box" data-prodSize="255">255</button>
+										<button id="size260" class="size-box" data-prodSize="260">260</button>
+										<button id="size265" class="size-box" data-prodSize="265">265</button>
+										<button id="size270" class="size-box" data-prodSize="270">270</button>
+										<button id="size275" class="size-box" data-prodSize="275">275</button>
+										<button id="size280" class="size-box" data-prodSize="280">280</button>
 									</div>
 								</div>
 							</div>
@@ -161,29 +161,7 @@
 	
 	// 모달창 띄우기
 	function callModal() {
-		let modal230 = document.querySelector('#size230');
-		let modal235 = document.querySelector('#size235');
-		let modal240 = document.querySelector('#size240');
-		let modal245 = document.querySelector('#size245');
-		let modal250 = document.querySelector('#size250');
-		let modal255 = document.querySelector('#size255');
-		let modal260 = document.querySelector('#size260');
-		let modal265 = document.querySelector('#size265');
-		let modal270 = document.querySelector('#size270');
-		let modal275 = document.querySelector('#size275');
-		let modal280 = document.querySelector('#size280');
 		
-		let size230 = modal230.value;
-		let size235 = modal235.value;
-		let size240 = modal240.value;
-		let size245 = modal245.value;
-		let size250 = modal250.value;
-		let size255 = modal255.value;
-		let size260 = modal260.value;
-		let size265 = modal265.value;
-		let size270 = modal270.value;
-		let size275 = modal275.value;
-		let size280 = modal280.value;
 		
 	}
 	
