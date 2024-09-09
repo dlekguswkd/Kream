@@ -1,0 +1,295 @@
+@charset "UTF-8";
+
+
+
+.layout_main_container {
+    width: 1000px; /* Ensure same width as login page */
+    margin: 0 auto; /* Center the container */
+    color: #222222;
+    padding: 20px 0; /* Optional padding for top and bottom */
+}
+
+.menu_container {
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid lightgray;
+    background: white;
+    z-index: 1;
+    width: 100%;
+}
+
+.shop_title {
+    text-align: center;
+    
+    font-size: 2rem;
+    margin-bottom: 20px;
+    z-index: 1;
+    
+}
+
+
+.popular_shoes {
+    
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 1px solid lightgray;
+    
+}
+
+.popular_shoes_list_container {
+    white-space: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    width: 80%;
+    margin: 0 auto; 
+    padding-top:20px;
+    padding-bottom: 20px;
+    
+}
+
+.popular_item {
+    display: inline-block;
+    text-align: center;
+    width: 13%; 
+    margin-right: 10px; 
+    box-sizing: border-box;
+    vertical-align: top; 
+}
+
+.popular_item_name {
+    font-size: 14px;
+    margin-top: 5px;
+    white-space: normal; 
+    word-wrap: break-word; 
+    line-height: 1.2; 
+}
+
+.popular_item img {
+    border-radius: 8px;
+    width: 100px; 
+    display: block;
+    margin: 0 auto;
+}
+
+/* Sidebar positioned to the left */
+.sidebar {
+    width: 20%;
+    height: 100%;
+    border-right: 1px solid lightgray; /* Move border to right side */
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    box-sizing: border-box;
+    float: left; /* Sidebar floats to the left */
+    position: relative; 
+    box-sizing: border-box;
+}
+
+
+.sidebar_container {
+    height: 100%; 
+    display: flex;
+    overflow-y: hidden;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.sidebar h2 {
+    font-size: 20px;
+    font-weight: bold; /* Make "필터" bold */
+    text-align: left;
+    margin-bottom: 20px; /* Optional spacing below "필터" */
+}
+
+
+.filter-section {
+    margin-bottom: 20px;
+    max-height: 200px; 
+    overflow-y: auto;  
+    
+}
+
+
+.filter-section h4 {
+    font-size: 14px;
+    font-weight: normal; /* Keep other headers normal */
+    margin-bottom: 15px; /* Add margin below headers for spacing */
+}
+
+
+.filter-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+
+.filter-section ul li {
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+
+.filter-section ul li input {
+    margin-right: 10px;
+}
+
+.filter-button {
+    width: 80px;
+    height: 30px;
+    margin-left: 35px;
+    border: 1px solid #c7c7c7;
+    background-color: #dfdfdf;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.size-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+
+.size-grid button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 14px; 
+}
+
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-height: 150px;
+    overflow-y: auto; 
+    text-align: center;
+}
+
+
+.color-grid div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40px; 
+}
+
+.color-grid p {
+    margin-top: 5px;
+    font-size: 14px;
+}   
+
+
+.color-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.color-circle.black { background-color: black; }
+.color-circle.white { background-color: white; }
+.color-circle.gray { background-color: gray; }
+.color-circle.brown { background-color: brown; }
+.color-circle.blue { background-color: blue; }
+.color-circle.green { background-color: green; }
+.color-circle.yellow { background-color: yellow; }
+.color-circle.orange { background-color: orange; }
+.color-circle.purple { background-color: purple; }
+.color-circle.pink { background-color: pink; }
+.color-circle.navy { background-color: navy; }
+.color-circle.magenta { background-color: magenta; }
+.color-circle.lightblue { background-color: lightblue; }
+.color-circle.cerulean { background-color: cornflowerblue; }
+.color-circle.mint { background-color: mintcream; }
+.color-circle.red { background-color: red; }
+.color-circle.darkblue { background-color: darkblue; }
+.color-circle.darkgreen { background-color: darkgreen; }
+
+
+.products_container {
+    width: 78%; /* Adjusted to fit next to the sidebar */
+    margin-top: 20px;
+    padding: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+    float: right; /* Float to the right of the sidebar */
+    margin-left: 2%; /* Ensure spacing between sidebar and products */
+}
+
+.products_selling_items {
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    width: 22%; 
+    float: left;
+    margin: 0 10px 20px 0; 
+    box-sizing: border-box;
+}
+
+.products_selling_items img {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 8px;
+}
+
+.products_selling_items_name {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.products_selling_items_price {
+    font-size: 12px;
+    color: gray;
+}
+
+
+/* Layout after content to clear floats */
+.layout_main_container::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#footer {
+    width: 1000px;
+    margin: 0 auto; /* Center footer content */
+    padding: 20px 0;
+}
+
+/* Footer area styles */
+#corporation-area, #notice-guarantee, .corp {
+    width: 100%; /* Keep footer full width inside the centered container */
+    margin-top: 20px;
+}
+
+/* Footer contents should align inside the width */
+#corporation-area ul, #business-title, #sns-box {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* 페이징 숫자 리스트 박스 중앙 정렬 */
+#paging {
+    float: left;
+    width: 100%;
+    text-align: center; /* 페이징 숫자 전체 중앙 정렬 */
+}
+
+/* 페이징 숫자 리스트 띄우기 */
+#paging ul>li {
+    display: inline-block; /* inline-block을 사용하여 중앙 정렬 가능하도록 */
+    padding: 20px 2px 5px 2px;
+}
+
+/* 숫자에 마우스 올렸을때 */
+#paging #nums ul>li:hover {
+    font-weight: bold;
+}
+
