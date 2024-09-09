@@ -36,9 +36,7 @@
 
 							<div class="product-info">
 
-								<img
-									src="${pageContext.request.contextPath}/upload/${ShoppingcartVo.saveName}"
-									alt="prodImg" style="width: 140px; background-color: #f0efef;" />
+								<img src="${pageContext.request.contextPath}/upload/${ShoppingcartVo.saveName}" alt="prodImg" style="width:140px; background-color: #f0efef;" />
 
 								<div class="content">
 									<p class="product-nameE">${ShoppingcartVo.engName}</p>
@@ -66,7 +64,40 @@
 										value="${ShoppingcartVo.cartNo}" />
 								</form>
 							</div>
+							<!--모달창 -->
+							<div id="buy-modal">
+								<div class="purchase-modal" id="purchaseModal">
+									<div class="modal-header">
+										<h1>사이즈 변경</h1>
+										<button class="close-btn" type="button">&times;</button>
+									</div>
 
+									<div class="product-info">
+										<img src="${pageContext.request.contextPath}/upload/${MainVo.saveName}" alt="shoes" />
+										<div>
+											<h2>Adidas Original Gazelle Auburn Clear Pink</h2>
+											<p class="product-id">아디다스 오리지널스 가젤 어번 클리어 핑크</p>
+											<p class="product-id">JH5666</p>
+										</div>
+									</div>
+
+									<div class="size-grid">
+										<!-- 사이즈 버튼들 -->
+										<button id="size230" class="size-box" data-prodSize="230">230</button>
+										<button id="size235" class="size-box" data-prodSize="235">235</button>
+										<button id="size240" class="size-box" data-prodSize="240">240</button>
+										<button id="size245" class="size-box" data-prodSize="245">245</button>
+										<button id="size250" class="size-box" data-prodSize="250">250</button>
+										<button id="size255" class="size-box" data-prodSize="255">255</button>
+										<button id="size260" class="size-box" data-prodSize="260">260</button>
+										<button id="size265" class="size-box" data-prodSize="265">265</button>
+										<button id="size270" class="size-box" data-prodSize="270">270</button>
+										<button id="size275" class="size-box" data-prodSize="275">275</button>
+										<button id="size280" class="size-box" data-prodSize="280">280</button>
+									</div>
+								</div>
+							</div>
+							<!--//모달창-->
 							<!-- //btn2 -->
 
 							<div class="expect-price clearfix">
@@ -126,93 +157,20 @@
 		<!-- footer -->
 		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
-		<!--모달창 -->
-		<div id="buy-modal">
-			<div class="purchase-modal" id="purchaseModal">
-				<div class="modal-header">
-					<h1>사이즈 변경</h1>
-					<button class="close-btn" type="button">&times;</button>
-				</div>
-
-				<div class="product-info">
-					<img
-						src="${pageContext.request.contextPath}/upload/${MainVo.saveName}"
-						alt="shoes" />
-					<div>
-						<h2>Adidas Original Gazelle Auburn Clear Pink</h2>
-						<p class="product-id">아디다스 오리지널스 가젤 어번 클리어 핑크</p>
-						<p class="product-id">JH5666</p>
-					</div>
-				</div>
-
-				<div class="size-grid">
-					<!-- 사이즈 버튼들 -->
-					<button id="size230" class="size-box" data-prodsize="230">230</button>
-					<button id="size235" class="size-box" data-prodsize="235">235</button>
-					<button id="size240" class="size-box" data-prodsize="240">240</button>
-					<button id="size245" class="size-box" data-prodsize="245">245</button>
-					<button id="size250" class="size-box" data-prodsize="250">250</button>
-					<button id="size255" class="size-box" data-prodsize="255">255</button>
-					<button id="size260" class="size-box" data-prodsize="260">260</button>
-					<button id="size265" class="size-box" data-prodsize="265">265</button>
-					<button id="size270" class="size-box" data-prodsize="270">270</button>
-					<button id="size275" class="size-box" data-prodsize="275">275</button>
-					<button id="size280" class="size-box" data-prodsize="280">280</button>
-				</div>
-			</div>
-		</div>
-		<!--//모달창-->
-
 	</div>
 	<!-- //wrap -->
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
-			
-			// 모달창 띄우기 이벤트
-			let btnOptions = document.querySelectorAll(".btnOption");
-			for (let i = 0; i < btnOptions.length; i++) {
-				btnOptions[i].addEventListener('click', callModal);
-			}
-			
-			// 모달창 닫기 버튼 클릭이벤트 등록
-	    	let closeBtn = document.querySelectorAll('.close-btn');
-	    	for (let i = 0; i < closeBtn.length; i++) {
-	    		closeBtn[i].addEventListener('click', closeModal);
-			}
-	    	
-	    	let sizeButtons = document.querySelectorAll(".size-box");
-	    	for (let i = 0; i < sizeButtons.length; i++) {
-	    		sizeButtons[i].addEventListener('click', ButtonClick);
-	    		console.log(sizeButtons[i]);
-			}
-
+			let btnOption = document.querySelector(".btnOption"); // 여러 개의 버튼을 선택
+			btnOption.addEventListener('click', callModal);
 		});
 
-		// 모달창 띄우기
-		function callModal(event) {
+		// 모달창 띄우기 함수
+		function callModal() {
 			let modalTag = document.querySelector('#buy-modal');
-
 			modalTag.style.display = 'block';
-			
-			let size = event.target.dataset.prodsize;
-			console.log(no);
-			
-			
 		}
-		
-		// 모달창 닫기
-		function closeModal(event) {
-			
-			let modalTag = document.querySelector('#buy-modal');
-
-			modalTag.style.display = 'none';
-			
-		}
-		
-		
-		
-		
 	</script>
 
 

@@ -1,0 +1,354 @@
+@charset "UTF-8";
+/****************************************************************/
+/* 초기화 관련 ***************************************************/
+/****************************************************************/
+
+/* 여백 초기화 */
+body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset,
+	legend, p, select, table, th, td, tr, textarea, button, form {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 12px;
+	font-family: "맑은 고딕", 돋움, 굴림;
+	text-align: center;
+	color: #333;
+	background-color: #fff;
+}
+
+ul, ol {
+	list-style-type: none;
+}
+
+/* 앵커 태그 초기화 */
+a {
+	text-decoration: none; /* 밑줄 제거 */
+	color: inherit; /* 부모 색상 상속 */
+}
+
+/* 레이아웃 */
+#wrap {
+	margin: 0px auto;
+	width: 1000px;
+	background-color: #FFFFFF;
+}
+
+#header {
+	width: 1000px;
+	padding: 5px 0px 10px 0px;
+	background-color: #FFFFFF;
+}
+
+#content {
+	float: left;
+	width: 820px;
+	margin: 20px 0px 0px 0px;
+	background-color: #FFFFFF;
+}
+
+/* 헤더 */
+#header { /* 헤더 고정바 */
+	position: sticky;
+	top: 0px;
+	z-index: 2;
+}
+
+#header h1 {
+	float: left;
+	margin-top: 5px;
+	font-size: 30px;
+	font-style: italic;
+	color: #222222;
+	font-weight: 900;
+	z-index: 1; /* 헤더 고정바 */
+}
+
+#header ul {
+	float: right;
+}
+
+#header1 li {
+	float: left;
+	margin-left: 10px;
+	padding: 3px 5px;
+	font-size: 11px;
+	/*border: 1px solid #c0c0c0; */
+}
+
+#header2 { /* 헤더 고정바 */
+	z-index: 1;
+}
+
+#header2 li {
+	float: left;
+	margin-top: 12px;
+	margin-left: 20px;
+	padding: 3px 5px;
+	font-size: 20px;
+	/* border: 1px solid #c0c0c0; */
+}
+
+/* 검색, 장바구니 아이콘 위치 조절 */
+#header2 li #search, #cart {
+	margin-top: 5px;
+}
+
+/* 네비(nav: 메인메뉴) */
+#nav ul>li {
+	float: left;
+	margin: 15px 0px 15px 0px;
+	width: 250px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+/* 왼쪽메뉴(aside) */
+#aside h2 {
+	width: 160px;
+	height: 60px;
+	line-height: 60px;
+	font-size: 20px;
+	font-weight: bold;
+	background-color: #DDDDDD;
+}
+
+#aside ul {
+	width: 160px;
+}
+
+#aside ul>li {
+	margin: 5px 0px 0px 0px;
+	padding: 8px 0px 8px 10px;
+	font-size: 15px;
+	text-align: left;
+	border: 1px solid #A6A6A6;
+}
+
+/* 메인컨텐츠(content) */
+#content-head {
+	margin: 0px 0px 14px 0px;
+	border-bottom: 1px solid #A6A6A6;
+}
+
+#content-head h3 {
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	margin: 15px 0px 5px 0px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#content-head #location {
+	float: right;
+	margin: 25px 0px 0px 12px;
+	font-size: 13px;
+}
+
+#content-head #location ul>li {
+	float: left;
+}
+
+#content-head #location ul>li:after {
+	content: ">";
+	margin: 0px 5px 0px 5px;
+}
+
+#content-head #location ul>li.last:after {
+	content: none;
+}
+
+/* footer */
+#footer #service-area {
+	border-bottom: 1px solid #e7e7e7;
+	padding-bottom: 40px;
+}
+
+#footer #service-area ul>li {
+	color: #808080cb;
+	font-size: 13px;
+	padding-bottom: 10px;
+}
+
+/* 메뉴 타이틀 */
+#footer p.menu-title {
+	padding-bottom: 15px;
+	font-weight: bold;
+}
+
+/* 이용안내 박스 */
+#footer .menu-box1 {
+	float: left;
+	margin-top: 20px;
+	margin-right: 150px;
+	padding: 5px;
+	text-align: left;
+}
+
+/* 고객지원 박스 */
+#footer .menu-box2 {
+	float: left;
+	margin-top: 20px;
+	padding: 5px;
+	text-align: left;
+}
+
+/* 고객센터 박스 */
+#footer .customer-service {
+	float: right;
+	padding: 5px;
+	margin-top: 20px;
+	margin-right: 80px;
+	text-align: left;
+}
+
+/* 이용시간 박스*/
+#footer .service-time {
+	font-size: 12px;
+	padding: 10px 0px 0px 0px;
+	color: #808080cb;
+}
+
+/* 고객센터 p1 */
+#footer .customer-service .txt1 {
+	font-weight: bold;
+	color: #222222;
+}
+
+/* 고객센터 p2 */
+#footer .customer-service .txt2 {
+	padding-top: 10px;
+	font-size: 13px;
+	color: #222222;
+}
+
+/* 자주 묻는 질문 */
+#footer .service-btn {
+	width: 90px;
+	margin-top: 15px;
+	padding: 10px;
+	font-size: 13px;
+	font-weight: bold;
+	color: #ffffff;
+	background-color: #000000;
+}
+
+/* corporation-area 박스 설정*/
+#footer #corporation-area {
+	margin-top: 30px;
+	/* border: 1px solid #000; */
+}
+
+/* term-list 리스트박스 띄우기 */
+#footer #corporation-area .term-list {
+	float: left;
+}
+
+/* 리스트 나열 띄우기 */
+#footer #corporation-area ul>li {
+	float: left;
+	padding-right: 25px;
+}
+
+/* corporation-area 설정 */
+#footer #corporation-area .term-list {
+	font-size: 14px;
+	color: #000;
+}
+
+#footer #corporation-area .term-list ul>li:last-child {
+	font-weight: bold;
+}
+
+/* sns 이미지 */
+#footer #sns-box {
+	float: right;
+}
+
+/* 회사소개 */
+#footer #business-title {
+	float: left;
+	width: 700px;
+	padding-top: 20px;
+	font-size: 12px;
+	text-align: left;
+	color: #808080cb;
+}
+
+#footer #business-title a {
+	text-decoration: underline;
+}
+
+/* 채무지급보증 */
+#footer #notice-guarantee {
+	padding-top: 40px;
+	font-size: 11px;
+	text-align: left;
+	color: #808080cb;
+}
+
+#footer #notice-guarantee .bank {
+	padding-bottom: 2px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #222222;
+}
+
+#footer #notice-guarantee a {
+	text-decoration: underline;
+}
+
+#footer .corp {
+	text-align: right;
+	font-size: 11px;
+	color: #808080cb;
+}
+
+/****************** 공통 ************************/
+/* clearfix */
+/* .clearfix{*zoom:1;} */
+.clearfix:before, .clearfix:after {
+	display: block;
+	content: "";
+	line-height: 0;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+/* font *(기본값 12px) */
+.bold {
+	font-weight: bold;
+}
+
+.text-xlarge {
+	font-size: 18px;
+}
+
+.text-large {
+	font-size: 15px;
+}
+
+.text-small {
+	font-size: 10px;
+}
+
+.text-right {
+	text-align: right !important;
+}
+
+.text-left {
+	text-align: left !important;
+}
+
+.text-center {
+	text-align: center !important;
+}
+
+/* 위치 */
+.clear {
+	clear: both;
+}

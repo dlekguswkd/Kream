@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.ShoppingCartService;
 import com.javaex.vo.ShoppingCartVo;
+import com.javaex.vo.UserVo;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ShoppingCartController {
@@ -20,12 +23,15 @@ public class ShoppingCartController {
 
 	/* 장바구니 리스트 가져오기 */
 	@RequestMapping(value = "/shoppingcart", method = { RequestMethod.GET, RequestMethod.POST })
-	public String shoppingCartForm(@RequestParam(value="userNo") int userNo, Model model) {
+	public String shoppingCartForm(HttpSession session, Model model) {
 		System.out.println("ShoppingCartController.shoppingCartForm()");
 		
+		// 로그인한 session 값을 객체로 가져오기
+				UserVo authUser = (UserVo) session.getAttribute("authUser");
+		
 		// 로그인한 회원의 session으로 조회해야함 수정 필요
-		List<ShoppingCartVo> shoppingList = shoppingCartService.exeGetShoppingList(userNo);
-		int totalCnt = shoppingCartService.exeSelectTotalCnt(userNo);
+		List<ShoppingCartVo> shoppingList = shoppingCartService.exeGetShoppingList(authUser.getUserNo());
+		int totalCnt = shoppingCartService.exeSelectTotalCnt(authUser.getUserNo());
 		
 		model.addAttribute("shoppingList", shoppingList);
 		model.addAttribute("totalCnt", totalCnt);

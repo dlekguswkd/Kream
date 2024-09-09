@@ -25,15 +25,15 @@ public class UserInfoService {
 	}
 
 	/* 회원정보 수정 */
-	public int exeUserModify(UserVo userVo) {
+	public UserVo exeUserModify(UserVo userVo) {
 		System.out.println("UserInfoService.modify()");
 
 		int count = userInfoDao.modifyUser(userVo);
 
 		// 회원번호(no)를 이용해서 수정된 회원의 정보를 객체로 저장
-		// UserVo modifyUserInfo = userInfoDao.selectInfo(userVo.getNo());
+		UserVo modifyUserInfo = userInfoDao.selectInfo(userVo.getUserNo());
 
-		return count;
+		return modifyUserInfo;
 	}
 	
 	/* 마이페이지 구매내역 */

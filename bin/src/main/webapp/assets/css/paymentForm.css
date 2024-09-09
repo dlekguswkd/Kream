@@ -1,0 +1,230 @@
+@charset "UTF-8";
+
+#full-content #paymentInfo {
+	width: 1000px;
+	height: 50px;
+	font-size: 30px;
+	padding: 30px 0px 20px 0px;
+	background-color: #f0f0f0;
+}
+
+/* 주문상품 */
+#full-content .productInfo {
+	padding: 15px 15px 10px 35px;
+	border: 1px solid #e2e2e2;
+	border-radius: 4px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.productInfo .order-text {
+	float: left;
+	width: 950px;
+	padding-bottom: 10px;
+	margin-top: 15px;
+	font-size: 19px;
+	border-bottom: 2px solid #222;
+	text-align: left;
+	font-weight: 600;
+}
+
+.productInfo .text2 {
+	padding-top: 10PX;
+	padding-bottom: 40PX;
+	border-bottom: 1px solid #e2e2e2;
+}
+
+.productInfo .product-text {
+	float: left;
+	width: 80px;
+	font-size: 19px;
+	margin-left: 380px;
+}
+
+.productInfo .payment-text {
+	float: right;
+	width: 80px;
+	font-size: 19px;
+	margin-right: 30px;
+}
+
+/* 여기부터 반복? */
+.productInfo  .order-product {
+	padding-top: 10PX;
+	padding-bottom: 80PX;
+}
+
+.order-product .product-img {
+	float: left;
+	width: 140px;
+	height: 130px;
+	border-radius: 6px;
+	background-color: #f1f1f1;
+}
+/* 상품정보틀 */
+.order-product .content {
+	float: left;
+	width: 550px;
+	text-align: left;
+	padding-top: 20px;
+	margin-left: 20px;
+}
+
+.content .product-nameE {
+	font-size: 15px;
+	padding-bottom: 2px;
+}
+
+.content .product-nameK {
+	font-size: 15px;
+	color: #a1a1a1;
+}
+
+.content .size {
+	font-size: 15px;
+	padding-top: 7px;
+}
+/* 결제금액 */
+.order-product .product-price {
+	float: right;
+	text-align: right;
+	font-size: 23px;
+	margin: 30px 10px 0px 20px;
+}
+
+/* 결제정보 */
+#full-content #selectInfo {
+	padding: 15px 15px 10px 35px;
+	border: 1px solid #e2e2e2;
+	border-radius: 4px;
+	margin-top: 30px;
+}
+
+#selectInfo .total-text {
+	float: left;
+	width: 950px;
+	margin-left: 0px;
+	padding-bottom: 10px;
+	font-size: 19px;
+	border-bottom: 1px solid #f0f0f0;
+	text-align: left;
+	font-weight: 600;
+}
+
+#selectInfo .total-price {
+	padding-top: 15PX;
+	padding-bottom: 40PX;
+	margin-top: 10px;
+}
+
+.total-price .total-priceL {
+	float: left;
+	width: 148px;
+	margin-left: 0px;
+	font-size: 19px;
+	text-align: left;
+}
+
+.total-price .total-priceR {
+	float: right;
+	width: 600px;
+	text-align: right;
+	font-size: 26px;
+	font-weight: 550;
+}
+
+/*  */
+
+/* 주문자 정보 */
+#full-content #userInfo {
+	padding: 15px 15px 10px 35px;
+	border: 1px solid #e2e2e2;
+	border-radius: 4px;
+	margin-top: 30px;
+}
+
+#userInfo .user-text {
+	float: left;
+	width: 950px;
+	margin-left: 0px;
+	padding-bottom: 10px;
+	font-size: 19px;
+	border-bottom: 1px solid #f0f0f0;
+	text-align: left;
+	font-weight: 600;
+}
+
+#userInfo .name {
+	padding-top: 10PX;
+	padding-bottom: 30PX;
+}
+
+.name .nameL {
+	float: left;
+	width: 102px;
+	margin-left: 0px;
+	font-size: 19px;
+	color: #a1a1a1;
+	text-align: left;
+}
+
+.name .nameR {
+	float: right;
+	width: 600px;
+	text-align: right;
+	margin-left: 10px;
+	font-size: 19px;
+}
+
+#userInfo .email {
+	padding-top: 10PX;
+	padding-bottom: 30px;
+}
+
+.email .emailL {
+	float: left;
+	width: 120px;
+	font-size: 19px;
+	color: #a1a1a1;
+	text-align: left;
+}
+
+.email .emailR {
+	float: right;
+	width: 600px;
+	text-align: right;
+	margin-left: 10px;
+	font-size: 19px;
+}
+
+#userInfo .address {
+	padding-top: 10PX;
+	padding-bottom: 30px;
+}
+
+.address .addressL {
+	float: left;
+	width: 148px;
+	font-size: 19px;
+	color: #a1a1a1;
+	text-align: left;
+}
+
+.address .addressR {
+	float: right;
+	width: 600px;
+	text-align: right;
+	font-size: 19px;
+}
+
+#full-content #home {
+	margin-top: 20px;
+	width: 160px;
+	height: 37px;
+	border: none;
+	border-radius: 8px;
+	font-size: 20px;
+	background-color: #161515;
+	color: #fafafa;
+	cursor: pointer;
+}
