@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shopingCart">
+
+	<!-- 장바구니 리스트 가져오기 -->
+	<select id="selectList" parameterType="int" resultType="com.javaex.vo.ShoppingCartVo">
+	<![CDATA[
+		SELECT s.cartNo,
+			   s.userNo,
+			   s.prodNo,
+			   s.prodSize,
+			   p.engName,
+			   p.korName,
+			   p.modelNo,
+			   c.prodPrice,
+			   p.filePath,
+			   p.saveName,
+			   p.orgName,
+			   (SELECT SUM(c2.prodPrice)
+			   FROM ShoppingChart s2
+			   INNER JOIN Products p2 ON s2.prodNo = p2.prodNo
+			   INNER JOIN Category c2 ON p2.categoryNo = c2.categoryNo
+			   WHERE s2.userNo = s.userNo) AS totalPrice
+		FROM ShoppingChart s
+		INNER JOIN Products p ON s.prodNo = p.prodNo
+		INNER JOIN Category c ON p.categoryNo = c.categoryNo
+		WHERE s.userNo = #{userNo}
+	]]>
+	</select>
+	
+	<!-- 장바구니 전체 갯수 구하기 -->
+	<select id="selectTotalCnt" parameterType="int" resultType="int">
+	<![CDATA[
+		SELECT count(*)
+		FROM ShoppingChart
+		WHERE userNo = #{userNo}
+	]]>
+	</select>
+	
+	<!-- 장바구니 삭제 -->
+	<delete id="deleteShopping" parameterType="int">
+		<![CDATA[
+		 	delete from ShoppingChart
+		 	where cartNo = #{cartNo}
+	]]>
+	</delete>
+
+
+</mapper>

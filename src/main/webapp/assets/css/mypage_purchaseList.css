@@ -1,0 +1,133 @@
+/* 컨텐츠 */
+/* aside */
+#contents #aside {
+	float: left;
+	width: 170px;
+}
+
+#contents #aside ul>li:hover {
+	font-weight: bold;
+	color: #000000;
+}
+
+#contents #aside h2 {
+	font-size: 20px;
+	font-weight: 900;
+}
+
+/* 쇼핑정보 */
+#contents #aside .snb-list1 {
+	margin-top: 30px;
+	margin-bottom: 40px;
+	font-size: 15px;
+}
+
+/* aside li 패딩 조절 */
+#contents #aside ul>li {
+	padding: 10px 0px 0px 0px;
+	font-size: 15px;
+	color: #aeaeae;
+}
+
+/* 내정보 */
+#contents #aside .snb-list2 {
+	font-size: 15px;
+}
+
+/* content-area */
+#contents #content-area {
+	float: left;
+	width: 730px;
+}
+
+/* 구매 내역 텍스트 */
+#contents #content-title h3 {
+	font-size: 22px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+/* 구매 내역 항목 */
+.purchase-section {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+/* 구매 내역 리스트 */
+.purchase-list {
+	margin-top: 20px;
+	width: 100%;
+	font-size: 16px;
+}
+
+/* 구매 내역 항목 */
+.purchase-item {
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 0;
+	border-bottom: 1px solid #eee;
+}
+
+/* 구매 상품 정보 */
+.product-info {
+	display: flex;
+	align-items: center;
+}
+
+.product-info img {
+	width: 80px;
+	height: 80px;
+	border-radius: 10px;
+	margin-right: 20px;
+}
+
+.product-info p {
+	margin: 0;
+}
+
+.product-info p.title {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.product-info p.details {
+	font-size: 14px;
+	color: #666;
+}
+
+/* 구매 상태 */
+.purchase-status {
+	text-align: right;
+}
+
+.purchase-status p {
+	margin: 0;
+	font-size: 14px;
+	color: #999;
+}
+
+.purchase-status p.price {
+	font-weight: bold;
+	color: #222;
+}
+
+/* 버튼 */
+.purchase-action {
+	text-align: right;
+}
+
+.purchase-action button {
+	border: 1px solid #ccc;
+	padding: 5px 15px;
+	border-radius: 20px;
+	cursor: pointer;
+	background-color: white;
+	font-size: 14px;
+}
+
+.purchase-action button:hover {
+	background-color: #f1f1f1;
+}

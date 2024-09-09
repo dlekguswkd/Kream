@@ -1,0 +1,176 @@
+/* 컨텐츠 */
+/* aside */
+#contents #aside {
+	float: left;
+	width: 170px;
+}
+
+#contents #aside ul>li:hover {
+	font-weight: bold;
+	color: #000000;
+}
+
+#contents #aside h2 {
+	font-size: 20px;
+	font-weight: 900;
+}
+
+/* 쇼핑정보 */
+#contents #aside .snb-list1 {
+	margin-top: 30px;
+	margin-bottom: 40px;
+	font-size: 15px;
+}
+
+/* aside li 패딩 조절 */
+#contents #aside ul>li {
+	padding: 10px 0px 0px 0px;
+	font-size: 15px;
+	color: #aeaeae;
+}
+
+/* 내정보 */
+#contents #aside .snb-list2 {
+	font-size: 15px;
+}
+
+/* content-area */
+#contents #content-area {
+	float: left;
+	width: 730px;
+}
+
+input {
+	border: none;
+	outline: none; /* 이 부분은 입력 필드에 포커스가 갔을 때 나오는 테두리도 제거해줍니다 */
+}
+
+/* 내 정보 텍스트 */
+#contents #content-title h3 {
+	font-size: 22px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+/* 내 정보 항목 */
+.section-title {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+/* 내 정보 컨텐츠 */
+#contents #content-info {
+	margin-top: 20px;
+	width: 100%;
+	font-size: 16px;
+}
+
+/* 내 정보 항목 */
+#contents #content-info .info-item {
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 0;
+	border-bottom: 1px solid #eee;
+}
+
+/* 내 정보 항목의 타이틀 */
+#contents #content-info .info-title {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+/* 정보 항목 세부 */
+#contents #content-info .info-detail {
+	font-size: 16px;
+	color: #666;
+}
+
+#contents #content-info .info-item .address input {
+	width: 700px;
+}
+
+/* 섹션 간 간격 */
+.section {
+	margin-bottom: 30px;
+}
+
+/* 수정 버튼 */
+#contents #content-info .edit-btn {
+	background-color: #fff;
+	color: #555;
+	border: 1px solid #ccc;
+	padding: 5px 15px;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+#contents #content-info .edit-btn:hover {
+	background-color: #f1f1f1;
+}
+
+/* 사진 섹션 */
+.profile-section {
+	display: flex;
+	align-items: center;
+	margin-bottom: 40px;
+}
+
+.profile-section img {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	margin-right: 20px;
+}
+
+.profile-section .profile-info {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.profile-section .edit-image {
+	margin-left: auto;
+	display: flex;
+	gap: 10px;
+}
+
+.edit-image button {
+	border: 1px solid #ccc;
+	padding: 5px 15px;
+	border-radius: 20px;
+	cursor: pointer;
+	background-color: white;
+}
+
+.edit-image button:hover {
+	background-color: #f1f1f1;
+}
+
+/* 컨텐츠 */
+#contents #content-info .info-item {
+	margin-bottom: 20px;
+	padding: 10px 0;
+	border-bottom: 1px solid #eee;
+}
+
+/* Address-specific button styling */
+.button-group {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 20px;
+}
+
+.address-btn {
+	background-color: #fff;
+	color: #555;
+	border: 1px solid #ccc;
+	padding: 8px 20px;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+.address-btn:hover {
+	background-color: #f1f1f1;
+}

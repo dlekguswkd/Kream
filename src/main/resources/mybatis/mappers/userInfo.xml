@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+
+	<!-- 회원정보 수정 폼 - 회원 정보 가져오기 -->
+	<select id="selectInfo" parameterType="int" resultType="com.javaex.vo.UserVo">
+		<![CDATA[   
+			select userNo,
+				   userId,
+				   userPw,
+				   userName,
+				   userAddress
+			from users
+			where userNo = #{userNo}
+		]]>
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="update" parameterType="com.javaex.vo.UserVo">
+		<![CDATA[
+		 	update users
+		 	set userPw = #{userPw},
+		 	userName = #{userName},
+		 	userAddress = #{userAddress}
+		 	where userNo = #{userNo}
+	]]>
+	</update>
+	
+	<!-- 마이페이지 구매내역 회원 1명 데이터 가져오기 -->
+	<select id="selectPurchase" parameterType="int" resultType="com.javaex.vo.PurchaseVo">
+		<![CDATA[   
+			select h.historyNo,
+				   h.userNo,
+				   h.prodNo,
+				   h.shippingStatus,
+				   h.prodPrice,
+				   h.prodSize,
+				   h.purchaseDate,
+				   p.engName,
+				   p.korName,
+				   p.filePath,
+				   p.fileSize,
+				   p.saveName,
+				   p.orgName
+			from History h
+			inner join Products p 
+			on h.prodNo = p.prodNo
+			inner join Users u
+			on h.userNo = u.userNo
+			where h.userNo = #{userNo}
+	]]>
+	</select>
+	
+	<!-- 구매내역 삭제 -->
+	<delete id="deletePurchase" parameterType="int">
+		<![CDATA[
+		 	delete from History
+		 	where historyNo = #{historyNo}
+	]]>
+	</delete>
+	
+	<!-- 구매내역 전체 갯수 구하기 -->
+	<select id="selectTotalCnt" parameterType="int" resultType="int">
+	<![CDATA[
+		select count(*)
+		from History
+		where userNo = #{userNo}
+	]]>
+	</select>
+	
+	<!-- 구매내역 준비중 갯수 구하기 -->
+	<select id="selectReadyCnt" parameterType="int" resultType="int">
+	<![CDATA[
+		select count(*)
+		from History
+		where userNo = #{userNo}
+		and shippingStatus = '준비중'
+	]]>
+	</select>
+	
+	<!-- 구매내역 배송완료 갯수 구하기 -->
+	<select id="selectFinishCnt" parameterType="int" resultType="int">
+	<![CDATA[
+		select count(*)
+		from History
+		where userNo = #{userNo}
+		and shippingStatus = '배송완료'
+	]]>
+	</select>
+	
+
+
+</mapper>
