@@ -22,5 +22,14 @@ public class MainService {
 		
 		return mainList;
 	}
+	
+	/* 카테고리 리스트 */
+	public List<MainVo> exeCategoryList() {
+		System.out.println("MainService.exeCategoryList()");
+		
+		List<MainVo> mainList = mainDao.selectList();
+		
+		return mainList;
+	}
 
 }
