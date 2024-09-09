@@ -9,7 +9,7 @@
 		<c:if test="${sessionScope.authUser != null}">
 			<ul class="clearfix">
 				<li><a href="${pageContext.request.contextPath}/user/mypage?userNo=${sessionScope.authUser.userNo}">마이페이지</a></li>
-				<li><a href="#">관심</a></li>
+				<li><a href="${pageContext.request.contextPath}/favorites?userNo=${sessionScope.authUser.userNo}">관심</a></li>
 				<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
 			</ul>
 		</c:if>
@@ -18,7 +18,7 @@
 		<c:if test="${sessionScope.authUser == null}">
 			<ul class="clearfix">
 				<li><a href="${pageContext.request.contextPath}/user/loginform">로그인</a></li>
-				<li><a href="${pageContext.request.contextPath}/user/signup">회원가입</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/registerForm">회원가입</a></li>
 			</ul>
 		</c:if>
 	</div>

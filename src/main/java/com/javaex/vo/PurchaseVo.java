@@ -4,6 +4,8 @@ public class PurchaseVo {
 
 	private int historyNo;
 	private int userNo;
+	private String userName;
+	private String userId;
 	private int prodNo;
 	private String shippingStatus;
 	private int prodPrice;
@@ -20,11 +22,14 @@ public class PurchaseVo {
 
 	}
 
-	public PurchaseVo(int historyNo, int userNo, int prodNo, String shippingStatus, int prodPrice, int prodSize,
-			String purchaseDate, String engName, String korName, String filePath, int fileSize, String saveName,
-			String orgName) {
+	public PurchaseVo(int historyNo, int userNo, String userName, String userId, int prodNo, String shippingStatus,
+			int prodPrice, int prodSize, String purchaseDate, String engName, String korName, String filePath,
+			int fileSize, String saveName, String orgName) {
+		super();
 		this.historyNo = historyNo;
 		this.userNo = userNo;
+		this.userName = userName;
+		this.userId = userId;
 		this.prodNo = prodNo;
 		this.shippingStatus = shippingStatus;
 		this.prodPrice = prodPrice;
@@ -52,6 +57,22 @@ public class PurchaseVo {
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public int getProdNo() {
@@ -144,10 +165,11 @@ public class PurchaseVo {
 
 	@Override
 	public String toString() {
-		return "PurchaseVo [historyNo=" + historyNo + ", userNo=" + userNo + ", prodNo=" + prodNo + ", shippingStatus="
-				+ shippingStatus + ", prodPrice=" + prodPrice + ", prodSize=" + prodSize + ", purchaseDate="
-				+ purchaseDate + ", engName=" + engName + ", korName=" + korName + ", filePath=" + filePath
-				+ ", fileSize=" + fileSize + ", saveName=" + saveName + ", orgName=" + orgName + "]";
+		return "PurchaseVo [historyNo=" + historyNo + ", userNo=" + userNo + ", userName=" + userName + ", userId="
+				+ userId + ", prodNo=" + prodNo + ", shippingStatus=" + shippingStatus + ", prodPrice=" + prodPrice
+				+ ", prodSize=" + prodSize + ", purchaseDate=" + purchaseDate + ", engName=" + engName + ", korName="
+				+ korName + ", filePath=" + filePath + ", fileSize=" + fileSize + ", saveName=" + saveName
+				+ ", orgName=" + orgName + "]";
 	}
 
 }

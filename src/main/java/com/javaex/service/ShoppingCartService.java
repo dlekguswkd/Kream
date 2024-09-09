@@ -34,9 +34,18 @@ public class ShoppingCartService {
 	
 	/* 장바구니 삭제 */
 	public int exeShoppingDelete(int cartNo) {
-		System.out.println("UserInfoService.exeShoppingDelete()");
+		System.out.println("ShoppingCartService.exeShoppingDelete()");
 		
 		int count = shoppingCartDao.deleteShopping(cartNo);
+		
+		return count;
+	}
+	
+	/* 신발 사이즈 옵션 업데이트 */
+	public int exeShoppingUpdate(int prodSize, int userNo) {
+		System.out.println("ShoppingCartService.exeShoppingUpdate()");
+		
+		int count = shoppingCartDao.updateShopping(prodSize, userNo);
 		
 		return count;
 		

@@ -168,24 +168,28 @@
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
-			
+
 			// 모달창 띄우기 이벤트
 			let btnOptions = document.querySelectorAll(".btnOption");
 			for (let i = 0; i < btnOptions.length; i++) {
 				btnOptions[i].addEventListener('click', callModal);
 			}
-			
+
 			// 모달창 닫기 버튼 클릭이벤트 등록
-	    	let closeBtn = document.querySelectorAll('.close-btn');
-	    	for (let i = 0; i < closeBtn.length; i++) {
-	    		closeBtn[i].addEventListener('click', closeModal);
+			let closeBtn = document.querySelectorAll('.close-btn');
+			for (let i = 0; i < closeBtn.length; i++) {
+				closeBtn[i].addEventListener('click', closeModal);
 			}
-	    	
-	    	let sizeButtons = document.querySelectorAll(".size-box");
-	    	for (let i = 0; i < sizeButtons.length; i++) {
-	    		sizeButtons[i].addEventListener('click', ButtonClick);
-	    		console.log(sizeButtons[i]);
+
+			// 사이즈 버튼 클릭 이벤트
+			let sizeButtons = document.querySelectorAll(".size-box");
+			for (let i = 0; i < sizeButtons.length; i++) {
+				sizeButtons[i].addEventListener('click', ButtonClick);
 			}
+			
+			// 주문하기 버튼 클릭 이벤트
+			let orderButton = document.querySelector(".btnOrder");
+			orderButton.addEventListener('click', orderClick);
 
 		});
 
@@ -194,27 +198,52 @@
 			let modalTag = document.querySelector('#buy-modal');
 
 			modalTag.style.display = 'block';
-			
-			let size = event.target.dataset.prodsize;
-			console.log(no);
-			
-			
+
 		}
-		
+
 		// 모달창 닫기
 		function closeModal(event) {
-			
 			let modalTag = document.querySelector('#buy-modal');
 
 			modalTag.style.display = 'none';
-			
+		}
+
+		// 사이즈 버튼 클릭 시
+		function ButtonClick(event) {
+			let selectedSize = event.target.dataset.prodsize;
+			console.log("선택한 사이즈:", selectedSize);
+
+			// 서버에 사이즈 업데이트 요청 보내기
+			updateSize(selectedSize);
+
+			// 모달창 닫기
+			closeModal();
 		}
 		
+		// 사이즈 업데이트 요청
+		function updateSize(size) {
+			// 전송
+	        axios({
+	        	method: 'get', // put, post, delete
+	        	url: '${pageContext.request.contextPath}/api/shoppingcart/update',
+	        	headers: {"Content-Type" : "application/json; charset=utf-8"}, //전송타입
+	        	params: {prodSize: size}, // get방식 파라미터로 값이 전달 
+	        	// data: guestbookVo, // put, post, delete 방식 자동으로 JSON으로 변환 전달
+	        	
+	        	responseType: 'json' //수신타입
+	        }).then(function (response) {
+	        	console.log(response.data); //수신데이터
+	        	
+	        }).catch(function (error) {
+	        	console.log(error);
+	        });
+		}
 		
-		
-		
+		// 구매하기 페이지로 이동
+		function orderClick() {
+			 window.location.href = '${pageContext.request.contextPath}/paymentform?userNo=${sessionScope.authUser.userNo}';
+		}
 	</script>
-
 
 </body>
 

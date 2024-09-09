@@ -45,6 +45,15 @@
 		 	where cartNo = #{cartNo}
 	]]>
 	</delete>
+	
+	<!-- 회원정보 수정 -->
+	<update id="updateShopping" parameterType="map">
+		<![CDATA[
+		 	update ShoppingChart
+		 	set prodSize = #{prodSize}
+		 	where userNo = #{userNo}
+	]]>
+	</update>
 
 
 </mapper>

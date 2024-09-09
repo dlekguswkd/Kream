@@ -74,7 +74,7 @@ public class UserInfoController {
 		// 수정된 회원정보를 session에 전달
 		session.setAttribute("authUser", authUser);
 
-		return "user/mypage";
+		return "redirect:/user/mypage?userNo=" + authUser.getUserNo();
 	}
 
 	/* 마이페이지 구매내역 폼 */
@@ -99,9 +99,12 @@ public class UserInfoController {
 	public String purchaseDelete(HttpSession session, @RequestParam(value = "historyNo") int historyNo) {
 		System.out.println("UserInfoController.purchaseDelete()");
 
+		// 로그인한 session 값을 객체로 가져오기
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
 		userInfoService.exePurchaseDelete(historyNo);
 
-		return "redirect:/user/purchaselist";
+		return "redirect:/user/purchaselist?userNo=" + authUser.getUserNo();
 	}
 
 }
