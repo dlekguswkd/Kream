@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+
+	<!-- 유저 전체 정보 가져오기 3명 -->
+	<select id="getUserInfoList5" resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+			SELECT userNo, userId, userPw, userName, userAddress from Users limit 3;
+		]]>
+	</select>
+
+	<select id="getUserList" resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+			SELECT userNo, userId, userPw, userName, userAddress from Users;
+		]]>
+	</select>
+
+	<!-- 유저 한명 정보 가져오기 -->
+	<select id="getUserInfo" parameterType="int" resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+			SELECT userNo, userId, userPw, userName, userAddress from Users WHERE userNo = #{userNo}
+		]]>
+	</select>
+
+	<!-- 유저 정보 업데이트 -->
+	<update id="updateUser" parameterType="com.javaex.vo.UserVo">
+    	<![CDATA[
+    		UPDATE Users
+    		SET userName = #{userName}, userId = #{userId}, userPw = #{userPw}, userAddress = #{userAddress}
+    		WHERE userNo = #{userNo}
+    	]]>
+	</update>
+
+	<!-- 유저 정보 삭제 -->
+	<delete id="deleteUser" parameterType="int">
+    	<![CDATA[	
+        	DELETE FROM Users WHERE userNo = #{userNo}
+        ]]>
+	</delete>
+
+	<delete id="deleteFavorites" parameterType="int">
+    	<![CDATA[	
+        	DELETE FROM Favorites WHERE userNo = #{userNo}
+        ]]>
+	</delete>
+
+	<delete id="deleteHistories" parameterType="int">
+    	<![CDATA[	
+        	DELETE FROM History WHERE userNo = #{userNo}
+        ]]>
+	</delete>
+
+	<delete id="deleteShoppingList" parameterType="int">
+    	<![CDATA[	
+        	DELETE FROM ShoppingChart WHERE userNo = #{userNo}
+        ]]>
+	</delete>
+
+
+	<select id="getBrandName" resultType="com.javaex.vo.ProductVo">
+    	<![CDATA[
+    		SELECT * from Brand
+    	]]>
+	</select>
+
+	<select id="getColorName" resultType="com.javaex.vo.ProductVo">
+    	<![CDATA[
+    		SELECT * from Color
+    	]]>
+	</select>
+
+	<select id="getColorCode" parameterType="String" resultType="int">
+    		<![CDATA[ SELECT colorNo FROM Color WHERE colorName = #{color} ]]>
+	</select>
+
+
+	<select id="getBrandCode" parameterType="String" resultType="int">
+    	<![CDATA[ SELECT brandNo FROM Brand WHERE brandName = #{brand}  ]]>
+	</select>
+
+	<insert id="insertCategory" parameterType="map">
+    	<![CDATA[
+    		insert into Category values (null, #{brandNo}, #{colorNo}, #{categoryName}, #{prodPrice}, #{releaseDate})
+    	]]>
+	</insert>
+
+	<select id="getCategoryNo" parameterType="map" resultType="int">
+    	<![CDATA[
+        	SELECT categoryNo 
+        	FROM Category
+        	WHERE brandNo = #{brandNo} AND colorNo = #{colorNo} 
+        	AND categoryName = #{categoryName} 
+        	AND prodPrice = #{prodPrice} 
+        	AND releaseDate = #{releaseDate}
+    	]]>
+	</select>
+
+
+	<insert id="insertProduct" parameterType="com.javaex.vo.ProductVo">
+    	<![CDATA[
+    		INSERT INTO Products
+    		VALUES (null, #{categoryNo}, #{engName}, #{korName}, #{modelNo}, #{filePath}, #{fileSize}, #{saveName}, #{orgName})
+    	]]>
+	</insert>
+
+	<select id="getSaleHistory" resultType="com.javaex.vo.PurchaseVo">
+    	<![CDATA[
+			SELECT h.prodNo, h.prodPrice, p.engName, p.korName, p.filePath, p.saveName
+			FROM history h 
+			INNER JOIN Products p ON h.prodNo = p.prodNo
+			WHERE h.shippingStatus = '배송완료';
+    	]]>
+	</select>
+	
+	<select id="getSaleHistory2" resultType="com.javaex.vo.PurchaseVo">
+    	<![CDATA[
+			SELECT h.prodNo, h.prodPrice, p.engName, p.korName, p.filePath, p.saveName
+			FROM history h 
+			INNER JOIN Products p ON h.prodNo = p.prodNo
+			WHERE h.shippingStatus = '배송완료' limit 3;
+    	]]>
+	</select>
+
+
+	<select id="getPurchaseReqList" resultType="com.javaex.vo.PurchaseVo">
+    	<![CDATA[
+			SELECT p.saveName, p.engName, p.korName, u.userName, u.userId,h.historyNo
+			FROM 
+			History h INNER JOIN Products p ON h.prodNo = p.prodNo INNER JOIN Users u ON h.userNo = u.userNo where h.shippingStatus = '준비중'
+    	]]>
+	</select>
+	
+	<select id="getPurchaseReqList2" resultType="com.javaex.vo.PurchaseVo">
+    	<![CDATA[
+			SELECT p.saveName, p.engName, p.korName, u.userName, u.userId,h.historyNo
+			FROM 
+			History h INNER JOIN Products p ON h.prodNo = p.prodNo INNER JOIN Users u ON h.userNo = u.userNo where h.shippingStatus = '준비중'
+    		limit 3
+    	]]>
+	</select>
+	
+	<select id ="getItemList" resultType="com.javaex.vo.ProductVo">
+		<![CDATA[
+			SELECT 
+   			p.prodNo, p.engName, p.korName, p.modelNo, b.brandName, c.categoryName, c.prodPrice, c.releaseDate, co.colorName, p.saveName
+			FROM 
+   			Products p
+			JOIN 
+    		Category c ON p.categoryNo = c.categoryNo
+			JOIN 
+    		Brand b ON c.brandNo = b.brandNo
+			JOIN 
+    		Color co ON c.colorNo = co.colorNo;
+    	]]>
+	</select>
+	 
+	<!-- Delete from Favorites -->
+	<delete id="deletefromFavorites" parameterType="int">
+    		<![CDATA[DELETE FROM Favorites WHERE prodNo = #{prodNo}]]>
+	</delete>
+
+	<!-- Delete from ShoppingChart -->
+	<delete id="deletefromShoppingChart" parameterType="int">
+    	<![CDATA[DELETE FROM ShoppingChart WHERE prodNo = #{prodNo}]]>
+	</delete>
+
+	<!-- Delete from History -->
+	<delete id="deletefromHistory" parameterType="int">
+    	<![CDATA[DELETE FROM History WHERE prodNo = #{prodNo}]]>
+	</delete>
+
+	<!-- Delete from Products -->
+	<delete id="deletefromProduct" parameterType="int">
+   		<![CDATA[DELETE FROM Products WHERE prodNo = #{prodNo}]]>
+	</delete>
+	
+	<update id="updateShippingStatus" parameterType="map">
+    	<![CDATA[UPDATE History
+    	SET shippingStatus = #{status}
+    	WHERE historyNo = #{historyNo}]]>
+	</update>
+
+	<delete id="deletePurchaseRequest" parameterType="int">
+    	<![CDATA[DELETE FROM History
+    	WHERE historyNo = #{historyNo}]]>
+	</delete>
+
+
+
+
+
+
+
+
+
+</mapper>
