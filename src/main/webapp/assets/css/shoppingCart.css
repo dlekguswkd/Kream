@@ -286,6 +286,7 @@
 	text-align: left;
 	padding: 20px 0px 10px 38px;
 	margin-top: 15px;
+	margin-bottom: 30px;
 	border-radius: 8px;
 }
 
@@ -302,6 +303,7 @@
 	color: #f0f0f0;
 	font-weight: 800;
 	margin-top: 20px;
+	padding: 10px 150px;
 	font-size: 20px;
 	cursor: pointer;
 }

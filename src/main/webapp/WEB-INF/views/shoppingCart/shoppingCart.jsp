@@ -78,7 +78,14 @@
 								</div>
 							</div>
 							<!-- //expect-price -->
-
+							<!-- Hidden inputs for JavaScript to access -->
+							<input type="hidden" class="userNo"
+								value="${ShoppingcartVo.userNo}"> <input type="hidden"
+								class="prodNo" value="${ShoppingcartVo.prodNo}"> <input
+								type="hidden" class="prodPrice"
+								value="${ShoppingcartVo.prodPrice}"> <input
+								type="hidden" class="prodSize"
+								value="${ShoppingcartVo.prodSize}">
 						</div>
 					</div>
 				</c:forEach>
@@ -113,7 +120,7 @@
 					</ol>
 				</div>
 
-				<button class="btnOrder" type="button" name="">${shoppingList[0].totalPrice}원·총${totalCnt}건주문하기</button>
+				<a href="${pageContext.request.contextPath}/paymentform?userNo=${sessionScope.authUser.userNo}" class="btnOrder">${shoppingList[0].totalPrice}원·총${totalCnt}건주문하기</a>
 
 			</div>
 			<!-- //full-content -->
@@ -184,10 +191,6 @@
 			for (let i = 0; i < sizeButtons.length; i++) {
 				sizeButtons[i].addEventListener('click', ButtonClick);
 			}
-			
-			// 주문하기 버튼 클릭 이벤트
-			let orderButton = document.querySelector(".btnOrder");
-			orderButton.addEventListener('click', orderClick);
 
 		});
 
@@ -225,7 +228,6 @@
 		// 사이즈 버튼 클릭 시
 		function ButtonClick(event) {
 			let selectedSize = event.target.dataset.prodsize;
-			console.log("선택한 사이즈:", selectedSize);
 
 			// 서버에 사이즈 업데이트 요청 보내기
 			updateSize(selectedSize);
@@ -253,10 +255,6 @@
 	        });
 		}
 		
-		// 구매하기 페이지로 이동
-		function orderClick() {
-			 window.location.href = '${pageContext.request.contextPath}/paymentform?userNo=${sessionScope.authUser.userNo}';
-		}
 	</script>
 
 </body>

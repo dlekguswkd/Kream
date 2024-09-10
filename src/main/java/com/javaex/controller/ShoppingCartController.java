@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.ShoppingCartService;
+import com.javaex.vo.PurchaseVo;
 import com.javaex.vo.ShoppingCartVo;
 import com.javaex.vo.UserVo;
 
@@ -31,15 +32,20 @@ public class ShoppingCartController {
 		// 로그인한 session 값을 객체로 가져오기
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
-		// 로그인한 회원의 session으로 조회해야함 수정 필요
-		List<ShoppingCartVo> shoppingList = shoppingCartService.exeGetShoppingList(authUser.getUserNo());
-		int totalCnt = shoppingCartService.exeSelectTotalCnt(authUser.getUserNo());
+		if (authUser == null) {
+			return "redirect:/user/loginform";
 
-		model.addAttribute("shoppingList", shoppingList);
-		model.addAttribute("totalCnt", totalCnt);
-		System.out.println(shoppingList);
+		} else {
+			// 로그인한 회원의 session으로 조회해야함 수정 필요
+			List<ShoppingCartVo> shoppingList = shoppingCartService.exeGetShoppingList(authUser.getUserNo());
+			int totalCnt = shoppingCartService.exeSelectTotalCnt(authUser.getUserNo());
 
-		return "shoppingCart/shoppingCart";
+			model.addAttribute("shoppingList", shoppingList);
+			model.addAttribute("totalCnt", totalCnt);
+
+			return "shoppingCart/shoppingCart";
+		}
+
 	}
 
 	/* 장바구니 삭제 */
