@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class AdminPageController {
 
 		List<PurchaseVo> soldProductList = adminPageService.exeSaleHistoryList2();
 		model.addAttribute("soldProductList",soldProductList);
-		
+
 		List<PurchaseVo> purchaseReqList = adminPageService.exePurchaseReq2();
 		model.addAttribute("purchaseReqList",purchaseReqList);
 
@@ -38,13 +39,27 @@ public class AdminPageController {
 
 
 
+	//	@RequestMapping(value ="/admin/editUser", method = {RequestMethod.GET, RequestMethod.POST} )
+	//	public String adminUserList(Model model) {
+	//		System.out.println("AdminPageController.adminUserList()");
+	//		List<UserVo> userList = adminPageService.exeGetUserList();
+	//		model.addAttribute("userList",userList);
+	//		return "admin/adminPage_editUser";
+	//	}
+
 	@RequestMapping(value ="/admin/editUser", method = {RequestMethod.GET, RequestMethod.POST} )
-	public String adminUserList(Model model) {
+	public String adminUserList(Model model, 
+			@RequestParam(value = "crtpage", required = false, defaultValue = "1") int crtPage) {
 		System.out.println("AdminPageController.adminUserList()");
-		List<UserVo> userList = adminPageService.exeGetUserList();
-		model.addAttribute("userList",userList);
+
+		Map<String, Object> pMap = adminPageService.getUserListWithPaging(crtPage);
+		model.addAttribute("pMap", pMap);
+
 		return "admin/adminPage_editUser";
 	}
+
+
+
 	// 유저 정보 업데이트
 	@RequestMapping(value ="/admin/userInfoEdit", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String adminEditPage(Model model, @RequestParam("userNo") int userNo) {
@@ -87,6 +102,8 @@ public class AdminPageController {
 		return "admin/adminPage_addItems";
 	}
 
+
+
 	@RequestMapping(value = "/admin/addItems2", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String adminAddItems2(@RequestParam("brand") String brand,
 			@RequestParam("category") String category,
@@ -120,58 +137,92 @@ public class AdminPageController {
 		return "redirect:/admin/itemList";
 	}
 
-	
-	
-	
-	
+
+
+
+
+	//	@RequestMapping(value = "/admin/itemList", method = {RequestMethod.GET, RequestMethod.POST} )
+	//	public String adminItemList(Model model) {
+	//		List<ProductVo> itemList = adminPageService.exegetItemList();
+	//		model.addAttribute("itemList",itemList);
+	//
+	//		return "admin/adminPage_itemList";
+	//	}
 	@RequestMapping(value = "/admin/itemList", method = {RequestMethod.GET, RequestMethod.POST} )
-	public String adminItemList(Model model) {
-		List<ProductVo> itemList = adminPageService.exegetItemList();
-		model.addAttribute("itemList",itemList);
+	public String adminItemList(Model model, 
+			@RequestParam(value = "crtpage", required = false, defaultValue = "1") int crtPage) {
+		System.out.println("AdminPageController.adminItemList()");
+
+		Map<String, Object> pMap = adminPageService.getProductListWithPaging(crtPage);
+		model.addAttribute("pMap", pMap);
 
 		return "admin/adminPage_itemList";
 	}
-	
+
 	@RequestMapping(value = "/admin/deleteProduct", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String adminDeleteProduct(@RequestParam(value ="prodNo") int prodNo) {
 		adminPageService.exeDeleteProduct(prodNo);
-		
+
 		return "redirect:/admin/itemList";
 	}
-	
-	
 
-	
-	
-	@RequestMapping(value = "/admin/saleshistory", method = {RequestMethod.GET, RequestMethod.POST} )
-	public String adminSalesHistory(Model model) {
-		List<PurchaseVo> soldProductList = adminPageService.exeSaleHistory();
-		model.addAttribute("soldProductList",soldProductList);
+
+
+
+
+	//	@RequestMapping(value = "/admin/saleshistory", method = {RequestMethod.GET, RequestMethod.POST} )
+	//	public String adminSalesHistory(Model model) {
+	//		List<PurchaseVo> soldProductList = adminPageService.exeSaleHistory();
+	//		model.addAttribute("soldProductList",soldProductList);
+	//		return "admin/adminPage_saleHistory";
+	//	}
+
+	@RequestMapping(value = "/admin/saleshistory", method = {RequestMethod.GET, RequestMethod.POST})
+	public String adminSalesHistory(Model model, 
+			@RequestParam(value = "crtpage", required = false, defaultValue = "1") int crtPage) {
+		System.out.println("AdminPageController.adminSalesHistory()");
+
+		Map<String, Object> pMap = adminPageService.getSalesHistoryWithPaging(crtPage);
+		model.addAttribute("pMap", pMap);
+
 		return "admin/adminPage_saleHistory";
 	}
 
-	@RequestMapping(value = "/admin/purchaseRequest", method = {RequestMethod.GET, RequestMethod.POST} )
-	public String adminPurchaseRequest(Model model) {
-		List<PurchaseVo> purchaseReqList = adminPageService.exePurchaseReq();
-		model.addAttribute("purchaseReqList",purchaseReqList);
-		return "admin/adminPage_purchaseReq";
-	}
-	
-	// 승인 처리
-    @RequestMapping(value = "/admin/approvePurchase", method = RequestMethod.POST)
-    public String approvePurchase(@RequestParam("historyNo") int historyNo) {
-        // shippingStatus를 '배송완료'로 업데이트
-        adminPageService.updateShippingStatus(historyNo, "배송완료");
-        return "redirect:/admin/purchaseRequest";  // 승인 후 다시 구매 요청 목록 페이지로 이동
-    }
 
-    // 거부 처리
-    @RequestMapping(value = "/admin/rejectPurchase", method = RequestMethod.POST)
-    public String rejectPurchase(@RequestParam("historyNo") int historyNo) {
-        // History 테이블에서 해당 기록 삭제
-        adminPageService.deletePurchaseRequest(historyNo);
-        return "redirect:/admin/purchaseRequest";  // 거부 후 다시 구매 요청 목록 페이지로 이동
-    }
+//	@RequestMapping(value = "/admin/purchaseRequest", method = {RequestMethod.GET, RequestMethod.POST} )
+//	public String adminPurchaseRequest(Model model) {
+//		List<PurchaseVo> purchaseReqList = adminPageService.exePurchaseReq();
+//		model.addAttribute("purchaseReqList",purchaseReqList);
+//		return "admin/adminPage_purchaseReq";
+//	}
+	
+	@RequestMapping(value = "/admin/purchaseRequest", method = {RequestMethod.GET, RequestMethod.POST})
+	public String adminPurchaseRequest(Model model, 
+	                                   @RequestParam(value = "crtpage", required = false, defaultValue = "1") int crtPage) {
+	    System.out.println("AdminPageController.adminPurchaseRequest()");
+	    
+	    Map<String, Object> pMap = adminPageService.getPurchaseRequestWithPaging(crtPage);
+	    model.addAttribute("pMap", pMap);
+
+	    return "admin/adminPage_purchaseReq";
+	}
+
+
+	// 승인 처리
+	@RequestMapping(value = "/admin/approvePurchase", method = RequestMethod.POST)
+	public String approvePurchase(@RequestParam("historyNo") int historyNo) {
+		// shippingStatus를 '배송완료'로 업데이트
+		adminPageService.updateShippingStatus(historyNo, "배송완료");
+		return "redirect:/admin/purchaseRequest";  // 승인 후 다시 구매 요청 목록 페이지로 이동
+	}
+
+	// 거부 처리
+	@RequestMapping(value = "/admin/rejectPurchase", method = RequestMethod.POST)
+	public String rejectPurchase(@RequestParam("historyNo") int historyNo) {
+		// History 테이블에서 해당 기록 삭제
+		adminPageService.deletePurchaseRequest(historyNo);
+		return "redirect:/admin/purchaseRequest";  // 거부 후 다시 구매 요청 목록 페이지로 이동
+	}
 
 
 

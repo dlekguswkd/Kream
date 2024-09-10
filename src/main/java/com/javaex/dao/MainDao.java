@@ -1,46 +1,58 @@
 package com.javaex.dao;
 
 import java.util.List;
-
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.MainVo;
+import com.javaex.vo.ProductVo;
 
 @Repository
 public class MainDao {
-	
+
 	@Autowired
 	private SqlSession sqlSession;
-	
 
-	/* 메인화면 전체 리스트 */
-	public List<MainVo> selectList() {
-		System.out.println("MainDao.selectList()");
-		
-		List<MainVo> mainList = sqlSession.selectList("main.selectList");
-		
-		return mainList;
+	// Fetch product list with pagination
+	public List<MainVo> selectProductList(Map<String, Integer> limitMap) {
+		return sqlSession.selectList("main.selectProductList", limitMap);
+	}
+
+	// Fetch total product count for pagination
+	public int getTotalProductCount() {
+		return sqlSession.selectOne("main.getTotalProductCount");
+	}
+
+	// Fetch all brands
+	public List<ProductVo> selectAllBrands() {
+		return sqlSession.selectList("main.selectAllBrands");
+	}
+
+	// Fetch all colors
+	public List<ProductVo> selectAllColors() {
+		return sqlSession.selectList("main.selectAllColors");
+	}
+
+	public List<ProductVo> selectPopularProductsByBrand() {
+		return sqlSession.selectList("main.selectPopularProductsByBrand");
+	}
+
+	public ProductVo selectProductDetail(int prodNo) {
+		return sqlSession.selectOne("main.selectProductDetail", prodNo);
 	}
 	
-	
-	/* 브랜드 리스트 */
-	public List<MainVo> selectBrandList() {
-		System.out.println("MainDao.selectBrandList()");
-		
-		List<MainVo> brandList =sqlSession.selectList("main.selectBrandList");
-		
-		return brandList;
-	}
-	
-	/* 컬러 리스트 */
-	public List<MainVo> selectColorList() {
-		System.out.println("MainDao.selectColorList()");
-		
-		List<MainVo> colorList =sqlSession.selectList("main.selectColorList");
-		
-		return colorList;
-	}
-	
+	// Fetch filtered product list based on brand
+    public List<ProductVo> selectFilteredProductList(Map<String, Object> filterCriteria) {
+        return sqlSession.selectList("main.selectFilteredProductList", filterCriteria);
+    }
+
+    // Fetch total filtered product count
+    public int getFilteredProductCount(Map<String, Object> filterCriteria) {
+        return sqlSession.selectOne("main.getFilteredProductCount", filterCriteria);
+    }
+
+
+
 }

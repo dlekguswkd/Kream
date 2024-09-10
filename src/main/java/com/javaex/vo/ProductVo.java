@@ -10,6 +10,7 @@ public class ProductVo {
 	private int prodPrice;
 	private String releaseDate;
 	private String colorName;
+	private String colorCode;
 	private String engName;
 	private String korName;
 	private String modelNo;
@@ -17,21 +18,26 @@ public class ProductVo {
 	private long fileSize;
 	private String saveName;
 	private String orgName;
-	
-	public ProductVo(){
-		
+
+	public ProductVo() {
+
 	}
-	
-	
+
 	public String getReleaseDate() {
 		return releaseDate;
 	}
 
+	public String getColorCode() {
+		return colorCode;
+	}
+
+	public void setColorCode(String colorCode) {
+		this.colorCode = colorCode;
+	}
 
 	public void setReleaseDate(String releaseDate) {
 		this.releaseDate = releaseDate;
 	}
-
 
 	public int getProdPrice() {
 		return prodPrice;
@@ -153,4 +159,4 @@ public class ProductVo {
 		this.orgName = orgName;
 	}
 
-	}
+}

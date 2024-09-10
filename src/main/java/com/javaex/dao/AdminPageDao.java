@@ -47,6 +47,17 @@ public class AdminPageDao {
 
 	}
 
+	public List<UserVo> getUserListWithPaging(Map<String, Integer> limitMap) {
+		System.out.println("AdminPageDao.getUserListWithPaging()");
+		return sqlsession.selectList("admin.getUserListWithPaging", limitMap);
+	}
+
+	public int selectTotalUserCount() {
+		System.out.println("AdminPageDao.selectTotalUserCount()");
+		return sqlsession.selectOne("admin.selectTotalUserCount");
+	}
+
+
 	public List<String> getBrandName(){
 		List<String> brandName = sqlsession.selectList("admin.getBrandName");
 		return brandName;
@@ -80,6 +91,17 @@ public class AdminPageDao {
 		return itemList;
 	}
 
+	public List<ProductVo> getProductListWithPaging(Map<String, Integer> limitMap) {
+		System.out.println("AdminPageDao.getProductListWithPaging()");
+		return sqlsession.selectList("admin.getProductListWithPaging", limitMap);
+	}
+
+	public int selectTotalProductCount() {
+		System.out.println("AdminPageDao.selectTotalProductCount()");
+		return sqlsession.selectOne("admin.selectTotalProductCount");
+	}
+
+
 	public void deleteFavorites(int prodNo) {
 		sqlsession.delete("admin.deletefromFavorites", prodNo);
 	}
@@ -100,13 +122,23 @@ public class AdminPageDao {
 		List<PurchaseVo> salehistory = sqlsession.selectList("admin.getSaleHistory");
 		return salehistory;
 	}
-	
+
 	public List<PurchaseVo> salehistory2(){
 		List<PurchaseVo> salehistory = sqlsession.selectList("admin.getSaleHistory");
 		return salehistory;
 	}
-	
-	
+
+	public List<PurchaseVo> getSalesHistoryWithPaging(Map<String, Integer> limitMap) {
+	    System.out.println("AdminPageDao.getSalesHistoryWithPaging()");
+	    return sqlsession.selectList("admin.getSalesHistoryWithPaging", limitMap);
+	}
+
+	public int selectTotalSalesCount() {
+	    System.out.println("AdminPageDao.selectTotalSalesCount()");
+	    return sqlsession.selectOne("admin.selectTotalSalesCount");
+	}
+
+
 
 	public List<PurchaseVo> salehistoryList(){
 		List<PurchaseVo> salehistory = sqlsession.selectList("admin.getSaleHistory2");
@@ -117,11 +149,22 @@ public class AdminPageDao {
 		List<PurchaseVo> purchaseReqList = sqlsession.selectList("admin.getPurchaseReqList");
 		return purchaseReqList;
 	}
-	
+
 	public List<PurchaseVo> purchaseRequest2(){
 		List<PurchaseVo> purchaseReqList = sqlsession.selectList("admin.getPurchaseReqList2");
 		return purchaseReqList;
 	}
+	
+	public List<PurchaseVo> getPurchaseRequestWithPaging(Map<String, Integer> limitMap) {
+	    System.out.println("AdminPageDao.getPurchaseRequestWithPaging()");
+	    return sqlsession.selectList("admin.getPurchaseRequestWithPaging", limitMap);
+	}
+
+	public int selectTotalPurchaseRequestCount() {
+	    System.out.println("AdminPageDao.selectTotalPurchaseRequestCount()");
+	    return sqlsession.selectOne("admin.selectTotalPurchaseRequestCount");
+	}
+
 
 	// 배송 상태 업데이트
 	public void updateShippingStatus(int historyNo, String status) {

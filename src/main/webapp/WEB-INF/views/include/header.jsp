@@ -5,6 +5,7 @@
 <!-- 헤더 -->
 <div id="header" class="clearfix">
 	<div class="clearfix" id="header1">
+	
 		<!-- 로그인 성공시 -->
 		<c:if test="${sessionScope.authUser != null}">
 			<ul class="clearfix">
@@ -14,14 +15,23 @@
 			</ul>
 		</c:if>
 
+		<!-- 관리자 성공시 -->
+		<c:if test="${sessionScope.admin != null}">
+			<ul class="clearfix">
+				<li><a href="${pageContext.request.contextPath}/admin/adminPage">관리자 페이지</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
+			</ul>
+		</c:if>
+
 		<!-- 로그인 실패시 (로그인 안 했을 때) -->
-		<c:if test="${sessionScope.authUser == null}">
+		<c:if test="${sessionScope.authUser == null && sessionScope.admin == null}">
 			<ul class="clearfix">
 				<li><a href="${pageContext.request.contextPath}/user/loginform">로그인</a></li>
 				<li><a href="${pageContext.request.contextPath}/user/registerForm">회원가입</a></li>
 			</ul>
 		</c:if>
 	</div>
+
 	<div class="clearfix" id="header2">
 		<h1>
 			<a href="${pageContext.request.contextPath}/main/mainform">KREAM</a>
@@ -39,4 +49,3 @@
 		</div>
 	</div>
 </div>
-<!-- //헤더 -->

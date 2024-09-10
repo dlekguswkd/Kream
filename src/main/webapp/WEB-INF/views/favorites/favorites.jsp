@@ -21,20 +21,27 @@
 		<div id="contents" class="clearfix">
 			<div id="aside">
 				<h2>
-					<a href="${pageContext.request.contextPath}/user/mypage?userNo=${sessionScope.authUser.userNo}">마이페이지</a>
+					<a
+						href="${pageContext.request.contextPath}/user/mypage?userNo=${sessionScope.authUser.userNo}">마이페이지</a>
 				</h2>
 				<div class="snb-list1">
 					<strong>쇼핑 정보</strong>
 					<ul>
-						<li><a href="${pageContext.request.contextPath}/user/purchaselist?userNo=${sessionScope.authUser.userNo}">구매내역</a></li>
-						<li><a href="${pageContext.request.contextPath}/favorites?userNo=${sessionScope.authUser.userNo}">관심</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/user/purchaselist?userNo=${sessionScope.authUser.userNo}">구매내역</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/favorites?userNo=${sessionScope.authUser.userNo}">관심</a></li>
 					</ul>
 				</div>
 				<div class="snb-list2">
 					<strong>내 정보</strong>
 					<ul>
-						<li><a href="${pageContext.request.contextPath}/user/userinfo?userNo=${sessionScope.authUser.userNo}">프로필 관리</a></li>
-						<li><a href="${pageContext.request.contextPath}/user/mypage?userNo=${sessionScope.authUser.userNo}">내 정보</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/user/userinfo?userNo=${sessionScope.authUser.userNo}">프로필
+								관리</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/user/mypage?userNo=${sessionScope.authUser.userNo}">내
+								정보</a></li>
 					</ul>
 				</div>
 
@@ -62,7 +69,7 @@
 				</div>
 
 				<!-- for문 -->
-				<c:forEach items="${requestScope.favoritesList}" var="FavoritesVo">
+				<c:forEach items="${pMap.favoritesList}" var="FavoritesVo">
 					<div id="wish-item" class="clearfix">
 						<a href="#"><img
 							src="${pageContext.request.contextPath}/upload/${FavoritesVo.saveName}"></a>
@@ -77,7 +84,8 @@
 							<p class="size">${FavoritesVo.prodSize}</p>
 						</div>
 						<div id="btn-action">
-							<a href="${pageContext.request.contextPath}/shoppingcart/add?favoriteNo=${FavoritesVo.favoriteNo}&userNo=${FavoritesVo.userNo}"><button
+							<a
+								href="${pageContext.request.contextPath}/shoppingcart/add?favoriteNo=${FavoritesVo.favoriteNo}&userNo=${FavoritesVo.userNo}"><button
 									class="clearfix" type="button">
 									장바구니<br> ${FavoritesVo.prodPrice}원
 								</button></a>
@@ -91,26 +99,36 @@
 				</c:forEach>
 				<!-- //for문 -->
 
-				<!--
-				<div id="paging" class="clearfix">
-					<div id="nums" class="clearfix">
-						<ul>
-							<li><a href="">◀</a></li>
-							<li><a href="">1</a></li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li><a href="">4</a></li>
-							<li><a href="">5</a></li>
-							<li><a href="">6</a></li>
-							<li><a href="">7</a></li>
-							<li><a href="">8</a></li>
-							<li><a href="">9</a></li>
-							<li><a href="">10</a></li>
-							<li><a href="">▶</a></li>
-						</ul>
-					</div>
-				</div> -->
-				
+
+				<div id="paging">
+					<ul>
+						<c:if test="${pMap.prev}">
+							<li><a
+								href="${pageContext.request.contextPath}/favorites?crtpage=${pMap.startPageBtnNo-1}">◀</a></li>
+						</c:if>
+
+						<c:forEach begin="${pMap.startPageBtnNo}"
+							end="${pMap.endPageBtnNo}" step="1" var="page">
+							<c:choose>
+								<c:when test="${pMap.crtpage == page}">
+									<li class="active"><a
+										href="${pageContext.request.contextPath}/favorites?crtpage=${page}">${page}</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a
+										href="${pageContext.request.contextPath}/favorites?crtpage=${page}">${page}</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
+						<c:if test="${pMap.next}">
+							<li><a
+								href="${pageContext.request.contextPath}/favorites?crtpage=${pMap.endPageBtnNo+1}">▶</a></li>
+						</c:if>
+					</ul>
+				</div>
+
+
 			</div>
 			<!-- //content-area -->
 

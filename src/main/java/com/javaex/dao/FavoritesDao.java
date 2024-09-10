@@ -17,6 +17,18 @@ public class FavoritesDao {
 	@Autowired
 	public SqlSession sqlSession;
 
+	// DAO
+	public List<FavoritesVo> selectPagedFavoritesList(Map<String, Integer> limitMap) {
+		System.out.println("FavoritesDao.selectPagedFavoritesList");
+
+		return sqlSession.selectList("favorites.selectPagedList", limitMap);
+	}
+
+	// 전체 글 개수 구하기
+	public int selectTotalCnt(int userNo) {
+		return sqlSession.selectOne("favorites.selectTotalCnt", userNo);
+	}
+
 	/* 관심 상품 리스트 가져오기 */
 	public List<FavoritesVo> selectFavoritesList(int userNo) {
 		System.out.println("FavoritesDao.selectShoppingList");

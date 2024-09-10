@@ -32,7 +32,7 @@
     
     width: 100%;
     overflow: hidden;
-    border-bottom: 1px solid lightgray;
+    
     
 }
 
@@ -40,10 +40,11 @@
     white-space: nowrap;
     overflow-x: auto;
     scroll-behavior: smooth;
-    width: 80%;
+    width: 100%;
     margin: 0 auto; 
     padding-top:20px;
     padding-bottom: 20px;
+    border-bottom: 1px solid lightgray;
     
 }
 
@@ -107,6 +108,7 @@
     margin-bottom: 20px;
     max-height: 200px; 
     overflow-y: auto;  
+    
 }
 
 
@@ -133,15 +135,6 @@
     margin-right: 10px;
 }
 
-.filter-button {
-    width: 80px;
-    height: 30px;
-    margin-left: 35px;
-    border: 1px solid #c7c7c7;
-    background-color: #dfdfdf;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
 .size-grid {
     display: grid;
@@ -190,22 +183,22 @@
     cursor: pointer;
 }
 
-.color-circle.white { background-color: #ffffff; }
-.color-circle.black { background-color: #000000; }
-.color-circle.gray { background-color: #848484; }
-.color-circle.red { background-color: #ff0000; }
-.color-circle.yellow { background-color: #ffff00; }
-.color-circle.blue { background-color: #0000ff; }
-.color-circle.green { background-color: #088a4b; }
-.color-circle.pink { background-color: #fa58d0; }
-.color-circle.orange { background-color: #ff8000; }
-.color-circle.purple { background-color: #8000ff; }
-.color-circle.mint { background-color: #00ffff; }
-.color-circle.navy { background-color: #0b2161; }
-.color-circle.brown { background-color: #764e13; }
+.color-circle.black { background-color: black; }
+.color-circle.white { background-color: white; }
+.color-circle.gray { background-color: gray; }
+.color-circle.brown { background-color: brown; }
+.color-circle.blue { background-color: blue; }
+.color-circle.green { background-color: green; }
+.color-circle.yellow { background-color: yellow; }
+.color-circle.orange { background-color: orange; }
+.color-circle.purple { background-color: purple; }
+.color-circle.pink { background-color: pink; }
+.color-circle.navy { background-color: navy; }
 .color-circle.magenta { background-color: magenta; }
 .color-circle.lightblue { background-color: lightblue; }
 .color-circle.cerulean { background-color: cornflowerblue; }
+.color-circle.mint { background-color: mintcream; }
+.color-circle.red { background-color: red; }
 .color-circle.darkblue { background-color: darkblue; }
 .color-circle.darkgreen { background-color: darkgreen; }
 
@@ -218,6 +211,7 @@
     box-sizing: border-box;
     float: right; /* Float to the right of the sidebar */
     margin-left: 2%; /* Ensure spacing between sidebar and products */
+    border-top: 1px solid lightbray;
 }
 
 .products_selling_items {
@@ -274,21 +268,55 @@
     padding-right: 20px;
 }
 
-/* 페이징 숫자 리스트 박스 중앙 정렬 */
-#paging {
-    float: left;
-    width: 100%;
-    text-align: center; /* 페이징 숫자 전체 중앙 정렬 */
+#paging ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
 }
 
-/* 페이징 숫자 리스트 띄우기 */
-#paging ul>li {
-    display: inline-block; /* inline-block을 사용하여 중앙 정렬 가능하도록 */
-    padding: 20px 2px 5px 2px;
+#paging ul li {
+    display: inline-block;
+    margin: 0 5px;
 }
 
-/* 숫자에 마우스 올렸을때 */
-#paging #nums ul>li:hover {
+#paging ul li a {
+    display: block;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+}
+
+#paging ul li a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* 무채색 필터 적용 버튼 스타일 */
+#filter {
+    background: linear-gradient(135deg, #bfbfbf, #6e6e6e); /* 그라디언트 배경: 회색 계열 */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
     font-weight: bold;
+    border-radius: 25px; /* 둥근 모서리 */
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease; /* 부드러운 전환 효과 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 버튼 그림자 */
+    margin-top: 20px;
+    width: 100%; /* 가로 길이 맞춤 */
+    text-align: center;
 }
+
+#filter:hover {
+    background: linear-gradient(135deg, #6e6e6e, #bfbfbf); /* 호버 시 배경 색 전환 */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* 호버 시 더 강한 그림자 */
+}
+
+
+
+
 

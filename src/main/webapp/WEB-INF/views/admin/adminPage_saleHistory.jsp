@@ -12,29 +12,7 @@
 	<div id="wrap">
 
 		<!-- 헤더 -->
-		<div id="header" class="clearfix">
-			<div class="clearfix" id="header1">
-				<ul class="clearfix">
-					<li><a href="#">마이페이지</a></li>
-					<li><a href="#">관심</a></li>
-					<li><a href="#">로그인</a></li>
-					<li><a href="#">로그아웃</a></li>
-				</ul>
-			</div>
-			<div class="clearfix" id="header2">
-				<h1>
-					<a href="#">KREAM</a>
-				</h1>
-				<div>
-					<ul class="clearfix">
-						<li><a href="#"><strong>HOME</strong></a></li>
-						<li><a href="#">SHOP</a></li>
-						<li><a href="#"><img id="search" src="http://localhost:8888/kream/assets/imgs/search.jpg"></a></li>
-						<li><a href="#"><img id="cart" src="http://localhost:8888/kream/assets/imgs/cart.jpg"></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 		<!-- //헤더 -->
 
 		<!-- 컨텐츠 -->
@@ -67,24 +45,38 @@
 				<div class="section">
 					<div class="section-title">판매 기록</div>
 					<div id="sales-info">
-						<c:forEach items="${requestScope.soldProductList}" var="soldProductList">
+						<c:forEach items="${requestScope.pMap.soldProductList}" var="soldProductList">
 							<div class="info-item">
 								<img src="${pageContext.request.contextPath}/Kream_products_imgs/${soldProductList.saveName}" alt="판매 아이템" class="item-img" />
 								<div>
-
 									<p class="info-title">${soldProductList.engName}</p>
 									<p class="info-detail">${soldProductList.korName}</p>
 								</div>
 								<div>
 									<p class="info-title">금액</p>
-
 									<p class="info-detail">${soldProductList.prodPrice}원</p>
-
 								</div>
 							</div>
 						</c:forEach>
 
+						<!-- Pagination controls -->
+						<div id="paging">
+							<ul>
+								<c:if test="${requestScope.pMap.prev}">
+									<li><a href="${pageContext.request.contextPath}/admin/saleshistory?crtpage=${requestScope.pMap.startPageBtnNo - 1}">◀</a></li>
+								</c:if>
+
+								<c:forEach begin="${requestScope.pMap.startPageBtnNo}" end="${requestScope.pMap.endPageBtnNo}" var="page">
+									<li><a href="${pageContext.request.contextPath}/admin/saleshistory?crtpage=${page}" class="${param.crtpage == page ? 'active' : ''}">${page}</a></li>
+								</c:forEach>
+
+								<c:if test="${requestScope.pMap.next}">
+									<li><a href="${pageContext.request.contextPath}/admin/saleshistory?crtpage=${requestScope.pMap.endPageBtnNo + 1}">▶</a></li>
+								</c:if>
+							</ul>
+						</div>
 					</div>
+
 				</div>
 
 			</div>

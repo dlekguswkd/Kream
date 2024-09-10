@@ -10,7 +10,6 @@
         <mapper resource="mybatis/mappers/main.xml" />
         <mapper resource="mybatis/mappers/payment.xml" />
         <mapper resource="mybatis/mappers/admin.xml" />
-        <mapper resource="mybatis/mappers/detail.xml" />
         <mapper resource="mybatis/mappers/favorites.xml" />
     </mappers>
 </configuration> 

@@ -1,6 +1,6 @@
 package com.javaex.controller;
 
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.FavoritesService;
-import com.javaex.vo.FavoritesVo;
 import com.javaex.vo.UserVo;
 
 import jakarta.servlet.http.HttpSession;
@@ -22,9 +21,11 @@ public class FavortiesController {
 	private FavoritesService favoritesService;
 
 	/* 관심 페이지 폼 */
+	// Controller
 	@RequestMapping(value = "/favorites", method = { RequestMethod.GET, RequestMethod.POST })
-	public String favoritesForm(HttpSession session, Model model) {
-		System.out.println("FavortiesController.favoritesForm()");
+	public String favoritesForm(HttpSession session,
+			@RequestParam(value = "crtpage", required = false, defaultValue = "1") int crtPage, Model model) {
+		System.out.println("FavoritesController.favoritesForm()");
 
 		// 로그인한 session 값을 객체로 가져오기
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
@@ -32,13 +33,13 @@ public class FavortiesController {
 		if (authUser == null) {
 			return "redirect:/user/loginform";
 		} else {
-			List<FavoritesVo> favoritesList = favoritesService.exeGetList(authUser.getUserNo());
+			// 페이징된 관심 상품 리스트 가져오기
+			Map<String, Object> pMap = favoritesService.getPagedFavoritesList(authUser.getUserNo(), crtPage);
 
-			model.addAttribute("favoritesList", favoritesList);
+			model.addAttribute("pMap", pMap);
 
 			return "favorites/favorites";
 		}
-
 	}
 
 	/* 관심 삭제 */
@@ -57,11 +58,12 @@ public class FavortiesController {
 
 	/* 관심 상품을 장바구니에 추가 */
 	@RequestMapping(value = "/shoppingcart/add", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addProductToCart(@RequestParam(value = "userNo") int userNo, @RequestParam(value = "favoriteNo") int favoriteNo) {
+	public String addProductToCart(@RequestParam(value = "userNo") int userNo,
+			@RequestParam(value = "favoriteNo") int favoriteNo) {
 		System.out.println("ShoppingCartController.addProductToCart()");
 
 		// 로그인한 session 값을 객체로 가져오기
-		//UserVo authUser = (UserVo) session.getAttribute("authUser");
+		// UserVo authUser = (UserVo) session.getAttribute("authUser");
 
 		System.out.println(favoriteNo);
 		favoritesService.exeShoppingAdd(favoriteNo, userNo);
