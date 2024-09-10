@@ -7,6 +7,7 @@ public class ProductVo {
 	private int categoryNo;
 	private String categoryName;
 	private int colorNo;
+	private int prodSize;
 	private int prodPrice;
 	private String releaseDate;
 	private String colorName;
@@ -23,28 +24,27 @@ public class ProductVo {
 
 	}
 
-	public String getReleaseDate() {
-		return releaseDate;
-	}
-
-	public String getColorCode() {
-		return colorCode;
-	}
-
-	public void setColorCode(String colorCode) {
-		this.colorCode = colorCode;
-	}
-
-	public void setReleaseDate(String releaseDate) {
-		this.releaseDate = releaseDate;
-	}
-
-	public int getProdPrice() {
-		return prodPrice;
-	}
-
-	public void setProdPrice(int prodPrice) {
+	public ProductVo(int prodNo, int brandNo, String brandName, int categoryNo, String categoryName, int colorNo,
+			int prodSize, int prodPrice, String releaseDate, String colorName, String colorCode, String engName,
+			String korName, String modelNo, String filePath, long fileSize, String saveName, String orgName) {
+		this.prodNo = prodNo;
+		this.brandNo = brandNo;
+		this.brandName = brandName;
+		this.categoryNo = categoryNo;
+		this.categoryName = categoryName;
+		this.colorNo = colorNo;
+		this.prodSize = prodSize;
 		this.prodPrice = prodPrice;
+		this.releaseDate = releaseDate;
+		this.colorName = colorName;
+		this.colorCode = colorCode;
+		this.engName = engName;
+		this.korName = korName;
+		this.modelNo = modelNo;
+		this.filePath = filePath;
+		this.fileSize = fileSize;
+		this.saveName = saveName;
+		this.orgName = orgName;
 	}
 
 	public int getProdNo() {
@@ -95,12 +95,44 @@ public class ProductVo {
 		this.colorNo = colorNo;
 	}
 
+	public int getProdSize() {
+		return prodSize;
+	}
+
+	public void setProdSize(int prodSize) {
+		this.prodSize = prodSize;
+	}
+
+	public int getProdPrice() {
+		return prodPrice;
+	}
+
+	public void setProdPrice(int prodPrice) {
+		this.prodPrice = prodPrice;
+	}
+
+	public String getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
 	public String getColorName() {
 		return colorName;
 	}
 
 	public void setColorName(String colorName) {
 		this.colorName = colorName;
+	}
+
+	public String getColorCode() {
+		return colorCode;
+	}
+
+	public void setColorCode(String colorCode) {
+		this.colorCode = colorCode;
 	}
 
 	public String getEngName() {
@@ -157,6 +189,16 @@ public class ProductVo {
 
 	public void setOrgName(String orgName) {
 		this.orgName = orgName;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductVo [prodNo=" + prodNo + ", brandNo=" + brandNo + ", brandName=" + brandName + ", categoryNo="
+				+ categoryNo + ", categoryName=" + categoryName + ", colorNo=" + colorNo + ", prodSize=" + prodSize
+				+ ", prodPrice=" + prodPrice + ", releaseDate=" + releaseDate + ", colorName=" + colorName
+				+ ", colorCode=" + colorCode + ", engName=" + engName + ", korName=" + korName + ", modelNo=" + modelNo
+				+ ", filePath=" + filePath + ", fileSize=" + fileSize + ", saveName=" + saveName + ", orgName="
+				+ orgName + "]";
 	}
 
 }

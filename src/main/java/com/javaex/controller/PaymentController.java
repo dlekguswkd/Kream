@@ -19,6 +19,7 @@ public class PaymentController {
 	@Autowired
 	private PaymentService paymentService;
 
+	
 	/* 구매하기 버튼 */
 	@RequestMapping(value = "/paymentform", method = { RequestMethod.GET, RequestMethod.POST })
 	public String shoppingCartPayment(HttpSession session, Model model) {

@@ -100,12 +100,11 @@
 		</where>
 	</select>
 	
-	
-
-
-
-
-
+	<!-- ShoppingCart 테이블에 삽입 -->
+	    <insert id="insertShoppingCart" parameterType="map">
+	        INSERT INTO ShoppingCart (userNo, prodNo, prodSize)
+	        VALUES (#{userNo}, #{prodNo}, #{prodSize})
+	    </insert>
 
 
 

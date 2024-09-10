@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.MainVo;
 import com.javaex.vo.ProductVo;
+import com.javaex.vo.PurchaseVo;
 
 @Repository
 public class MainDao {
@@ -51,6 +52,13 @@ public class MainDao {
     // Fetch total filtered product count
     public int getFilteredProductCount(Map<String, Object> filterCriteria) {
         return sqlSession.selectOne("main.getFilteredProductCount", filterCriteria);
+    }
+    
+    // ShoppingCart 테이블에 데이터를 삽입
+    public int insertShoppingCart(Map<String, Object> pMap) {
+        int count = sqlSession.insert("main.insertShoppingCart", pMap);
+        
+        return count;
     }
 
 

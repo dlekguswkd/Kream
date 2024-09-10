@@ -41,7 +41,7 @@
 				<div id="explain-box" class="clearfix">
 					<div class="price-box">
 						<p class="price1">구매가</p>
-						<p class="price2">${product.prodPrice}원</p>
+						<p class="price2" data-prodprice="${product.prodPrice}">${product.prodPrice}원</p>
 					</div>
 
 					<div class="name-box">
@@ -105,7 +105,7 @@
 							<p class="txt-explain2">${product.colorName}</p>
 						</div>
 					</div>
-
+					<input type="hidden" id="selectProdNo" value="${product.prodNo}">
 					<!-- 구매버튼, 관심상품 버튼 -->
 					<div id="btn-action" class="clearfix">
 						<button id="btn1" class="clearfix" type="button">구매하기</button>
@@ -238,7 +238,7 @@
 
 	    // "모든 사이즈" 버튼을 선택
 	    let sizeButton = document.querySelector('.form-size');
-	    
+
 	    // 모달창과 닫기 버튼을 선택
 	    let modalTag = document.querySelector('#buy-modal');
 	    let closeBtn = document.querySelector('.close-btn');
@@ -253,22 +253,17 @@
 	        closeModal(modalTag);
 	    });
 
-	    // 모달창 외부를 클릭했을 때 모달창 닫기
-	    window.addEventListener('click', function(event) {
-	        if (event.target === modalTag) {
-	            closeModal(modalTag);
-	        }
-	    });
+	    // 사이즈 버튼 클릭 이벤트
+	    let sizeButtons = document.querySelectorAll(".size-box");
+	    for (let i = 0; i < sizeButtons.length; i++) {
+	        sizeButtons[i].addEventListener('click', function(event) {
+	            ButtonClick(event);
+	        });
+	    }
 	});
 
 	// 모달창 열기 함수 (상품 정보 포함)
 	function openModal(modal, event) {
-	    // 여기서 event가 undefined일 경우 확인 (방어 코드)
-	    if (!event || !event.target) {
-	        console.error("Event 객체가 전달되지 않았습니다.");
-	        return;
-	    }
-
 	    // 버튼에서 부모 요소로 이동하여 필요한 정보를 가져옴
 	    let productDiv = event.target.closest('#contents'); // 상위 요소로 이동
 
@@ -284,20 +279,15 @@
 	    let modelNoTag = productDiv.querySelector('.txt-explain2'); // 모델 번호 (대표색상 앞)
 
 	    // 모달창 내부 요소들
-	    let modaImg = document.querySelector('#img2');			
+	    let modaImg = document.querySelector('#img2');
 	    let name1 = document.querySelector('#eng-name');
 	    let name2 = document.querySelector('#kor-name');
 	    let modelNo = document.querySelector('#model-no');
 
-	    // 상품 정보가 null인지 확인하고 모달창에 정보 넣기
-	    if (imgTag && nameTag1 && nameTag2 && modelNoTag) {
-	        modaImg.src = imgTag.src;
-	        name1.textContent = nameTag1.textContent;
-	        name2.textContent = nameTag2.textContent;
-	        modelNo.textContent = modelNoTag.textContent;
-	    } else {
-	        console.error("필요한 상품 정보를 찾을 수 없습니다.");
-	    }
+	    modaImg.src = imgTag.src;
+	    name1.textContent = nameTag1.textContent;
+	    name2.textContent = nameTag2.textContent;
+	    modelNo.textContent = modelNoTag.textContent;
 
 	    // 모달창 보이기
 	    modal.style.display = 'block';
@@ -306,6 +296,41 @@
 	// 모달창 닫기 함수
 	function closeModal(modal) {
 	    modal.style.display = 'none';
+	}
+
+	// 사이즈 버튼 클릭 시 사이즈 값 전달
+	function ButtonClick(event) {
+	    let prodSize = event.target.getAttribute('data-prodsize');
+	    let prodNo = document.querySelector('#selectProdNo').value;
+	    //let prodPrice = document.querySelector('.price2').dataset.prodprice;
+	    console.log(prodSize);
+	    console.log(prodNo);
+	    //console.log(prodPrice);
+
+	 // 전송
+	    axios({
+	        method: 'get', // put, post, delete
+	        url: '${pageContext.request.contextPath}/api/shoppingcart/insert',
+	        headers: {"Content-Type" : "application/json; charset=utf-8"}, //전송타입
+	        params: {
+	            prodSize: prodSize,
+	            prodNo: prodNo
+	        }, 
+	        responseType: 'json' // 수신 타입
+	    }).then(function (response) {
+	        console.log(response.data); // 수신 데이터
+	        
+	     	// 모달창 닫기
+	        let modalTag = document.querySelector('#buy-modal'); // 모달창 선택
+	        closeModal(modalTag); // 모달창 닫기 함수 호출
+	        
+	       // window.location.href = "{pageContext.request.contextPath}/product/detail";
+	        
+	    }).catch(function (error) {
+	        console.log(error);
+	    });
+	 
+
 	}
 
 	</script>
