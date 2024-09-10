@@ -34,6 +34,16 @@ public class UserDao {
 	}
 	
 	
+	/* 아이디 중복체크 */
+	public int selectUserById(String id) {
+		System.out.println("UserDao.selectUserById()");
+		
+		int count = sqlSession.selectOne("user.selectById", id);
+		System.out.println(count);
+		
+		return count;
+		
+	}
 	
 
 }
