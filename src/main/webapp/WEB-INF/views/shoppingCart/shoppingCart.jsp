@@ -250,6 +250,11 @@
 	        }).then(function (response) {
 	        	console.log(response.data); //수신데이터
 	        	
+	        	// 사이즈가 성공적으로 업데이트 되었으면 화면에서 해당 사이즈 업데이트
+	            let sizeTag = document.querySelector('.size'); // 화면에 사이즈를 표시하는 태그 선택
+	            sizeTag.textContent = size; // 선택된 사이즈로 업데이트
+	        	
+	        	
 	        }).catch(function (error) {
 	        	console.log(error);
 	        });

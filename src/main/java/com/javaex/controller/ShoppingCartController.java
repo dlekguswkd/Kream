@@ -36,6 +36,7 @@ public class ShoppingCartController {
 			return "redirect:/user/loginform";
 
 		} else {
+
 			// 로그인한 회원의 session으로 조회해야함 수정 필요
 			List<ShoppingCartVo> shoppingList = shoppingCartService.exeGetShoppingList(authUser.getUserNo());
 			int totalCnt = shoppingCartService.exeSelectTotalCnt(authUser.getUserNo());

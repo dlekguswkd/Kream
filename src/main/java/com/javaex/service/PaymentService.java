@@ -30,7 +30,7 @@ public class PaymentService {
 		}
 
 		// 3. 유저번호로 장바구니 삭제
-		//paymentDao.deleteShoppingCart(userVo.getUserNo());
+		paymentDao.deleteShoppingCart(userVo.getUserNo());
 
 		// 4. 리스트 보여주기  임의로 cartNo를 맨 첫번째 숫자로 넣기...
 		List<PurchaseVo> paymentList = paymentDao.selectPayment(userVo.getUserNo());

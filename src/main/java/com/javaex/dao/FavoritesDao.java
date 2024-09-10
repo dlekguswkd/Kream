@@ -1,6 +1,8 @@
 package com.javaex.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,30 @@ public class FavoritesDao {
 		List<FavoritesVo> favoritesList = sqlSession.selectList("favorites.selectList", userNo);
 
 		return favoritesList;
+	}
+
+	/* 유저번호와 관심번호 이용해서 관심상품 조회 */
+	public List<FavoritesVo> selectFavoritesList(int favoriteNo, int userNo) {
+		System.out.println("shopingCart.selectFavoritesList");
+
+		Map<String, Integer> params = new HashMap<String, Integer>();
+		params.put("favoriteNo", favoriteNo);
+		params.put("userNo", userNo);
+
+		List<FavoritesVo> favoritesList = sqlSession.selectList("shopingCart.selectFavoritesList", params);
+
+		return favoritesList;
+	}
+
+	/* 관심상품 삭제 */
+	public int deleteFavorites(int favoriteNo, int userNo) {
+		Map<String, Integer> params = new HashMap<String, Integer>();
+		params.put("favoriteNo", favoriteNo);
+		params.put("userNo", userNo);
+
+		int count = sqlSession.delete("favorites.deleteFavorites", params);
+
+		return count;
 	}
 
 }

@@ -50,7 +50,7 @@
 	]]>
 	</delete>
 	
-	<!-- 회원정보 수정 -->
+	<!-- 신발 사이즈 수정 -->
 	<update id="updateShopping" parameterType="map">
 		<![CDATA[
 		 	update ShoppingCart
@@ -58,6 +58,5 @@
 		 	where userNo = #{userNo}
 	]]>
 	</update>
-
-
+	
 </mapper>

@@ -164,28 +164,8 @@
 	cursor: pointer;
 }
 
-/* 구매 텍스트 */
-#contents #btn-action .buy {
-	float: left;
-	padding: 20px 10px 10px 10px;
-	height: 30px;
-	text-align: center;
-	font-weight: bold;
-	border-right: 1px solid #bbbbbb3c;
-}
-
-/* 가격 텍스트 */
-#contents #btn-action .amount {
-	float: right;
-	height: 50px;
-	text-align: left;
-	padding-top: 13px;
-	margin-right: 20px;
-}
-
 /* 가격 텍스트1 */
-#contents #btn-action .txt1 {
-	padding-top: 6px;
+#contents #btn-action button{
 	font-weight: bold;
 }
 
