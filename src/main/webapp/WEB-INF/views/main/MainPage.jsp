@@ -311,7 +311,7 @@
       
       	<c:forEach items="${requestScope.mainList}" var="MainVo">
 	        <div class="products">
-	          <a href="#" class="products_selling_items">
+	          <a href="${pageContext.request.contextPath}/detailform?prodNo=${sessionScope.prod.prodNo}" class="products_selling_items">
 	            <img src="${pageContext.request.contextPath}/upload/${MainVo.saveName}" alt="shoes" />
 	            <div class="products_selling_items_name">
 	              ${MainVo.engName}

@@ -1,0 +1,381 @@
+@charset "UTF-8";
+
+/* 컨텐츠 */
+/* 상품 이미지 왼쪽으로 띄우기 */
+#contents #profile{
+    float: left;
+    width: 420px;
+    padding-right: 35px;
+    height: 100%; /* 이미지 섹션의 높이를 부모 요소의 높이만큼 맞춤 */
+    display: flex;
+    flex-direction: column; /* 작은 이미지들과 큰 이미지가 세로로 배치되도록 설정 */
+    justify-content: space-between;
+}
+
+/* 큰 이미지 */
+#contents #profile #img1 {
+    width: 420px;
+    background-color: #f0efef;
+}
+
+/* 작은 이미지 박스 */
+#contents #profile #small-img {
+    margin-top: 15px;
+    width: 420px;
+}
+
+
+#contents #profile #small-img>img {
+    margin-right: 8px;
+    margin-bottom: 8px;
+    /* border: 1px solid #222222; */
+} 
+
+
+/* 작은 이미지들 */
+#contents #profile #small-img>img {
+    width: 70px;
+    background-color: #f0efef;
+    cursor: pointer;
+}
+
+
+/* 상품 설명박스 왼쪽으로 띄우기 */
+#contents #explain-box {
+    float: left;
+    font-size: 18px;
+    padding-left: 30px;
+    /* margin-left: 13px; */
+    height: auto; /* 설명 박스 높이를 자동으로 */
+    border-left: 1px solid #dddddd;
+}
+
+/* 가격 설명 박스 */
+#contents .price-box {
+    padding-bottom: 40px;
+}
+
+/* 즉시 구매가 */
+#contents .price1 {
+    font-size: 20px;
+}
+
+/* 가격 */
+#contents .price2 {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+/* 상품명 박스 */
+#contents .name-box {
+    padding-bottom: 40px;
+}
+
+/* 상품명 영어 */
+#contents .title {
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
+/* 상품명 한글 */
+#contents .sub-title {
+    font-size: 15px;
+    color: #aeaeae;
+}
+
+/* 사이즈폼 박스 */
+#contents .form-size {
+    margin-bottom: 50px;
+    padding: 10px 12px; /* 위아래 padding 제거 */
+    border: 1px solid #d6d6d6;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 500px;
+    box-sizing: border-box;
+    height: 50px; /* 고정된 높이를 설정 */
+    position: relative;
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: space-between; /* 양쪽 정렬 */
+}
+  
+#contents .form-size p {
+    font-size: 16px;
+}
+  
+#contents .more {
+    font-size: 14px;
+    color: #222222;
+}
+
+/* 부가설명 박스 띄우기 */
+#contents #add-explain .detail-box {
+    float: left;
+    width: 100px; /* 너비를 늘려 긴 텍스트가 한 줄에 들어가도록 설정 */
+    padding: 0px 0px 0px 20px;
+    border-right: 1px solid #d6d6d6;
+    margin-bottom: 50px;
+}
+
+/* 부가설명 박스 제일 마지막 선 지우기 */
+#contents #add-explain .detail-box:last-child {
+    border-right: none;
+}
+
+/* 부가설명 텍스트1 */
+#contents #add-explain .txt-explain {
+    font-size: 14px;
+    color: #aeaeae;
+}
+
+/* 부가설명 텍스트2 */
+#contents #add-explain .txt-explain2 {
+    height: 30px;
+    font-size: 17px;
+    color: #222222;
+    white-space: nowrap; /* 줄바꿈 방지 */
+}
+
+
+
+/* 버튼 박스 설정 */
+#contents #btn-action {
+    display: flex;
+    width: 500px;
+    gap: 15px; /* 버튼 사이 간격 추가 */
+}
+
+/* 구매하기 버튼 */
+#contents #btn-action #btn1 {
+    width: 240px;
+    height: 60px;
+    border-radius: 10px;
+    border: 0;
+    outline: 0;
+    margin-bottom: 35px; /* 버튼 아래 간격 줄임 */
+    cursor: pointer;
+    color: #ffffff;
+    background-color: hsl(4, 98%, 65%);
+    font-weight: bold;
+}
+
+#contents #btn-action #btn1:hover {
+    background-color: hsl(4, 98%, 60%);
+}
+
+/* 관심상품 버튼 */
+#contents #btn-action #btn2 {
+    width: 240px;
+    height: 60px;
+    border-radius: 10px;
+    border: 0;
+    outline: 0;
+    margin-bottom: 35px; /* 버튼 아래 간격 줄임 */
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #38a2ff;
+}
+
+#contents #btn-action #btn2:hover {
+    background-color: #3092e5;
+}
+
+/* 배송 정보 박스 설정 */
+#contents #delivery {
+    padding-top: 20px; /* 배송 정보 위쪽 간격 줄임 */
+    border-top: 1px solid #e8e7e7;
+    clear: both; /* 배송 정보가 float 요소 아래로 제대로 배치되도록 함 */
+}
+
+/* 배송 정보 박스 */
+#contents #delivery h1 {
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+/* 배송 정보 각 항목 설정 */
+#contents #delivery .delivery-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
+
+/* 배송 이미지 */
+#contents #delivery img {
+    float: left;
+    width: 35px;
+    margin-right: 10px;
+}
+
+/* 배송 텍스트 설정 */
+#contents #delivery .types {
+    padding-bottom: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #222222;
+}
+
+#contents #delivery .txt-badge {
+    font-size: 11px;
+    color: #aeaeae;
+}
+
+/* 사이즈 정보 텍스트1 */
+#contents #size-box h3 {
+    margin-top: 50px;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+/* 신발 사이즈표 */
+#contents #size-box table {
+    margin-top: 20px;
+    text-align: center;
+    width: 1000px;
+    height: 180px;
+}
+
+/* 신발 사이즈표 색상 */
+#contents #size-box .color {
+    background-color: #f1f1f1;
+}
+
+/* 사이즈 정보 텍스트2 */
+#contents #size-box p {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #5d5c5c;
+}
+
+
+/* 구매 모달 창 */
+#buy-modal { 
+    display: none !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+#buy-modal .purchase-modal {
+    background-color: white;
+    border-radius: 10px;
+    width: 450px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+#buy-modal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 제목과 가격 단위가 정확히 중앙에 오도록 설정 */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#buy-modal .modal-header h1 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    flex-grow: 1; /* 제목이 양쪽 버튼 간의 공간을 차지하도록 설정 */
+    text-align: center;
+}
+
+#buy-modal .modal-header p {
+    font-size: 12px;
+    color: grey;
+    position: absolute;
+    top: 25px; /* 제목 아래로 내려가도록 설정 */
+    width: 100%; /* 중앙에 텍스트를 유지하기 위해 폭을 100%로 설정 */
+    text-align: center; /* 중앙 정렬 */
+    margin: 0;
+}
+
+#buy-modal .modal-header .close-btn {
+    background: none;
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+    position: absolute;
+    right: -5px; /* 우측 끝에서 적절한 거리 */
+    top: -21px;   /* 상단에서 적절한 거리 */
+    color: #222222;
+}
+  
+#buy-modal .product-info {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #dddddd;
+}
+
+#buy-modal .product-info h2{
+    font-weight: bold;
+    padding-bottom: 2px;
+}
+
+#buy-modal .product-info .product-id{
+    color: #b3b3b3;
+}
+  
+  
+#buy-modal .product-info img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 5px;
+    background-color: #f0efef;
+}
+  
+#buy-modal .product-info h2 {
+    font-size: 16px;
+    margin: 0;
+}
+  
+#buy-modal .product-info p {
+    font-size: 12px;
+    color: #555;
+}
+  
+#buy-modal .size-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3열 레이아웃 */
+    gap: 10px;
+}
+  
+#buy-modal .size-box {
+    background-color: #f9f9f9;
+    padding: 15px 10px 15px 10px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+  
+#buy-modal .size-box p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+  
+#buy-modal .size-box:hover {
+    background-color: #eee;
+}
+  
+#buy-modal .size-box.disabled {
+    background-color: #eee;
+    cursor: not-allowed;
+    color: #ccc;
+}

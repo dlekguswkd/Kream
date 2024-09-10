@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.javaex.service.MainService;
+import com.javaex.vo.DetailVo;
 import com.javaex.vo.MainVo;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
@@ -21,7 +24,7 @@ public class MainController {
 	/* 메인화면 전체 리스트 */
 	//http://localhost:8888/kream/main/mainform
 	@RequestMapping(value="/main/mainform", method = {RequestMethod.GET, RequestMethod.POST})
-	public String mainForm(Model model) {
+	public String mainForm(Model model, HttpSession session) {
 		System.out.println("MainController.mainForm()");
 		
 		List<MainVo> mainList = mainService.exeList();
@@ -32,8 +35,6 @@ public class MainController {
 		
 		List<MainVo> colorList = mainService.exeColorList();
 		model.addAttribute("colorList", colorList);
-		
-		System.out.println(colorList);
 		
 		return "main/MainPage";
 		
