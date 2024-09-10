@@ -46,9 +46,9 @@
                     </ul>
                 </div>
                 <div id="sns-box">
-                    <a href="https://www.instagram.com/" target="_blank"><img src="../imgs/instagram.jpg" /></a>
-                    <a href="https://www.facebook.com/?locale=ko_KR" target="_blank"><img src="../imgs/facebook.jpg" /></a>
-                    <a href="https://www.kakaocorp.com/page/service/service/KakaoTalk" target="_blank"><img src="../imgs/kakaotalk.jpg" /></a>
+                    <a href="https://www.instagram.com/" target="_blank"><img src="${pageContext.request.contextPath}/assets/imgs/instagram.jpg" /></a>
+                    <a href="https://www.facebook.com/?locale=ko_KR" target="_blank"><img src="${pageContext.request.contextPath}/assets/imgs/facebook.jpg" /></a>
+                    <a href="https://www.kakaocorp.com/page/service/service/KakaoTalk" target="_blank"><img src="${pageContext.request.contextPath}/assets/imgs/kakaotalk.jpg" /></a>
                 </div>
                 <div id="business-title">
                     크림 주식회사 · 대표 김창욱 &emsp; 사업자등록번호 : 570-88-01618 <a href="#">사업자정보확인</a> &emsp; 통신판매업 : 제 2021-성남분당C-0093호<br>
