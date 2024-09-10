@@ -33,7 +33,7 @@
 				<button type="submit">로그인</button>
 			</form>
 			<div class="footer-link">
-				<a href="#">이메일 가입</a> | <a href="#">이메일 찾기</a> | <a href="#">비밀번호 찾기</a>
+				<a href="${pageContext.request.contextPath}/user/registerForm">회원 가입</a> | <a href="#">이메일 찾기</a> | <a href="#">비밀번호 찾기</a>
 			</div>
 		</div>
 

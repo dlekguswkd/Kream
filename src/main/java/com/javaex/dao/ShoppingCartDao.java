@@ -43,9 +43,10 @@ public class ShoppingCartDao {
 	}
 
 	/* 신발 사이즈 옵션 업데이트 */
-	public int updateShopping(int prodSize, int userNo) {
+	public int updateShopping(int prodSize, int cartNo, int userNo) {
 		Map<String, Integer> params = new HashMap<String, Integer>();
 		params.put("prodSize", prodSize);
+		params.put("cartNo", cartNo);
 		params.put("userNo", userNo);
 
 		int count = sqlSession.update("shopingCart.updateShopping", params);

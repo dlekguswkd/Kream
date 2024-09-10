@@ -44,7 +44,7 @@
 									<p class="product-nameE">${ShoppingcartVo.engName}</p>
 									<p class="product-nameK">${ShoppingcartVo.korName}</p>
 									<p class="modelNum">${ShoppingcartVo.modelNo}</p>
-									<p class="size">${ShoppingcartVo.prodSize}</p>
+									<p id="p-${ShoppingcartVo.cartNo}" class="size" >${ShoppingcartVo.prodSize}</p>
 								</div>
 								<!-- //content -->
 
@@ -56,7 +56,7 @@
 
 							<!-- 버튼 두개 (옵션, 삭제) -->
 							<div class="btn2">
-								<button class="btnOption" type="button" name="prodSize" data-cartno="${ShoppingcartVo.cartNo}">사이즈
+								<button id="cartNo" class="btnOption" type="button" name="prodSize" data-cartno="${ShoppingcartVo.cartNo}">사이즈
 									변경</button>
 								<form
 									action="${pageContext.request.contextPath}/shoppingcart/delete"
@@ -149,7 +149,7 @@
 						<p id="model-no" class="product-id">모델번호</p>
 					</div>
 				</div>
-<input type="text" id="aaaa" value=>
+				<input type="hidden" id="selectCartNo" value="">
 				<div class="size-grid">
 					<!-- 사이즈 버튼들 -->
 					<button id="size230" class="size-box" data-prodsize="230">230</button>
@@ -172,100 +172,103 @@
 	<!-- //wrap -->
 
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+	document.addEventListener("DOMContentLoaded", function() {
 
-			// 모달창 띄우기 이벤트
-			let btnOptions = document.querySelectorAll(".btnOption");
-			for (let i = 0; i < btnOptions.length; i++) {
-				btnOptions[i].addEventListener('click', callModal);
-			}
+	    // 모달창 띄우기 이벤트
+	    let btnOptions = document.querySelectorAll(".btnOption");
+	    for (let i = 0; i < btnOptions.length; i++) {
+	        btnOptions[i].addEventListener('click', callModal);
+	    }
 
-			// 모달창 닫기 버튼 클릭이벤트 등록
-			let closeBtn = document.querySelectorAll('.close-btn');
-			for (let i = 0; i < closeBtn.length; i++) {
-				closeBtn[i].addEventListener('click', closeModal);
-			}
+	    // 모달창 닫기 버튼 클릭이벤트 등록
+	    let closeBtn = document.querySelectorAll('.close-btn');
+	    for (let i = 0; i < closeBtn.length; i++) {
+	        closeBtn[i].addEventListener('click', closeModal);
+	    }
 
-			// 사이즈 버튼 클릭 이벤트
-			let sizeButtons = document.querySelectorAll(".size-box");
-			for (let i = 0; i < sizeButtons.length; i++) {
-				sizeButtons[i].addEventListener('click', ButtonClick);
-			}
+	    // 사이즈 버튼 클릭 이벤트
+	    let sizeButtons = document.querySelectorAll(".size-box");
+	    for (let i = 0; i < sizeButtons.length; i++) {
+	        sizeButtons[i].addEventListener('click', ButtonClick);
+	    }
 
-		});
+	});
 
-		// 모달창 띄우기
-		function callModal(event) {
-			
-			// 데이터로 가져온 이미지 태그로 불러오기
-			let imgTag = document.querySelector('#img1');
-			let nameTag1 = document.querySelector('.product-nameE');
-			let nameTag2 = document.querySelector('.product-nameK');
-			let modelNoTag = document.querySelector('.modelNum');
-			
-			let modaImg = document.querySelector('#img2');			
-			let name1 = document.querySelector('#eng-name');
-			let name2 = document.querySelector('#kor-name');
-			let modelNo = document.querySelector('#model-no');
+	// 모달창 띄우기
+	function callModal(event) {
+	    // 버튼에서 부모 요소로 이동하여 필요한 정보를 가져옴
+	    let productDiv = event.target.parentElement.parentElement; // .selectProduct div 요소로 이동
+	    let imgTag = productDiv.querySelector('#img1');
+	    let nameTag1 = productDiv.querySelector('.product-nameE');
+	    let nameTag2 = productDiv.querySelector('.product-nameK');
+	    let modelNoTag = productDiv.querySelector('.modelNum');
 
-			modaImg.src = imgTag.src;
-			name1.textContent = nameTag1.textContent;
-			name2.textContent = nameTag2.textContent;
-			modelNo.textContent = modelNoTag.textContent;
+	    let modaImg = document.querySelector('#img2');			
+	    let name1 = document.querySelector('#eng-name');
+	    let name2 = document.querySelector('#kor-name');
+	    let modelNo = document.querySelector('#model-no');
 
-			let modalTag = document.querySelector('#buy-modal');
-			modalTag.style.display = 'block';
+	    modaImg.src = imgTag.src;
+	    name1.textContent = nameTag1.textContent;
+	    name2.textContent = nameTag2.textContent;
+	    modelNo.textContent = modelNoTag.textContent;
+	    
+	    // 선택한 카트번호
+	    let cartNo = event.target.getAttribute('data-cartno'); // 버튼의 data-cartno 속성에서 카트 번호 가져오기
+	    let selectCartNo = document.querySelector('#selectCartNo');
+	    
+	    selectCartNo.value = cartNo; // 카트 번호를 히든 인풋에 저장
+	    console.log(selectCartNo.value);
+	    
+	    // 모달창 보이게하기
+	    let modalTag = document.querySelector('#buy-modal');
+	    modalTag.style.display = 'block';
+	}
 
-			aaaa.value = 	
-		}
+	// 모달창 닫기
+	function closeModal(event) {
+	    let modalTag = document.querySelector('#buy-modal');
+	    modalTag.style.display = 'none';
+	}
 
-		// 모달창 닫기
-		function closeModal(event) {
-			let modalTag = document.querySelector('#buy-modal');
+	// 사이즈 버튼 클릭 시
+	function ButtonClick(event) {
+	    let selectedSize = event.target.dataset.prodsize; // 선택한 사이즈 가져오기
+	    let cartNo = document.querySelector('#selectCartNo').value; // 선택한 카트 번호 가져오기
 
-			modalTag.style.display = 'none';
-		}
+	    console.log("선택한 사이즈: " + selectedSize);
+	    console.log("카트 번호: " + cartNo);
 
-		// 사이즈 버튼 클릭 시
-		function ButtonClick(event) {
-			
-			let selectedSize = event.target.dataset.prodsize;
-			let cartno = aaa
+	    // 서버에 사이즈 업데이트 요청 보내기
+	    updateSize(selectedSize, cartNo);
 
-			console.log(event.target)
-			console.log(selectedSize)
-			console.log(cartno)
-				
-			// 서버에 사이즈 업데이트 요청 보내기
-			//updateSize(selectedSize);
+	    // 모달창 닫기
+	    closeModal();
+	}
 
-			// 모달창 닫기
-			closeModal();
-		}
-		
-		// 사이즈 업데이트 요청
-		function updateSize(size) {
-			// 전송
-	        axios({
-	        	method: 'get', // put, post, delete
-	        	url: '${pageContext.request.contextPath}/api/shoppingcart/update',
-	        	headers: {"Content-Type" : "application/json; charset=utf-8"}, //전송타입
-	        	params: {prodSize: size}, // get방식 파라미터로 값이 전달 
-	        	// data: guestbookVo, // put, post, delete 방식 자동으로 JSON으로 변환 전달
-	        	
-	        	responseType: 'json' //수신타입
-	        }).then(function (response) {
-	        	console.log(response.data); //수신데이터
-	        	
-	        	// 사이즈가 성공적으로 업데이트 되었으면 화면에서 해당 사이즈 업데이트
-	            let sizeTag = document.querySelector('.size'); // 화면에 사이즈를 표시하는 태그 선택
-	            sizeTag.textContent = size; // 선택된 사이즈로 업데이트
-	        	
-	        	
-	        }).catch(function (error) {
-	        	console.log(error);
-	        });
-		}
+	// 사이즈 업데이트 요청
+	function updateSize(size, cartNo) {
+	    // 전송
+	    axios({
+	        method: 'get', // put, post, delete
+	        url: '${pageContext.request.contextPath}/api/shoppingcart/update',
+	        headers: {"Content-Type" : "application/json; charset=utf-8"}, //전송타입
+	        params: {
+	            prodSize: size, // get 방식 파라미터로 값이 전달 
+	            cartNo: cartNo // 카트 번호도 함께 전송
+	        }, 
+	        responseType: 'json' // 수신 타입
+	    }).then(function (response) {
+	        console.log(response.data); // 수신 데이터
+	        
+	        // 사이즈가 성공적으로 업데이트 되었으면 화면에서 해당 사이즈 업데이트
+	        let sizeTag = document.querySelector('.size'); // 화면에 사이즈를 표시하는 태그 선택
+	        sizeTag.textContent = size; // 선택된 사이즈로 업데이트
+	        
+	    }).catch(function (error) {
+	        console.log(error);
+	    });
+	}
 		
 	</script>
 

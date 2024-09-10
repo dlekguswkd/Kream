@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="favorites">
+
+<!-- 관심 상품 리스트 가져오기 -->
+	<select id="selectList" parameterType="int" resultType="com.javaex.vo.FavoritesVo">
+	<![CDATA[
+		SELECT  f.favoriteNo,
+				f.userNo,
+		        f.prodNo,
+		        b.brandName,
+		        u.userName,
+		        u.userId,
+		        c.prodPrice,
+		        f.prodSize,
+		        p.engName,
+		        p.korName,
+		        p.filePath,
+		        p.fileSize,
+		        p.saveName,
+		        p.orgName
+		FROM Favorites f
+		INNER JOIN users u ON f.userNo = u.userNo
+		INNER JOIN products p ON f.prodNo = p.prodNo
+		INNER JOIN category c ON p.categoryNo = c.categoryNo
+		INNER JOIN brand b ON c.brandNo = b.brandNo
+		where f.userNo = #{userNo}
+	]]>
+	</select>
+	
+	<!-- 관심상품 삭제 -->
+	<delete id="deleteFavorites" parameterType="map">
+		<![CDATA[
+		 	delete from Favorites
+		 	where favoriteNo = #{favoriteNo}
+		 	and userNo = #{userNo}
+	]]>
+	</delete>
+	
+	<!-- 관심 상품 리스트 가져오기 -->
+	<select id="selectFavoritesList" parameterType="map" resultType="com.javaex.vo.FavoritesVo">
+	<![CDATA[
+		SELECT  f.favoriteNo,
+				f.userNo,
+		        f.prodNo,
+		        b.brandName,
+		        u.userName,
+		        u.userId,
+		        c.prodPrice,
+		        f.prodSize,
+		        p.engName,
+		        p.korName,
+		        p.filePath,
+		        p.fileSize,
+		        p.saveName,
+		        p.orgName
+		FROM Favorites f
+		INNER JOIN users u ON f.userNo = u.userNo
+		INNER JOIN products p ON f.prodNo = p.prodNo
+		INNER JOIN category c ON p.categoryNo = c.categoryNo
+		INNER JOIN brand b ON c.brandNo = b.brandNo
+		where f.userNo = #{userNo}
+		and f.favoriteNo = #{favoriteNo}
+	]]>
+	</select>
+	
+	<!-- ShoppingCart 테이블에 결제 정보 삽입 -->
+	<insert id="insertShoppingCart"
+		parameterType="com.javaex.vo.FavoritesVo">
+		INSERT INTO ShoppingCart (userNo, prodNo, prodSize)
+		VALUES (#{userNo}, #{prodNo}, #{prodSize})
+	</insert>
+	
+
+</mapper>

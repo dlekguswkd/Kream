@@ -77,8 +77,8 @@
                                 <p class="info-title">주소</p>
                                 <input type="text" name="userAddress" value="${userVo.userAddress}">
                             </div>
-                        </div> 								<!-- ${sessionScope.authUser.userNo}로 변경 필요 -->
-                        <input type="hidden" name="userNo" value="${userVo.userNo}">
+                        </div> 								
+                        <input type="hidden" name="userNo" value="${sessionScope.authUser.userNo}">
                         <div class="button-group">
                             <button type="submit" class="edit-btn address-btn">전송</button>
                         </div>

@@ -44,10 +44,10 @@ public class ShoppingCartService {
 	}
 	
 	/* 신발 사이즈 옵션 업데이트 */
-	public int exeShoppingUpdate(int prodSize, int userNo) {
+	public int exeShoppingUpdate(int prodSize, int cartNo, int userNo) {
 		System.out.println("ShoppingCartService.exeShoppingUpdate()");
 		
-		int count = shoppingCartDao.updateShopping(prodSize, userNo);
+		int count = shoppingCartDao.updateShopping(prodSize, cartNo, userNo);
 		
 		return count;
 		

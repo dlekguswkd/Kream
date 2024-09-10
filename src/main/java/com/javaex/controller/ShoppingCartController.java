@@ -73,7 +73,7 @@ public class ShoppingCartController {
 		// 로그인한 session 값을 객체로 가져오기
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
-		int count = shoppingCartService.exeShoppingUpdate(shoppingCartVo.getProdSize(), authUser.getUserNo());
+		int count = shoppingCartService.exeShoppingUpdate(shoppingCartVo.getProdSize(), shoppingCartVo.getCartNo(), authUser.getUserNo());
 
 		// 리다이렉트 해야함
 		return count;

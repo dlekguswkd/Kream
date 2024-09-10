@@ -7,24 +7,28 @@
 	<select id="selectList" parameterType="int" resultType="com.javaex.vo.ShoppingCartVo">
 	<![CDATA[
 		SELECT s.cartNo,
-			   s.userNo,
-			   s.prodNo,
-			   s.prodSize,
-			   p.engName,
-			   p.korName,
-			   p.modelNo,
-			   c.prodPrice,
-			   p.filePath,
-			   p.saveName,
-			   p.orgName,
-			   (SELECT SUM(c2.prodPrice)
-			   FROM ShoppingChart s2
-			   INNER JOIN Products p2 ON s2.prodNo = p2.prodNo
-			   INNER JOIN Category c2 ON p2.categoryNo = c2.categoryNo
-			   WHERE s2.userNo = s.userNo) AS totalPrice
-		FROM ShoppingChart s
+       		   s.userNo,
+       	   	   u.userName,
+		       u.userID,
+		       u.userAddress,
+		       s.prodNo,
+		       s.prodSize,
+		       p.engName,
+		       p.korName,
+		       p.modelNo,
+		       c.prodPrice,
+		       p.filePath,
+		       p.saveName,
+		       p.orgName,
+		       (SELECT SUM(c2.prodPrice)
+		        FROM ShoppingCart s2
+		        INNER JOIN Products p2 ON s2.prodNo = p2.prodNo
+		        INNER JOIN Category c2 ON p2.categoryNo = c2.categoryNo
+		        WHERE s2.userNo = s.userNo) AS totalPrice
+		FROM ShoppingCart s
 		INNER JOIN Products p ON s.prodNo = p.prodNo
 		INNER JOIN Category c ON p.categoryNo = c.categoryNo
+		INNER JOIN Users u ON s.userNo = u.userNo
 		WHERE s.userNo = #{userNo}
 	]]>
 	</select>
@@ -33,7 +37,7 @@
 	<select id="selectTotalCnt" parameterType="int" resultType="int">
 	<![CDATA[
 		SELECT count(*)
-		FROM ShoppingChart
+		FROM ShoppingCart
 		WHERE userNo = #{userNo}
 	]]>
 	</select>
@@ -41,10 +45,18 @@
 	<!-- 장바구니 삭제 -->
 	<delete id="deleteShopping" parameterType="int">
 		<![CDATA[
-		 	delete from ShoppingChart
+		 	delete from ShoppingCart
 		 	where cartNo = #{cartNo}
 	]]>
 	</delete>
-
-
+	
+	<!-- 신발 사이즈 수정 -->
+	<update id="updateShopping" parameterType="map">
+		<![CDATA[
+		 	update ShoppingCart
+		 	set prodSize = #{prodSize}
+		 	where userNo = #{userNo}
+	]]>
+	</update>
+	
 </mapper>

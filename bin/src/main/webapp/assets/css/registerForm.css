@@ -48,6 +48,19 @@
     cursor: pointer;
 }
 
+#text-id {
+	float: left;
+}
+
+/* 중복체크버튼 */
+#btnIdCheck {
+	float: right;
+	width: 110px;
+	height: 30px;
+	text-align: center;
+	padding-top: 5px;
+}
+
 .signup-container button:hover {
     background-color: #ccc;
 }

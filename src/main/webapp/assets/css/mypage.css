@@ -192,65 +192,77 @@
 
 /* 관심 상품 */
 .favorite-section {
-	background-color: white;
-	padding: 20px;
-	border: 1px solid #e0e0e0;
-	margin-top: 20px;
-	border-radius: 10px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: 380px; /* 3개의 카드만 보이도록 높이 제한 */
+    overflow: hidden; /* 넘치는 부분 숨김 */
 }
 
 .favorite-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
+/* Grid 레이아웃 사용하여 상품 카드 정렬 */
 .favorite-products {
-	display: flex;
-	gap: 20px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); /* 3개의 컬럼 고정 */
+    grid-auto-rows: auto; /* 자동 높이 설정 */
 }
 
 .product-card {
-	width: 220px;
-	border: 1px solid #e0e0e0;
-	border-radius: 10px;
-	padding: 10px;
-	background-color: #f9f9f9;
-	transition: box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    transition: box-shadow 0.3s ease;
 }
 
 .product-card:hover {
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .product-card img {
-	width: 100%;
-	height: auto;
-	border-radius: 10px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
 
 .product-details {
-	margin-top: 10px;
+    margin-top: 10px;
 }
 
 .product-details h4 {
-	margin: 0;
-	font-size: 14px;
+    margin: 0;
+    font-size: 14px;
 }
 
 .product-details p {
-	margin: 5px 0;
-	font-size: 12px;
-	color: #666;
+    margin: 5px 0;
+    font-size: 12px;
+    color: #666;
 }
 
 .price {
-	font-weight: bold;
-	margin: 5px 0;
+    font-weight: bold;
+    margin: 5px 0;
 }
 
 .purchase-type {
-	color: green;
+    color: green;
 }
+
+/* 반응형 조정 */
+@media (max-width: 768px) {
+    .favorite-products {
+        grid-template-columns: repeat(2, 1fr); /* 화면이 좁아지면 2개의 컬럼 */
+    }
+}
+

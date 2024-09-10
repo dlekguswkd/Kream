@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="payment">
+
+	<!-- 장바구니 리스트 가져오기 -->
+	<select id="selectShoppingList" parameterType="int"
+		resultType="com.javaex.vo.ShoppingCartVo">
+	<![CDATA[
+		 SELECT    s.cartNo,
+	       		   s.userNo,
+	       	   	   u.userName,
+			       u.userID,
+			       u.userAddress,
+			       s.prodNo,
+			       s.prodSize,
+			       p.engName,
+			       p.korName,
+			       p.modelNo,
+			       c.prodPrice,
+			       p.filePath,
+			       p.saveName,
+			       p.orgName,
+			       (SELECT SUM(c2.prodPrice)
+			        FROM ShoppingCart s2
+			        INNER JOIN Products p2 ON s2.prodNo = p2.prodNo
+			        INNER JOIN Category c2 ON p2.categoryNo = c2.categoryNo
+			        WHERE s2.userNo = s.userNo) AS totalPrice
+		FROM ShoppingCart s
+		INNER JOIN Products p ON s.prodNo = p.prodNo
+		INNER JOIN Category c ON p.categoryNo = c.categoryNo
+		INNER JOIN Users u ON s.userNo = u.userNo
+		WHERE s.userNo = #{userNo}
+	]]>
+	</select>
+
+	<!-- History 테이블에 결제 정보 삽입 -->
+	<insert id="insertPayment"
+		parameterType="map">
+		INSERT INTO History (userNo, prodNo, shippingStatus, prodPrice, prodSize,
+		purchaseDate, reciptNo) VALUES (#{userNo}, #{prodNo}, '준비중', #{prodPrice},
+		#{prodSize}, now(), #{reciptNo})
+	</insert>
+
+
+
+	<!-- 장바구니 삭제 -->
+	<delete id="deleteShoppingCart" parameterType="int">
+		DELETE FROM
+		ShoppingCart
+		WHERE userNo = #{userNo}
+	</delete>
+
+	<!-- History 데이터 가져오기 -->
+	<select id="selectPayment" parameterType="int"
+		resultType="com.javaex.vo.PurchaseVo">
+	<![CDATA[
+		SELECT  h.historyNo,
+		        h.userNo,
+		        h.prodNo,
+		        s.cartNo,
+		        u.userName,
+		        u.userID,
+		        u.userAddress,
+		        h.prodPrice,
+		        h.prodSize,
+		        p.engName,
+		        p.korName,
+		        p.modelNo,
+		        h.shippingStatus,
+		        h.purchaseDate,
+		        p.filePath,
+		        p.saveName,
+		        p.orgName,
+                h.reciptNo
+		FROM History h
+		LEFT JOIN ShoppingCart s ON h.userNo = s.userNo AND h.prodNo = s.prodNo
+		INNER JOIN Products p ON h.prodNo = p.prodNo
+		INNER JOIN Category c ON p.categoryNo = c.categoryNo
+		INNER JOIN Users u ON h.userNo = u.userNo
+		WHERE h.userNo = #{userNo}
+        AND h.reciptNo = #{reciptNo}
+		order by purchaseDate
+	]]>
+	</select>
+
+</mapper>

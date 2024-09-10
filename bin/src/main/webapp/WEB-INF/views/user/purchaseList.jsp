@@ -64,7 +64,7 @@
 								<div class="purchase-action">
 									<c:choose>
 										<c:when test="${PurchaseVo.shippingStatus == '준비중'}">
-											<form action="${pageContext.request.contextPath}/user/purchasedelete" method="get">
+											<form action="${pageContext.request.contextPath}/user/purchasedelete?historyNo=${PurchaseVo.historyNo}" method="get">
 												<button type="submit">취소</button>
 												<input type="hidden" name="historyNo" value="${PurchaseVo.historyNo}" />
 											</form>
