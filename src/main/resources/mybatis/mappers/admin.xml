@@ -54,7 +54,7 @@
 
 	<delete id="deleteShoppingList" parameterType="int">
     	<![CDATA[	
-        	DELETE FROM ShoppingChart WHERE userNo = #{userNo}
+        	DELETE FROM ShoppingCart WHERE userNo = #{userNo}
         ]]>
 	</delete>
 
@@ -113,7 +113,7 @@
 			WHERE h.shippingStatus = '배송완료';
     	]]>
 	</select>
-	
+
 	<select id="getSaleHistory2" resultType="com.javaex.vo.PurchaseVo">
     	<![CDATA[
 			SELECT h.prodNo, h.prodPrice, p.engName, p.korName, p.filePath, p.saveName
@@ -131,7 +131,7 @@
 			History h INNER JOIN Products p ON h.prodNo = p.prodNo INNER JOIN Users u ON h.userNo = u.userNo where h.shippingStatus = '준비중'
     	]]>
 	</select>
-	
+
 	<select id="getPurchaseReqList2" resultType="com.javaex.vo.PurchaseVo">
     	<![CDATA[
 			SELECT p.saveName, p.engName, p.korName, u.userName, u.userId,h.historyNo
@@ -140,8 +140,8 @@
     		limit 3
     	]]>
 	</select>
-	
-	<select id ="getItemList" resultType="com.javaex.vo.ProductVo">
+
+	<select id="getItemList" resultType="com.javaex.vo.ProductVo">
 		<![CDATA[
 			SELECT 
    			p.prodNo, p.engName, p.korName, p.modelNo, b.brandName, c.categoryName, c.prodPrice, c.releaseDate, co.colorName, p.saveName
@@ -155,7 +155,7 @@
     		Color co ON c.colorNo = co.colorNo;
     	]]>
 	</select>
-	 
+
 	<!-- Delete from Favorites -->
 	<delete id="deletefromFavorites" parameterType="int">
     		<![CDATA[DELETE FROM Favorites WHERE prodNo = #{prodNo}]]>
@@ -163,7 +163,7 @@
 
 	<!-- Delete from ShoppingChart -->
 	<delete id="deletefromShoppingChart" parameterType="int">
-    	<![CDATA[DELETE FROM ShoppingChart WHERE prodNo = #{prodNo}]]>
+    	<![CDATA[DELETE FROM ShoppingCart WHERE prodNo = #{prodNo}]]>
 	</delete>
 
 	<!-- Delete from History -->
@@ -175,7 +175,7 @@
 	<delete id="deletefromProduct" parameterType="int">
    		<![CDATA[DELETE FROM Products WHERE prodNo = #{prodNo}]]>
 	</delete>
-	
+
 	<update id="updateShippingStatus" parameterType="map">
     	<![CDATA[UPDATE History
     	SET shippingStatus = #{status}
@@ -188,7 +188,118 @@
 	</delete>
 
 
+	<select id="getUserListWithPaging" resultType="com.javaex.vo.UserVo">
+    		<![CDATA[SELECT * FROM users 
+    		LIMIT #{startRowNum}, #{listCnt}]]>
+	</select>
 
+	<select id="selectTotalUserCount" resultType="int">
+    	<![CDATA[SELECT COUNT(*) FROM users]]>
+	</select>
+
+
+
+	<select id="getProductListWithPaging" resultType="com.javaex.vo.ProductVo">
+    <![CDATA[
+        SELECT 
+            p.prodNo, 
+            p.engName, 
+            p.korName, 
+            p.modelNo, 
+            b.brandName, 
+            c.categoryName, 
+            c.prodPrice, 
+            c.releaseDate, 
+            co.colorName, 
+            p.saveName
+        FROM 
+            Products p
+        JOIN 
+            Category c ON p.categoryNo = c.categoryNo
+        JOIN 
+            Brand b ON c.brandNo = b.brandNo
+        JOIN 
+            Color co ON c.colorNo = co.colorNo
+        LIMIT #{startRowNum}, #{listCnt}
+    ]]>
+	</select>
+
+
+	<select id="selectTotalProductCount" resultType="int">
+    <![CDATA[
+        SELECT 
+            COUNT(*) 
+        FROM 
+            Products p
+        JOIN 
+            Category c ON p.categoryNo = c.categoryNo
+        JOIN 
+            Brand b ON c.brandNo = b.brandNo
+        JOIN 
+            Color co ON c.colorNo = co.colorNo
+    ]]>
+	</select>
+
+	<select id="getSalesHistoryWithPaging" resultType="com.javaex.vo.PurchaseVo">
+    <![CDATA[
+        SELECT 
+            p.engName, 
+            p.korName, 
+            c.prodPrice, 
+            p.saveName
+        FROM 
+            History s
+        JOIN 
+            Products p ON s.prodNo = p.prodNo
+        JOIN 
+            Category c ON p.categoryNo = c.categoryNo
+        LIMIT #{startRowNum}, #{listCnt}
+    ]]>
+	</select>
+
+	<select id="selectTotalSalesCount" resultType="int">
+    <![CDATA[
+        SELECT 
+            COUNT(*) 
+        FROM 
+            History s
+        JOIN 
+            Products p ON s.prodNo = p.prodNo
+    ]]>
+	</select>
+
+
+	<select id="getPurchaseRequestWithPaging" resultType="com.javaex.vo.PurchaseVo">
+    <![CDATA[
+        SELECT 
+            p.saveName, 
+            p.engName, 
+            p.korName, 
+            u.userName, 
+            u.userId, 
+            h.historyNo
+        FROM 
+            History h 
+        INNER JOIN Products p ON h.prodNo = p.prodNo 
+        INNER JOIN Users u ON h.userNo = u.userNo 
+        WHERE 
+            h.shippingStatus = '준비중'
+        LIMIT #{startRowNum}, #{listCnt}
+    ]]>
+	</select>
+
+	<select id="selectTotalPurchaseRequestCount" resultType="int">
+    <![CDATA[
+        SELECT 
+            COUNT(*)
+        FROM 
+            History h 
+        INNER JOIN Products p ON h.prodNo = p.prodNo 
+        INNER JOIN Users u ON h.userNo = u.userNo 
+        WHERE 
+            h.shippingStatus = '준비중'
+    ]]>
+	</select>
 
 
 
