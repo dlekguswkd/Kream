@@ -35,7 +35,22 @@ import com.javaex.vo.UserVo;
 		}
 		
 		
+		/* 아이디 중복체크 */
+		public boolean exeIdCheck(String id) {
+			System.out.println("UserService.exeIdCheck()");
 
+			int count = userDao.selectUserById(id);
+			
+			if(count >= 1) {
+				return false;	
+			}else {
+				return true;		
+			}
+			
+		}
+
+		
+		
 	}
 
 

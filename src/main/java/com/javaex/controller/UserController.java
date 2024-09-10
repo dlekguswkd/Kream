@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
@@ -41,6 +43,20 @@ public class UserController {
 		// 포워드
 		return "redirect:/user/loginform";
 	}
+	
+	/* 아이디 중복체크 */
+	//http://localhost:8888/kream/api/user/idcheck
+	@ResponseBody
+	@RequestMapping(value="/api/user/idcheck", method = {RequestMethod.GET, RequestMethod.POST})
+	public boolean idCheck(@RequestParam(value="id") String id) {
+		System.out.println("UserController.idCheck()");
+		
+		boolean can = userService.exeIdCheck(id);
+		return can;
+		
+	}
+	
+	
 	
 	// -----------------------------------------------------------------------------
 
