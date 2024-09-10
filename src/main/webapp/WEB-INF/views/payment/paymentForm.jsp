@@ -1,12 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>회원정보 수정</title>
-<link href="${pageContext.request.contextPath}/assets/css/reset3.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/assets/css/paymentForm.css" rel="stylesheet" type="text/css">
+<title>주문완료</title>
+<link href="${pageContext.request.contextPath}/assets/css/reset3.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="${pageContext.request.contextPath}/assets/css/paymentForm.css"
+	rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="wrap">
@@ -40,37 +44,25 @@
 						</div>
 					</div>
 
-
-					<!-- 여기가 반복? -->
-					<div class="order-product">
-						<img class="product-img" src="../imgs/Adidas Original Gazelle Auburn Clear Pink.webp">
-						<div class="content">
-							<p class="product-nameE">Adidas Original Gazelle Auburn Clear Pink</p>
-							<p class="product-nameK">아디다스 오리지널스 가젤 어번 클리어 핑크</p>
-							<p class="size">240</p>
+					<c:forEach items="${requestScope.purchaseList}" var="PurchaseVo">
+						<!-- 여기가 반복? -->
+						<div class="order-product">
+							<img class="product-img"
+								src="../imgs/Adidas Original Gazelle Auburn Clear Pink.webp">
+							<div class="content">
+								<p class="product-nameE">${PurchaseVo.engName}</p>
+								<p class="product-nameK">${PurchaseVo.korName}</p>
+								<p class="size">${PurchaseVo.prodSize}</p>
+							</div>
+							<!-- //content -->
+							<div class="product-price">
+								<p>160,000 원</p>
+							</div>
 						</div>
-						<!-- //content -->
-						<div class="product-price">
-							<p>160,000 원</p>
-						</div>
-					</div>
-					<!-- 반복끝 -->
+						<!-- 반복끝 -->
+					</c:forEach>
 					<div class="clear"></div>
 
-					<!-- 여기가 반복? -->
-					<div class="order-product">
-						<img class="product-img" src="../imgs/Nike x Peaceminusone Air Force 1 Low Para-Noise 3.0 Black and Multicolor.webp">
-						<div class="content">
-							<p class="product-nameE">Nike x Peaceminusone Air Force 1 Low Para-Noise 3.0 Black and Multicolor</p>
-							<p class="product-nameK">나이키 x 피스마이너스원 에어포스 1 로우 파라노이즈 3.0 블랙 앤 멀티컬러</p>
-							<p class="size">235</p>
-						</div>
-						<!-- //content -->
-						<div class="product-price">
-							<p>473,000 원</p>
-						</div>
-					</div>
-					<!-- 반복끝 -->
 
 				</div>
 				<!-- //productInfo -->
