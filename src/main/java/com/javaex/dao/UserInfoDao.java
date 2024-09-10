@@ -76,7 +76,7 @@ public class UserInfoDao {
 	
 	/* 관심 상품 리스트 가져오기 */
 	public List<FavoritesVo> selectFavoritesList(int userNo) {
-		System.out.println("selectFavoritesList");
+		System.out.println("UserInfoDao.selectFavoritesList()");
 
 		List<FavoritesVo> favoritesList = sqlSession.selectList("user.selectFavoritesList", userNo);
 
