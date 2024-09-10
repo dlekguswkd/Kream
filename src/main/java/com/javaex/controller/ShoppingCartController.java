@@ -37,6 +37,7 @@ public class ShoppingCartController {
 
 		model.addAttribute("shoppingList", shoppingList);
 		model.addAttribute("totalCnt", totalCnt);
+		System.out.println(shoppingList);
 
 		return "shoppingCart/shoppingCart";
 	}

@@ -36,7 +36,7 @@
 
 							<div class="product-info">
 
-								<img
+								<img id="img1"
 									src="${pageContext.request.contextPath}/upload/${ShoppingcartVo.saveName}"
 									alt="prodImg" style="width: 140px; background-color: #f0efef;" />
 
@@ -135,13 +135,11 @@
 				</div>
 
 				<div class="product-info">
-					<img
-						src="${pageContext.request.contextPath}/upload/${MainVo.saveName}"
-						alt="shoes" />
+					<img id="img2" src="" alt="shoes" />
 					<div>
-						<h2>Adidas Original Gazelle Auburn Clear Pink</h2>
-						<p class="product-id">아디다스 오리지널스 가젤 어번 클리어 핑크</p>
-						<p class="product-id">JH5666</p>
+						<h2 id="eng-name">영문명</h2>
+						<p id="kor-name" class="product-id">한글명</p>
+						<p id="model-no" class="product-id">모델번호</p>
 					</div>
 				</div>
 
@@ -195,8 +193,24 @@
 
 		// 모달창 띄우기
 		function callModal(event) {
-			let modalTag = document.querySelector('#buy-modal');
+			
+			// 데이터로 가져온 이미지 태그로 불러오기
+			let imgTag = document.querySelector('#img1');
+			let nameTag1 = document.querySelector('.product-nameE');
+			let nameTag2 = document.querySelector('.product-nameK');
+			let modelNoTag = document.querySelector('.modelNum');
+			
+			let modaImg = document.querySelector('#img2');			
+			let name1 = document.querySelector('#eng-name');
+			let name2 = document.querySelector('#kor-name');
+			let modelNo = document.querySelector('#model-no');
 
+			modaImg.src = imgTag.src;
+			name1.textContent = nameTag1.textContent;
+			name2.textContent = nameTag2.textContent;
+			modelNo.textContent = modelNoTag.textContent;
+
+			let modalTag = document.querySelector('#buy-modal');
 			modalTag.style.display = 'block';
 
 		}
