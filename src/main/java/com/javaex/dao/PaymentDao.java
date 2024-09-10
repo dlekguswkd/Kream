@@ -43,9 +43,9 @@ public class PaymentDao {
 	}
 
 	// 구매내역 조회
-	public List<PurchaseVo> selectPayment(int userNo) {
-
-		List<PurchaseVo> purchaseList = sqlSession.selectList("payment.selectPayment", userNo);
+	public List<PurchaseVo> selectPayment(Map<String, Integer> pMap) {
+		System.out.println(pMap);
+		List<PurchaseVo> purchaseList = sqlSession.selectList("payment.selectPayment", pMap);
 
 		return purchaseList;
 	}

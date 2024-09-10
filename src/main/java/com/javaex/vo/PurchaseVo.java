@@ -19,6 +19,7 @@ public class PurchaseVo {
 	private int fileSize;
 	private String saveName;
 	private String orgName;
+	private int reciptNo;
 
 	public PurchaseVo() {
 
@@ -26,7 +27,7 @@ public class PurchaseVo {
 
 	public PurchaseVo(int historyNo, int userNo, String userName, String userId, String userAddress, int prodNo,
 			String shippingStatus, int prodPrice, int totalPrice, int prodSize, String purchaseDate, String engName,
-			String korName, String filePath, int fileSize, String saveName, String orgName) {
+			String korName, String filePath, int fileSize, String saveName, String orgName, int reciptNo) {
 		this.historyNo = historyNo;
 		this.userNo = userNo;
 		this.userName = userName;
@@ -44,6 +45,7 @@ public class PurchaseVo {
 		this.fileSize = fileSize;
 		this.saveName = saveName;
 		this.orgName = orgName;
+		this.reciptNo = reciptNo;
 	}
 
 	public int getHistoryNo() {
@@ -182,13 +184,22 @@ public class PurchaseVo {
 		this.orgName = orgName;
 	}
 
+	public int getReciptNo() {
+		return reciptNo;
+	}
+
+	public void setReciptNo(int reciptNo) {
+		this.reciptNo = reciptNo;
+	}
+
 	@Override
 	public String toString() {
 		return "PurchaseVo [historyNo=" + historyNo + ", userNo=" + userNo + ", userName=" + userName + ", userId="
 				+ userId + ", userAddress=" + userAddress + ", prodNo=" + prodNo + ", shippingStatus=" + shippingStatus
 				+ ", prodPrice=" + prodPrice + ", totalPrice=" + totalPrice + ", prodSize=" + prodSize
 				+ ", purchaseDate=" + purchaseDate + ", engName=" + engName + ", korName=" + korName + ", filePath="
-				+ filePath + ", fileSize=" + fileSize + ", saveName=" + saveName + ", orgName=" + orgName + "]";
+				+ filePath + ", fileSize=" + fileSize + ", saveName=" + saveName + ", orgName=" + orgName
+				+ ", reciptNo=" + reciptNo + "]";
 	}
 
 }

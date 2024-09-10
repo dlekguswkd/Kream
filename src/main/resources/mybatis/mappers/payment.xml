@@ -36,10 +36,10 @@
 
 	<!-- History 테이블에 결제 정보 삽입 -->
 	<insert id="insertPayment"
-		parameterType="com.javaex.vo.ShoppingCartVo">
+		parameterType="map">
 		INSERT INTO History (userNo, prodNo, shippingStatus, prodPrice, prodSize,
-		purchaseDate) VALUES (#{userNo}, #{prodNo}, '준비중', #{prodPrice},
-		#{prodSize}, now())
+		purchaseDate, reciptNo) VALUES (#{userNo}, #{prodNo}, '준비중', #{prodPrice},
+		#{prodSize}, now(), #{reciptNo})
 	</insert>
 
 
@@ -55,7 +55,7 @@
 	<select id="selectPayment" parameterType="int"
 		resultType="com.javaex.vo.PurchaseVo">
 	<![CDATA[
-		 SELECT h.historyNo,
+		SELECT  h.historyNo,
 		        h.userNo,
 		        h.prodNo,
 		        s.cartNo,
@@ -72,17 +72,14 @@
 		        p.filePath,
 		        p.saveName,
 		        p.orgName,
-		       (SELECT SUM(c2.prodPrice)
-		        FROM ShoppingCart s2
-		        INNER JOIN Products p2 ON s2.prodNo = p2.prodNo
-		        INNER JOIN Category c2 ON p2.categoryNo = c2.categoryNo
-		        WHERE s2.userNo = h.userNo) AS totalPrice
+                h.reciptNo
 		FROM History h
 		LEFT JOIN ShoppingCart s ON h.userNo = s.userNo AND h.prodNo = s.prodNo
 		INNER JOIN Products p ON h.prodNo = p.prodNo
 		INNER JOIN Category c ON p.categoryNo = c.categoryNo
 		INNER JOIN Users u ON h.userNo = u.userNo
 		WHERE h.userNo = #{userNo}
+        AND h.reciptNo = #{reciptNo}
 		order by purchaseDate
 	]]>
 	</select>

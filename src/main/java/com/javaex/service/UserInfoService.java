@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.UserInfoDao;
+import com.javaex.vo.FavoritesVo;
 import com.javaex.vo.PurchaseVo;
 import com.javaex.vo.UserVo;
 
@@ -35,27 +36,27 @@ public class UserInfoService {
 
 		return modifyUserInfo;
 	}
-	
+
 	/* 마이페이지 구매내역 */
 	public List<PurchaseVo> exeUserPurchase(int userNo) {
 		System.out.println("UserInfoService.exeUserPurchase()");
-		
+
 		List<PurchaseVo> purchaseList = userInfoDao.selectPurchase(userNo);
-		
+
 		return purchaseList;
-		
+
 	}
-	
+
 	/* 구매내역 삭제하기 */
 	public int exePurchaseDelete(int historyNo) {
 		System.out.println("UserInfoService.exePurchaseDelete()");
-		
+
 		int count = userInfoDao.deletePurchase(historyNo);
-		
+
 		return count;
-		
+
 	}
-	
+
 	/* 구매내역 전체 갯수 구하기 */
 	public int exeSelectTotalCnt(int userNo) {
 
@@ -79,6 +80,14 @@ public class UserInfoService {
 
 		return count;
 	}
-	
+
+	/* 관심상품 리스트 가져오기 */
+	public List<FavoritesVo> exeUserFavorites(int userNo) {
+		System.out.println("UserInfoService.exeUserFavorites()");
+
+		List<FavoritesVo> favoritesList = userInfoDao.selectFavoritesList(userNo);
+
+		return favoritesList;
+	}
 
 }

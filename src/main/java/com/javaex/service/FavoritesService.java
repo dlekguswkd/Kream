@@ -39,13 +39,13 @@ public class FavoritesService {
 		List<FavoritesVo> favoritesList = favoritesDao.selectFavoritesList(favoriteNo, userNo);
 
 		System.out.println(favoritesList);
-//				for (int i = 0; i < favoritesList.size(); i++) {
-//					// History 테이블에 insert
-//					shoppingCartDao.insertShoppingCart(favoritesList.get(i));
-//				}
+		for (int i = 0; i < favoritesList.size(); i++) {
+			// ShoppingCart 테이블에 insert
+			favoritesDao.insertShoppingCart(favoritesList.get(i));
+		}
 
 		// 3. 유저번호로 관심 상품 삭제
-		// shoppingCartDao.deleteFavorites(favoriteNo, userNo);
+		favoritesDao.deleteFavorites(favoriteNo, userNo);
 
 		return 0;
 	}

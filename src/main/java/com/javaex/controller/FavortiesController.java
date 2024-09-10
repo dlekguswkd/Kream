@@ -57,14 +57,14 @@ public class FavortiesController {
 
 	/* 관심 상품을 장바구니에 추가 */
 	@RequestMapping(value = "/shoppingcart/add", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addProductToCart(HttpSession session, @RequestParam(value = "favoriteNo") int favoriteNo) {
+	public String addProductToCart(@RequestParam(value = "userNo") int userNo, @RequestParam(value = "favoriteNo") int favoriteNo) {
 		System.out.println("ShoppingCartController.addProductToCart()");
 
 		// 로그인한 session 값을 객체로 가져오기
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		//UserVo authUser = (UserVo) session.getAttribute("authUser");
 
 		System.out.println(favoriteNo);
-		favoritesService.exeShoppingAdd(favoriteNo, authUser.getUserNo());
+		favoritesService.exeShoppingAdd(favoriteNo, userNo);
 
 		// 장바구니 페이지로 리다이렉트
 		return "redirect:/shoppingcart";

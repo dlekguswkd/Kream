@@ -69,6 +69,7 @@ public class ShoppingCartController {
 	public int shoppingCartUpdate(HttpSession session, @ModelAttribute ShoppingCartVo shoppingCartVo) {
 		System.out.println("ShoppingCartController.shoppingCartVo()");
 
+		System.out.println(shoppingCartVo);
 		// 로그인한 session 값을 객체로 가져오기
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 

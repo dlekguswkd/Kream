@@ -89,6 +89,32 @@
 	]]>
 	</select>
 	
+	<!-- 마이페이지 관심상품 회원 1명 데이터 가져오기 -->
+	<select id="selectFavoritesList" parameterType="int" resultType="com.javaex.vo.FavoritesVo">
+		<![CDATA[   
+			SELECT  f.favoriteNo,
+					f.userNo,
+			        f.prodNo,
+			        b.brandName,
+			        u.userName,
+			        u.userId,
+			        c.prodPrice,
+			        f.prodSize,
+			        p.engName,
+			        p.korName,
+			        p.filePath,
+			        p.fileSize,
+			        p.saveName,
+			        p.orgName
+			FROM Favorites f
+			INNER JOIN users u ON f.userNo = u.userNo
+			INNER JOIN products p ON f.prodNo = p.prodNo
+			INNER JOIN category c ON p.categoryNo = c.categoryNo
+			INNER JOIN brand b ON c.brandNo = b.brandNo
+			where f.userNo = #{userNo}
+	]]>
+	</select>
+	
 
 
 </mapper>

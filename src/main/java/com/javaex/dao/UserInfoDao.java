@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.javaex.vo.FavoritesVo;
 import com.javaex.vo.PurchaseVo;
 import com.javaex.vo.UserVo;
 
@@ -71,6 +72,15 @@ public class UserInfoDao {
 		int count = sqlSession.selectOne("user.selectFinishCnt", userNo);
 
 		return count;
+	}
+	
+	/* 관심 상품 리스트 가져오기 */
+	public List<FavoritesVo> selectFavoritesList(int userNo) {
+		System.out.println("selectFavoritesList");
+
+		List<FavoritesVo> favoritesList = sqlSession.selectList("user.selectFavoritesList", userNo);
+
+		return favoritesList;
 	}
 
 }

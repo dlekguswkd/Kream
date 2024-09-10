@@ -64,7 +64,13 @@
 		and f.favoriteNo = #{favoriteNo}
 	]]>
 	</select>
-
+	
+	<!-- ShoppingCart 테이블에 결제 정보 삽입 -->
+	<insert id="insertShoppingCart"
+		parameterType="com.javaex.vo.FavoritesVo">
+		INSERT INTO ShoppingCart (userNo, prodNo, prodSize)
+		VALUES (#{userNo}, #{prodNo}, #{prodSize})
+	</insert>
 	
 
 </mapper>

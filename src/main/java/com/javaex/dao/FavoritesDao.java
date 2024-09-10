@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.FavoritesVo;
+import com.javaex.vo.ShoppingCartVo;
 
 @Repository
 public class FavoritesDao {
@@ -33,7 +34,7 @@ public class FavoritesDao {
 		params.put("favoriteNo", favoriteNo);
 		params.put("userNo", userNo);
 
-		List<FavoritesVo> favoritesList = sqlSession.selectList("shopingCart.selectFavoritesList", params);
+		List<FavoritesVo> favoritesList = sqlSession.selectList("favorites.selectFavoritesList", params);
 
 		return favoritesList;
 	}
@@ -45,6 +46,14 @@ public class FavoritesDao {
 		params.put("userNo", userNo);
 
 		int count = sqlSession.delete("favorites.deleteFavorites", params);
+
+		return count;
+	}
+
+	// ShoppingCart 테이블에 결제 정보 삽입
+	public int insertShoppingCart(FavoritesVo favoritesVo) {
+
+		int count = sqlSession.insert("favorites.insertShoppingCart", favoritesVo);
 
 		return count;
 	}

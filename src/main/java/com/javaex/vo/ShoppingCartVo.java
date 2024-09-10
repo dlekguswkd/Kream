@@ -17,6 +17,7 @@ public class ShoppingCartVo {
 	private String filePath;
 	private String saveName;
 	private String orgName;
+	private int reciptNo;
 
 	public ShoppingCartVo() {
 
@@ -24,7 +25,8 @@ public class ShoppingCartVo {
 
 	public ShoppingCartVo(int cartNo, int userNo, String userName, String userId, String userAddress, int prodNo,
 			int prodSize, String engName, String korName, String modelNo, int prodPrice, int totalPrice,
-			String filePath, String saveName, String orgName) {
+			String filePath, String saveName, String orgName, int reciptNo) {
+		super();
 		this.cartNo = cartNo;
 		this.userNo = userNo;
 		this.userName = userName;
@@ -40,6 +42,7 @@ public class ShoppingCartVo {
 		this.filePath = filePath;
 		this.saveName = saveName;
 		this.orgName = orgName;
+		this.reciptNo = reciptNo;
 	}
 
 	public int getCartNo() {
@@ -162,13 +165,21 @@ public class ShoppingCartVo {
 		this.orgName = orgName;
 	}
 
+	public int getReciptNo() {
+		return reciptNo;
+	}
+
+	public void setReciptNo(int reciptNo) {
+		this.reciptNo = reciptNo;
+	}
+
 	@Override
 	public String toString() {
 		return "ShoppingCartVo [cartNo=" + cartNo + ", userNo=" + userNo + ", userName=" + userName + ", userId="
 				+ userId + ", userAddress=" + userAddress + ", prodNo=" + prodNo + ", prodSize=" + prodSize
 				+ ", engName=" + engName + ", korName=" + korName + ", modelNo=" + modelNo + ", prodPrice=" + prodPrice
 				+ ", totalPrice=" + totalPrice + ", filePath=" + filePath + ", saveName=" + saveName + ", orgName="
-				+ orgName + "]";
+				+ orgName + ", reciptNo=" + reciptNo + "]";
 	}
 
 }

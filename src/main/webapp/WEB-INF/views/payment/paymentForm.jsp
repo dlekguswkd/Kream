@@ -44,7 +44,7 @@
 						</div>
 					</div>
 
-					<c:forEach items="${requestScope.purchaseList}" var="PurchaseVo">
+					<c:forEach items="${requestScope.rMap.paymentList}" var="PurchaseVo">
 						<!-- 여기가 반복? -->
 						<div class="order-product">
 							<img class="product-img"
@@ -80,7 +80,7 @@
 							<p>총 결제 금액</p>
 						</div>
 						<div class="total-priceR">
-							<p>${purchaseList[0].totalPrice}원</p>
+							<p>${requestScope.rMap.totalPrice}원</p>
 						</div>
 					</div>
 				</div>
@@ -89,7 +89,7 @@
 				<!-- 주문자 정보 -->
 				<div id="userInfo">
 					<div class="user-text">
-						<p>${purchaseList[0].totalPrice}원</p>
+						<p>주문자 정보</p>
 					</div>
 					<div class="clear"></div>
 					<div class="name">
@@ -97,7 +97,7 @@
 							<p>이름</p>
 						</div>
 						<div class="nameR">
-							<p>${purchaseList[0].userName}</p>
+							<p>${rMap.paymentList[0].userName}</p>
 						</div>
 					</div>
 					<div class="email">
@@ -105,7 +105,7 @@
 							<p>ID</p>
 						</div>
 						<div class="emailR">
-							<p>${purchaseList[0].userId}</p>
+							<p>${rMap.paymentList[0].userId}</p>
 						</div>
 					</div>
 					<div class="address">
@@ -113,7 +113,7 @@
 							<p>배송지(집 주소)</p>
 						</div>
 						<div class="addressR">
-							<p>${purchaseList[0].userAddress}</p>
+							<p>${rMap.paymentList[0].userAddress}</p>
 						</div>
 					</div>
 				</div>

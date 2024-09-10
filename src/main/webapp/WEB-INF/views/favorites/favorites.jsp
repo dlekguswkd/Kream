@@ -21,20 +21,20 @@
 		<div id="contents" class="clearfix">
 			<div id="aside">
 				<h2>
-					<a href="#">마이페이지</a>
+					<a href="${pageContext.request.contextPath}/user/mypage?userNo=${sessionScope.authUser.userNo}">마이페이지</a>
 				</h2>
 				<div class="snb-list1">
 					<strong>쇼핑 정보</strong>
 					<ul>
-						<li><a href="#">구매내역</a></li>
-						<li><a href="#">관심</a></li>
+						<li><a href="${pageContext.request.contextPath}/user/purchaselist?userNo=${sessionScope.authUser.userNo}">구매내역</a></li>
+						<li><a href="${pageContext.request.contextPath}/favorites?userNo=${sessionScope.authUser.userNo}">관심</a></li>
 					</ul>
 				</div>
 				<div class="snb-list2">
 					<strong>내 정보</strong>
 					<ul>
-						<li><a href="#">프로필 관리</a></li>
-						<li><a href="#">내 정보</a></li>
+						<li><a href="${pageContext.request.contextPath}/user/userinfo?userNo=${sessionScope.authUser.userNo}">프로필 관리</a></li>
+						<li><a href="${pageContext.request.contextPath}/user/mypage?userNo=${sessionScope.authUser.userNo}">내 정보</a></li>
 					</ul>
 				</div>
 
@@ -77,7 +77,7 @@
 							<p class="size">${FavoritesVo.prodSize}</p>
 						</div>
 						<div id="btn-action">
-							<a href="${pageContext.request.contextPath}/shoppingcart/add?favoriteNo=${FavoritesVo.favoriteNo}"><button
+							<a href="${pageContext.request.contextPath}/shoppingcart/add?favoriteNo=${FavoritesVo.favoriteNo}&userNo=${FavoritesVo.userNo}"><button
 									class="clearfix" type="button">
 									장바구니<br> ${FavoritesVo.prodPrice}원
 								</button></a>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.UserInfoService;
+import com.javaex.vo.FavoritesVo;
 import com.javaex.vo.PurchaseVo;
 import com.javaex.vo.UserVo;
 
@@ -42,11 +43,16 @@ public class UserInfoController {
 			int totalCnt = userInfoService.exeSelectTotalCnt(authUser.getUserNo());
 			int readyCnt = userInfoService.exeSelectReadyCnt(authUser.getUserNo());
 			int finishCnt = userInfoService.exeSelectFinishCnt(authUser.getUserNo());
-
+			
+			// session의 userNo값으로 관심상품 가져오기
+			List<FavoritesVo> favoritesList = userInfoService.exeUserFavorites(authUser.getUserNo());
+			System.out.println(favoritesList);
+			
 			model.addAttribute("userVo", userVo);
 			model.addAttribute("totalCnt", totalCnt);
 			model.addAttribute("readyCnt", readyCnt);
 			model.addAttribute("finishCnt", finishCnt);
+			model.addAttribute("favoritesList", favoritesList);
 
 			return "user/mypage";
 		}

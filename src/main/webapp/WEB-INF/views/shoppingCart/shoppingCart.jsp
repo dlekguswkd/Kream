@@ -44,7 +44,7 @@
 									<p class="product-nameE">${ShoppingcartVo.engName}</p>
 									<p class="product-nameK">${ShoppingcartVo.korName}</p>
 									<p class="modelNum">${ShoppingcartVo.modelNo}</p>
-									<p class="size">${ShoppingcartVo.prodSize}</p>
+									<p class="size" data-cartno="${ShoppingcartVo.cartNo}">${ShoppingcartVo.prodSize}</p>
 								</div>
 								<!-- //content -->
 
@@ -228,22 +228,29 @@
 		// 사이즈 버튼 클릭 시
 		function ButtonClick(event) {
 			let selectedSize = event.target.dataset.prodsize;
-
+			
+			
+		    console.log("Selected size:", selectedSize);  // 선택한 사이즈 출력 확인
+	
+			
 			// 서버에 사이즈 업데이트 요청 보내기
-			updateSize(selectedSize);
+			updateSize(selectedSize, cartNo);
 
 			// 모달창 닫기
 			closeModal();
 		}
 		
 		// 사이즈 업데이트 요청
-		function updateSize(size) {
+		function updateSize(size, cartNo) {
+			console.log('업데이트');
+			
+			
 			// 전송
 	        axios({
 	        	method: 'get', // put, post, delete
 	        	url: '${pageContext.request.contextPath}/api/shoppingcart/update',
 	        	headers: {"Content-Type" : "application/json; charset=utf-8"}, //전송타입
-	        	params: {prodSize: size}, // get방식 파라미터로 값이 전달 
+	        	params: {prodSize: size, cartNo: cartNo}, // get방식 파라미터로 값이 전달 
 	        	// data: guestbookVo, // put, post, delete 방식 자동으로 JSON으로 변환 전달
 	        	
 	        	responseType: 'json' //수신타입
@@ -251,7 +258,7 @@
 	        	console.log(response.data); //수신데이터
 	        	
 	        	// 사이즈가 성공적으로 업데이트 되었으면 화면에서 해당 사이즈 업데이트
-	            let sizeTag = document.querySelector('.size'); // 화면에 사이즈를 표시하는 태그 선택
+	            let sizeTag = document.querySelectorAll('.size'); // 화면에 사이즈를 표시하는 태그 선택
 	            sizeTag.textContent = size; // 선택된 사이즈로 업데이트
 	        	
 	        	

@@ -65,30 +65,21 @@
                 <div class="favorite-section">
                     <div class="favorite-header">
                         <h3>관심 상품</h3>
-                        <a href="#">더보기</a>
+                        <a href="${pageContext.request.contextPath}/favorites">더보기</a>
                     </div>
                     <div class="favorite-products">
+                    <c:forEach items="${requestScope.favoritesList}" var="FavoritesVo">
                         <div class="product-card">
-                            <img src="https://via.placeholder.com/220x150" alt="Nike Air Force 1 '07 Low White">
+                            <img src="${pageContext.request.contextPath}/upload/${FavoritesVo.saveName}">
                             <div class="product-details">
-                                <h4>Nike</h4>
-                                <p>Nike Air Force 1 '07 Low White</p>
+                                <h4>${FavoritesVo.brandName}</h4>
+                                <p>${FavoritesVo.engName}</p>
                                 <p class="purchase-type">⚡ 빠른배송</p>
-                                <p class="price">112,000원</p>
+                                <p class="price">${FavoritesVo.prodPrice}</p>
                                 <p>즉시 구매가</p>
                             </div>
                         </div>
-
-                        <div class="product-card">
-                            <img src="https://via.placeholder.com/220x150" alt="Nike x Supreme Air Force 1 Low White">
-                            <div class="product-details">
-                                <h4>Nike</h4>
-                                <p>Nike x Supreme Air Force 1 Low White</p>
-                                <p class="purchase-type">⚡ 빠른배송</p>
-                                <p class="price">218,000원</p>
-                                <p>즉시 구매가</p>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
 
