@@ -48,7 +48,7 @@
 						<!-- 여기가 반복? -->
 						<div class="order-product">
 							<img class="product-img"
-								src="../imgs/Adidas Original Gazelle Auburn Clear Pink.webp">
+								src="${pageContext.request.contextPath}/upload/${PurchaseVo.saveName}">
 							<div class="content">
 								<p class="product-nameE">${PurchaseVo.engName}</p>
 								<p class="product-nameK">${PurchaseVo.korName}</p>
@@ -56,12 +56,12 @@
 							</div>
 							<!-- //content -->
 							<div class="product-price">
-								<p>160,000 원</p>
+								<p>${PurchaseVo.prodPrice}</p>
 							</div>
 						</div>
 						<!-- 반복끝 -->
-					</c:forEach>
 					<div class="clear"></div>
+					</c:forEach>
 
 
 				</div>
@@ -80,7 +80,7 @@
 							<p>총 결제 금액</p>
 						</div>
 						<div class="total-priceR">
-							<p>653,000 원</p>
+							<p>${purchaseList[0].totalPrice}원</p>
 						</div>
 					</div>
 				</div>
@@ -89,7 +89,7 @@
 				<!-- 주문자 정보 -->
 				<div id="userInfo">
 					<div class="user-text">
-						<p>주문자 정보</p>
+						<p>${purchaseList[0].totalPrice}원</p>
 					</div>
 					<div class="clear"></div>
 					<div class="name">
@@ -97,7 +97,7 @@
 							<p>이름</p>
 						</div>
 						<div class="nameR">
-							<p>이다현</p>
+							<p>${purchaseList[0].userName}</p>
 						</div>
 					</div>
 					<div class="email">
@@ -105,7 +105,7 @@
 							<p>ID</p>
 						</div>
 						<div class="emailR">
-							<p>Supernova</p>
+							<p>${purchaseList[0].userId}</p>
 						</div>
 					</div>
 					<div class="address">
@@ -113,14 +113,14 @@
 							<p>배송지(집 주소)</p>
 						</div>
 						<div class="addressR">
-							<p>서울특별시 강남구 어디어디</p>
+							<p>${purchaseList[0].userAddress}</p>
 						</div>
 					</div>
 				</div>
 				<!-- //userInfo -->
 
 				<div>
-					<button id="home" type="button" name="">홈으로</button>
+					<a href="${pageContext.request.contextPath}/main/mainform"><button id="home" type="button" name="">홈으로</button></a>
 				</div>
 
 			</div>

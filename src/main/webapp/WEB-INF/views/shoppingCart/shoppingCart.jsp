@@ -120,7 +120,7 @@
 					</ol>
 				</div>
 
-				<a href="${pageContext.request.contextPath}/paymentform?userNo=${sessionScope.authUser.userNo}" class="btnOrder">${shoppingList[0].totalPrice}원·총${totalCnt}건주문하기</a>
+				<a href="${pageContext.request.contextPath}/paymentform" class="btnOrder">${shoppingList[0].totalPrice}원·총${totalCnt}건주문하기</a>
 
 			</div>
 			<!-- //full-content -->

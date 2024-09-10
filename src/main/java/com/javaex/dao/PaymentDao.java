@@ -1,6 +1,8 @@
 package com.javaex.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,20 +26,28 @@ public class PaymentDao {
 		return shoppingList;
 	}
 
-    // History 테이블에 결제 정보 삽입
-    public int insertPayment(PurchaseVo purchaseVo) {
-    	
-        int count = sqlSession.insert("payment.insertPayment", purchaseVo);
-        
-        return count;
-    }
+	// History 테이블에 결제 정보 삽입
+	public int insertPayment(ShoppingCartVo shoppingCartVo) {
 
-    // 장바구니 삭제
-    public int deleteShoppingCart(int userNo) {
-        
-    	int count = sqlSession.delete("payment.deleteShoppingCart", userNo);
-        
-        return count;
-    }
+		int count = sqlSession.insert("payment.insertPayment", shoppingCartVo);
+
+		return count;
+	}
+
+	// 장바구니 삭제
+	public int deleteShoppingCart(int userNo) {
+
+		int count = sqlSession.delete("payment.deleteShoppingCart", userNo);
+
+		return count;
+	}
+
+	// 구매내역 조회
+	public List<PurchaseVo> selectPayment(int userNo) {
+
+		List<PurchaseVo> purchaseList = sqlSession.selectList("payment.selectPayment", userNo);
+
+		return purchaseList;
+	}
 
 }

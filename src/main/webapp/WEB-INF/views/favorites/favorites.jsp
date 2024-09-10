@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>회원정보 수정</title>
+    <title>관심 상품</title>
     <link href="${pageContext.request.contextPath}/assets/css/reset2.css" rel="stylesheet" type="text/css">
     <link href="${pageContext.request.contextPath}/assets/css/favorites.css" rel="stylesheet" type="text/css">
 </head>
@@ -60,13 +60,14 @@
                 </div>
 
                 <!-- for문 -->
+                <c:forEach items="${requestScope.favoritesList}" var="FavoritesVo">
                 <div id="wish-item" class="clearfix">
-                    <a href="#"><img src="../imgs/samba.jpg"></a>
+                    <a href="#"><img src="${pageContext.request.contextPath}/upload/${FavoritesVo.saveName}"></a>
 
                     <div id="product-detail" class="clearfix">
-                        <p class="brand-name"><a href="#">Adidas</a></p>
-                        <p class="name"><a href="#">Adidas Samba Vegan White Black</a></p>
-                        <p class="size">230</p>
+                        <p class="brand-name"><a href="#">${FavoritesVo.brandName}</a></p>
+                        <p class="name"><a href="#">${FavoritesVo.engName}</a></p>
+                        <p class="size">${FavoritesVo.prodSize}</p>
                     </div>
                     <div id="btn-action">
                         <button class="clearfix" type="button" name="">
@@ -75,7 +76,7 @@
                             </div>
                             <div class="amount">
                                 <div class="txt1">
-                                    116,000원
+                                    ${FavoritesVo.prodPrice}
                                 </div> 
                             </div>
                         </button>
@@ -84,55 +85,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="wish-item" class="clearfix">
-                    <a href="#"><img src="../imgs/samba.jpg"></a>
-
-                    <div id="product-detail" class="clearfix">
-                        <p class="brand-name"><a href="#">Adidas</a></p>
-                        <p class="name"><a href="#">Adidas Samba Vegan White Black</a></p>
-                        <p class="size">230</p>
-                    </div>
-                    <div id="btn-action">
-                        <button class="clearfix" type="button" name="">
-                            <div class="buy">
-                                구매
-                            </div>
-                            <div class="amount">
-                                <div class="txt1">
-                                    116,000원
-                                </div> 
-                            </div>
-                        </button>
-                        <div id="delete">
-                            <a href="#">삭제</a>
-                        </div>
-                    </div>
-                </div>
-                <div id="wish-item" class="clearfix">
-                    <a href="#"><img src="../imgs/samba.jpg"></a>
-
-                    <div id="product-detail" class="clearfix">
-                        <p class="brand-name"><a href="#">Adidas</a></p>
-                        <p class="name"><a href="#">Adidas Samba Vegan White Black</a></p>
-                        <p class="size">230</p>
-                    </div>
-                    <div id="btn-action">
-                        <button class="clearfix" type="button" name="">
-                            <div class="buy">
-                                구매
-                            </div>
-                            <div class="amount">
-                                <div class="txt1">
-                                    116,000원
-                                </div>
-                            </div>
-                        </button>
-                        <div id="delete">
-                            <a href="#">삭제</a>
-                        </div>
-                    </div>
-                </div>
-                
+               </c:forEach> 
                 <!-- //for문 -->
 
                 <div id="paging" class="clearfix">

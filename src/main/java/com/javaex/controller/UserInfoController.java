@@ -32,20 +32,25 @@ public class UserInfoController {
 		// 로그인한 session 값을 객체로 가져오기
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
-		// session의 userNo 값으로 회원정보 가져오기
-		UserVo userVo = userInfoService.exeUserInfo(authUser.getUserNo());
+		if (authUser == null) {
+			return "redirect:/user/loginform";
+		} else {
+			// session의 userNo 값으로 회원정보 가져오기
+			UserVo userVo = userInfoService.exeUserInfo(authUser.getUserNo());
 
-		// session의 userNo 값으로 구매내역 갯수 가져오기
-		int totalCnt = userInfoService.exeSelectTotalCnt(authUser.getUserNo());
-		int readyCnt = userInfoService.exeSelectReadyCnt(authUser.getUserNo());
-		int finishCnt = userInfoService.exeSelectFinishCnt(authUser.getUserNo());
+			// session의 userNo 값으로 구매내역 갯수 가져오기
+			int totalCnt = userInfoService.exeSelectTotalCnt(authUser.getUserNo());
+			int readyCnt = userInfoService.exeSelectReadyCnt(authUser.getUserNo());
+			int finishCnt = userInfoService.exeSelectFinishCnt(authUser.getUserNo());
 
-		model.addAttribute("userVo", userVo);
-		model.addAttribute("totalCnt", totalCnt);
-		model.addAttribute("readyCnt", readyCnt);
-		model.addAttribute("finishCnt", finishCnt);
+			model.addAttribute("userVo", userVo);
+			model.addAttribute("totalCnt", totalCnt);
+			model.addAttribute("readyCnt", readyCnt);
+			model.addAttribute("finishCnt", finishCnt);
 
-		return "user/mypage";
+			return "user/mypage";
+		}
+
 	}
 
 	/* 마이페이지 회원정보 수정폼 */

@@ -4,6 +4,9 @@ public class ShoppingCartVo {
 
 	private int cartNo;
 	private int userNo;
+	private String userName;
+	private String userId;
+	private String userAddress;
 	private int prodNo;
 	private int prodSize;
 	private String engName;
@@ -19,10 +22,14 @@ public class ShoppingCartVo {
 
 	}
 
-	public ShoppingCartVo(int cartNo, int userNo, int prodNo, int prodSize, String engName, String korName,
-			String modelNo, int prodPrice, int totalPrice, String filePath, String saveName, String orgName) {
+	public ShoppingCartVo(int cartNo, int userNo, String userName, String userId, String userAddress, int prodNo,
+			int prodSize, String engName, String korName, String modelNo, int prodPrice, int totalPrice,
+			String filePath, String saveName, String orgName) {
 		this.cartNo = cartNo;
 		this.userNo = userNo;
+		this.userName = userName;
+		this.userId = userId;
+		this.userAddress = userAddress;
 		this.prodNo = prodNo;
 		this.prodSize = prodSize;
 		this.engName = engName;
@@ -49,6 +56,30 @@ public class ShoppingCartVo {
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getUserAddress() {
+		return userAddress;
+	}
+
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
 	}
 
 	public int getProdNo() {
@@ -133,10 +164,11 @@ public class ShoppingCartVo {
 
 	@Override
 	public String toString() {
-		return "ShoppingCartVo [cartNo=" + cartNo + ", userNo=" + userNo + ", prodNo=" + prodNo + ", prodSize="
-				+ prodSize + ", engName=" + engName + ", korName=" + korName + ", modelNo=" + modelNo + ", prodPrice="
-				+ prodPrice + ", totalPrice=" + totalPrice + ", filePath=" + filePath + ", saveName=" + saveName
-				+ ", orgName=" + orgName + "]";
+		return "ShoppingCartVo [cartNo=" + cartNo + ", userNo=" + userNo + ", userName=" + userName + ", userId="
+				+ userId + ", userAddress=" + userAddress + ", prodNo=" + prodNo + ", prodSize=" + prodSize
+				+ ", engName=" + engName + ", korName=" + korName + ", modelNo=" + modelNo + ", prodPrice=" + prodPrice
+				+ ", totalPrice=" + totalPrice + ", filePath=" + filePath + ", saveName=" + saveName + ", orgName="
+				+ orgName + "]";
 	}
 
 }

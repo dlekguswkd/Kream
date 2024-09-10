@@ -6,9 +6,11 @@ public class PurchaseVo {
 	private int userNo;
 	private String userName;
 	private String userId;
+	private String userAddress;
 	private int prodNo;
 	private String shippingStatus;
 	private int prodPrice;
+	private int totalPrice;
 	private int prodSize;
 	private String purchaseDate;
 	private String engName;
@@ -22,17 +24,18 @@ public class PurchaseVo {
 
 	}
 
-	public PurchaseVo(int historyNo, int userNo, String userName, String userId, int prodNo, String shippingStatus,
-			int prodPrice, int prodSize, String purchaseDate, String engName, String korName, String filePath,
-			int fileSize, String saveName, String orgName) {
-		super();
+	public PurchaseVo(int historyNo, int userNo, String userName, String userId, String userAddress, int prodNo,
+			String shippingStatus, int prodPrice, int totalPrice, int prodSize, String purchaseDate, String engName,
+			String korName, String filePath, int fileSize, String saveName, String orgName) {
 		this.historyNo = historyNo;
 		this.userNo = userNo;
 		this.userName = userName;
 		this.userId = userId;
+		this.userAddress = userAddress;
 		this.prodNo = prodNo;
 		this.shippingStatus = shippingStatus;
 		this.prodPrice = prodPrice;
+		this.totalPrice = totalPrice;
 		this.prodSize = prodSize;
 		this.purchaseDate = purchaseDate;
 		this.engName = engName;
@@ -75,6 +78,14 @@ public class PurchaseVo {
 		this.userId = userId;
 	}
 
+	public String getUserAddress() {
+		return userAddress;
+	}
+
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
+	}
+
 	public int getProdNo() {
 		return prodNo;
 	}
@@ -97,6 +108,14 @@ public class PurchaseVo {
 
 	public void setProdPrice(int prodPrice) {
 		this.prodPrice = prodPrice;
+	}
+
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 	public int getProdSize() {
@@ -166,10 +185,10 @@ public class PurchaseVo {
 	@Override
 	public String toString() {
 		return "PurchaseVo [historyNo=" + historyNo + ", userNo=" + userNo + ", userName=" + userName + ", userId="
-				+ userId + ", prodNo=" + prodNo + ", shippingStatus=" + shippingStatus + ", prodPrice=" + prodPrice
-				+ ", prodSize=" + prodSize + ", purchaseDate=" + purchaseDate + ", engName=" + engName + ", korName="
-				+ korName + ", filePath=" + filePath + ", fileSize=" + fileSize + ", saveName=" + saveName
-				+ ", orgName=" + orgName + "]";
+				+ userId + ", userAddress=" + userAddress + ", prodNo=" + prodNo + ", shippingStatus=" + shippingStatus
+				+ ", prodPrice=" + prodPrice + ", totalPrice=" + totalPrice + ", prodSize=" + prodSize
+				+ ", purchaseDate=" + purchaseDate + ", engName=" + engName + ", korName=" + korName + ", filePath="
+				+ filePath + ", fileSize=" + fileSize + ", saveName=" + saveName + ", orgName=" + orgName + "]";
 	}
 
 }
