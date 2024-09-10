@@ -111,6 +111,15 @@
 		INSERT INTO ShoppingCart (userNo, prodNo, prodSize)
 		VALUES (#{userNo}, #{prodNo}, #{prodSize})
 	</insert>
+	
+	<!-- 구매내역 전체 갯수 구하기 -->
+	<select id="selectFavoritesCnt" parameterType="int" resultType="int">
+	<![CDATA[
+		select count(*)
+		from Favorites
+		where userNo = #{userNo}
+	]]>
+	</select>
 
 
 </mapper>

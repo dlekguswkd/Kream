@@ -69,5 +69,12 @@ public class FavoritesDao {
 
 		return count;
 	}
+	
+	/* 관심 전체 갯수 구하기 */
+	public int selectFavoritesCnt(int userNo) {
 
+		int count = sqlSession.selectOne("favorites.selectFavoritesCnt", userNo);
+
+		return count;
+	}
 }

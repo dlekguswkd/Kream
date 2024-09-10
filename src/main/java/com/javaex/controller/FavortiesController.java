@@ -33,10 +33,15 @@ public class FavortiesController {
 		if (authUser == null) {
 			return "redirect:/user/loginform";
 		} else {
+			
 			// 페이징된 관심 상품 리스트 가져오기
 			Map<String, Object> pMap = favoritesService.getPagedFavoritesList(authUser.getUserNo(), crtPage);
-
+			
+			int totalCnt = favoritesService.exeSelectFavoritesCnt(authUser.getUserNo());
+			
 			model.addAttribute("pMap", pMap);
+			model.addAttribute("totalCnt", totalCnt);
+			
 
 			return "favorites/favorites";
 		}

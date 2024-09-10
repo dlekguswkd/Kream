@@ -61,7 +61,7 @@ public class FavoritesService {
 		pMap.put("startPageBtnNo", startPageBtnNo);
 		pMap.put("endPageBtnNo", endPageBtnNo);
 		pMap.put("next", next);
-		
+
 		System.out.println("----");
 		System.out.println(startRowNo);
 		System.out.println(listCnt);
@@ -104,6 +104,14 @@ public class FavoritesService {
 		favoritesDao.deleteFavorites(favoriteNo, userNo);
 
 		return 0;
+	}
+
+	/* 관심 전체 갯수 구하기 */
+	public int exeSelectFavoritesCnt(int userNo) {
+
+		int count = favoritesDao.selectFavoritesCnt(userNo);
+
+		return count;
 	}
 
 }

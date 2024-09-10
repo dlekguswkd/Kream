@@ -63,7 +63,7 @@
 
 				<div id="content-header" class="clearfix">
 					<div id="total-rows">
-						전체 <span>1</span>
+						전체 <span>${totalCnt}</span>
 					</div>
 					<div id="sorting-filter">관심등록순↑↓</div>
 				</div>
