@@ -5,7 +5,8 @@
 
 	<!-- Fetch product list with pagination -->
 
-	<select id="selectProductList" resultType="com.javaex.vo.ProductVo">
+	<select id="selectProductList"
+		resultType="com.javaex.vo.ProductVo">
 		<![CDATA[SELECT p.prodNo, p.engName, p.saveName, c.prodPrice
 		FROM Products p
 		JOIN Category c ON p.categoryNo = c.categoryNo
@@ -22,20 +23,23 @@
 	</select>
 
 	<!-- Fetch all brands -->
-	<select id="selectAllBrands" resultType="com.javaex.vo.ProductVo">
+	<select id="selectAllBrands"
+		resultType="com.javaex.vo.ProductVo">
 		<![CDATA[
 			SELECT brandNo, brandName FROM Brand
 		]]>
 	</select>
 
 	<!-- Fetch all colors -->
-	<select id="selectAllColors" resultType="com.javaex.vo.ProductVo">
+	<select id="selectAllColors"
+		resultType="com.javaex.vo.ProductVo">
     	<![CDATA[
         	SELECT colorNo, colorName, colorCode FROM Color
     	]]>
 	</select>
 
-	<select id="selectPopularProductsByBrand" resultType="com.javaex.vo.ProductVo">
+	<select id="selectPopularProductsByBrand"
+		resultType="com.javaex.vo.ProductVo">
 	<![CDATA[
     	SELECT 
         MAX(p.prodNo) AS prodNo, 
@@ -50,7 +54,8 @@
     	]]>
 	</select>
 
-	<select id="selectProductDetail" parameterType="int" resultType="com.javaex.vo.ProductVo">
+	<select id="selectProductDetail" parameterType="int"
+		resultType="com.javaex.vo.ProductVo">
     <![CDATA[
     SELECT 
         p.prodNo, 
@@ -69,14 +74,17 @@
 	</select>
 
 	<!-- Fetch filtered product list based on brand -->
-	<select id="selectFilteredProductList" parameterType="map" resultType="com.javaex.vo.ProductVo">
+	<select id="selectFilteredProductList" parameterType="map"
+		resultType="com.javaex.vo.ProductVo">
 		SELECT p.prodNo, p.engName, p.saveName, c.prodPrice, c.brandNo
-		FROM Products p
+		FROM
+		Products p
 		JOIN Category c ON p.categoryNo = c.categoryNo
 		<where>
 			<if test="brandNos != null">
 				c.brandNo IN
-				<foreach item="brandNo" index="index" collection="brandNos" open="(" separator="," close=")">
+				<foreach item="brandNo" index="index" collection="brandNos"
+					open="(" separator="," close=")">
 					#{brandNo}
 				</foreach>
 			</if>
@@ -86,25 +94,34 @@
 	</select>
 
 	<!-- Fetch total filtered product count -->
-	<select id="getFilteredProductCount" parameterType="map" resultType="int">
+	<select id="getFilteredProductCount" parameterType="map"
+		resultType="int">
 		SELECT COUNT(*)
 		FROM Products p
-		JOIN Category c ON p.categoryNo = c.categoryNo
+		JOIN Category c ON p.categoryNo =
+		c.categoryNo
 		<where>
 			<if test="brandNos != null">
 				c.brandNo IN
-				<foreach item="brandNo" index="index" collection="brandNos" open="(" separator="," close=")">
+				<foreach item="brandNo" index="index" collection="brandNos"
+					open="(" separator="," close=")">
 					#{brandNo}
 				</foreach>
 			</if>
 		</where>
 	</select>
-	
+
 	<!-- ShoppingCart 테이블에 삽입 -->
-	    <insert id="insertShoppingCart" parameterType="map">
-	        INSERT INTO ShoppingCart (userNo, prodNo, prodSize)
-	        VALUES (#{userNo}, #{prodNo}, #{prodSize})
-	    </insert>
+	<insert id="insertShoppingCart" parameterType="map">
+		INSERT INTO ShoppingCart (userNo, prodNo, prodSize)
+		VALUES (#{userNo}, #{prodNo}, #{prodSize})
+	</insert>
+
+	<!-- Favorites 테이블에 삽입 -->
+	<insert id="insertFavorites" parameterType="map">
+		INSERT INTO Favorites (userNo, prodNo, prodSize)
+		VALUES (#{userNo}, #{prodNo}, #{prodSize})
+	</insert>
 
 
 

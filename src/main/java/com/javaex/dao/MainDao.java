@@ -43,24 +43,29 @@ public class MainDao {
 	public ProductVo selectProductDetail(int prodNo) {
 		return sqlSession.selectOne("main.selectProductDetail", prodNo);
 	}
-	
+
 	// Fetch filtered product list based on brand
-    public List<ProductVo> selectFilteredProductList(Map<String, Object> filterCriteria) {
-        return sqlSession.selectList("main.selectFilteredProductList", filterCriteria);
-    }
+	public List<ProductVo> selectFilteredProductList(Map<String, Object> filterCriteria) {
+		return sqlSession.selectList("main.selectFilteredProductList", filterCriteria);
+	}
 
-    // Fetch total filtered product count
-    public int getFilteredProductCount(Map<String, Object> filterCriteria) {
-        return sqlSession.selectOne("main.getFilteredProductCount", filterCriteria);
-    }
-    
-    // ShoppingCart 테이블에 데이터를 삽입
-    public int insertShoppingCart(Map<String, Object> pMap) {
-        int count = sqlSession.insert("main.insertShoppingCart", pMap);
-        
-        return count;
-    }
+	// Fetch total filtered product count
+	public int getFilteredProductCount(Map<String, Object> filterCriteria) {
+		return sqlSession.selectOne("main.getFilteredProductCount", filterCriteria);
+	}
 
+	// ShoppingCart 테이블에 데이터를 삽입
+	public int insertShoppingCart(Map<String, Object> pMap) {
+		int count = sqlSession.insert("main.insertShoppingCart", pMap);
 
+		return count;
+	}
+
+	// Favorites 테이블에 데이터를 삽입
+	public int insertFavorites(Map<String, Object> pMap) {
+		int count = sqlSession.insert("main.insertFavorites", pMap);
+
+		return count;
+	}
 
 }

@@ -71,9 +71,9 @@ public class MainController {
 		return "detail/detailList"; // JSP 파일 경로
 	}
 
-	/* 구매하기 버튼을 누르면 History 테이블에 insert */
+	/* 장바구니 이동 버튼을 누르면 ShoppingCart 테이블에 insert */
 	@RequestMapping(value = "/api/shoppingcart/insert", method = { RequestMethod.GET, RequestMethod.POST })
-	public String paymentInsert(HttpSession session, @ModelAttribute ProductVo procudtVo) {
+	public String shoppingCartInsert(HttpSession session, @ModelAttribute ProductVo procudtVo) {
 		System.out.println("MainController.paymentInsert()");
 
 		System.out.println(procudtVo);
@@ -85,7 +85,26 @@ public class MainController {
 			return "redirect:/user/loginform";
 		}
 
-		mainService.exeShoppingCartInsert(authUser.getUserNo(), procudtVo.getProdNo(), procudtVo.getProdSize());
+		//mainService.exeShoppingCartInsert(authUser.getUserNo(), procudtVo.getProdNo(), procudtVo.getProdSize());
+
+		return "redirect:/product/detail";
+	}
+	
+	/* 관심상품 버튼을 누르면 Favorites 테이블에 insert */
+	@RequestMapping(value = "/api/favorites/insert", method = { RequestMethod.GET, RequestMethod.POST })
+	public String FavoritesInsert(HttpSession session, @ModelAttribute ProductVo procudtVo) {
+		System.out.println("MainController.FavoritesInsert()");
+
+		System.out.println(procudtVo);
+
+		// 로그인한 session 값을 객체로 가져오기
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		System.out.println(authUser);
+		if (authUser == null) {
+			return "redirect:/user/loginform";
+		}
+
+		mainService.exeFavoritesInsert(authUser.getUserNo(), procudtVo.getProdNo(), procudtVo.getProdSize());
 
 		return "redirect:/product/detail";
 	}
