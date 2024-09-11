@@ -135,7 +135,7 @@
 						<p id="model-no" class="product-id">모델번호</p>
 					</div>
 				</div>
-				<input type="hidden" id="selectCartNo" value="">
+				<input type="text" id="selectCartNo" value="">
 				<div class="size-grid">
 					<!-- 사이즈 버튼들 -->
 					<button id="size230" class="size-box" data-prodsize="230">230</button>
@@ -248,9 +248,10 @@
 	        console.log(response.data); // 수신 데이터
 	        
 	        // 사이즈가 성공적으로 업데이트 되었으면 화면에서 해당 사이즈 업데이트
-	        let sizeTag = document.querySelector('.size'); // 화면에 사이즈를 표시하는 태그 선택
+	        let sizeTag = document.querySelector('#p-' + cartNo); // 화면에 사이즈를 표시하는 태그 선택
+	        console.log(sizeTag);
 	        sizeTag.textContent = size; // 선택된 사이즈로 업데이트
-	        
+	       
 	    }).catch(function (error) {
 	        console.log(error);
 	    });
