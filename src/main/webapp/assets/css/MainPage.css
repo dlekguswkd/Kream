@@ -226,12 +226,15 @@
 
 .popular_item_name, 
 .products_selling_items_name {
-    font-size: 12px;
+    font-size: 14px;
     white-space: normal; /* Allows line breaks */
-    word-wrap: break-word; /* Breaks words if they are too long */
+    word-wrap: break-word; /* Ensures long words break */
     overflow-wrap: break-word; /* Ensures proper word wrapping */
     line-height: 1.2; /* Adjust the line height for better readability */
+    text-align: center; /* Centers the text horizontally */
 }
+
+
 
 
 .products_selling_items_price {
