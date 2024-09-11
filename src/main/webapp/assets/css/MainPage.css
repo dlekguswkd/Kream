@@ -57,13 +57,7 @@
     vertical-align: top; 
 }
 
-.popular_item_name {
-    font-size: 14px;
-    margin-top: 5px;
-    white-space: normal; 
-    word-wrap: break-word; 
-    line-height: 1.2; 
-}
+
 
 .popular_item img {
     border-radius: 8px;
@@ -230,10 +224,16 @@
     border-radius: 8px;
 }
 
+.popular_item_name, 
 .products_selling_items_name {
     font-size: 14px;
-    margin-top: 10px;
+    margin-top: 5px;
+    white-space: normal; /* Allows line breaks */
+    word-wrap: break-word; /* Breaks words if they are too long */
+    overflow-wrap: break-word; /* Ensures proper word wrapping */
+    line-height: 1.2; /* Adjust the line height for better readability */
 }
+
 
 .products_selling_items_price {
     font-size: 12px;

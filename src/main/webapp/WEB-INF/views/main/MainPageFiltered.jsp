@@ -26,7 +26,7 @@
 			<c:forEach items="${popularProductList}" var="product">
 				<a href="${pageContext.request.contextPath}/product/detail?prodNo=${product.prodNo}" class="popular_item"> <img
 					src="${pageContext.request.contextPath}/Kream_products_imgs/${product.saveName}" alt="${product.engName}" />
-					<div class="popular_item_name">${product.engName}</div>
+					<div class="popular_item_name">${product.brandName}</div> <!-- Display brand name instead of product name -->
 				</a>
 			</c:forEach>
 		</div>
