@@ -75,7 +75,7 @@
                                 <p>${FavoritesVo.engName}</p>
                                 <p class="purchase-type">⚡ 빠른배송</p>
                                 <p class="price">${FavoritesVo.prodPrice}</p>
-                                <p>즉시 구매가</p>
+                                <p>구매가</p>
                             </div>
                         </div>
                         </c:forEach>

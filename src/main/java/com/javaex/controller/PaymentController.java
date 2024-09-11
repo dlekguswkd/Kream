@@ -29,7 +29,6 @@ public class PaymentController {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
 		Map<String, Object> rMap = paymentService.exePayment(authUser);
-		
 
 		model.addAttribute("rMap", rMap);
 
