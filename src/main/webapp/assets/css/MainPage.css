@@ -227,13 +227,13 @@
 .popular_item_name, 
 .products_selling_items_name {
     font-size: 14px;
-    white-space: normal; /* Allows line breaks */
-    word-wrap: break-word; /* Ensures long words break */
-    overflow-wrap: break-word; /* Ensures proper word wrapping */
-    line-height: 1.2; /* Adjust the line height for better readability */
-    text-align: center; /* Centers the text horizontally */
+   
+    white-space: nowrap; /* Prevents text from breaking into multiple lines */
+    overflow: hidden; /* Hides any overflowed text */
+    text-overflow: ellipsis; /* Adds ellipsis (...) for overflowed text */
+    display: block;
+    max-width: 100%; /* Ensures the text doesn't exceed the container width */
 }
-
 
 
 
