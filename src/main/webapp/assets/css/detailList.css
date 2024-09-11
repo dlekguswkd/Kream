@@ -24,19 +24,14 @@
     width: 420px;
 }
 
-
-#contents #profile #small-img>img {
-    margin-right: 8px;
-    margin-bottom: 8px;
-    /* border: 1px solid #222222; */
-} 
-
-
 /* 작은 이미지들 */
 #contents #profile #small-img>img {
+	margin-right: 8px;
+    margin-bottom: 8px;
     width: 70px;
     background-color: #f0efef;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 

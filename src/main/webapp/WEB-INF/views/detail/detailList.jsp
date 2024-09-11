@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -6,8 +7,10 @@
 <head>
 <meta charset="UTF-8" />
 <title>상품설명 페이지</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset2.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/detailList.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/reset2.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/detailList.css" />
 
 <!-- Axios 라이브러리 포함 -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -24,14 +27,15 @@
 				<!-- 상품 이미지 박스 -->
 				<div id="profile">
 					<div>
-						<img id="img1" src="${pageContext.request.contextPath}/Kream_products_imgs/${product.saveName}" />
+						<img id="img1"
+							src="${pageContext.request.contextPath}/upload/${product.saveName}" />
 					</div>
-					<c:forEach items="${requestScope.productSeries}" var="ProductVo">
 					<div id="small-img">
-						<img class="img2" src="${pageContext.request.contextPath}/Kream_products_imgs/${ProductVo.saveName}" />
-						<!-- 여러 이미지를 넣고 싶으면 더 추가 -->
+						<c:forEach items="${requestScope.productSeries}" var="ProductVo">
+							<img class="img2"
+								src="${pageContext.request.contextPath}/upload/${ProductVo.saveName}" />
+						</c:forEach>
 					</div>
-					</c:forEach>
 				</div>
 
 				<!-- 상품 설명 -->
@@ -91,15 +95,15 @@
 					<div id="add-explain" class="clearfix">
 						<div class="detail-box">
 							<p class="txt-explain">모델번호</p>
-							<p class="txt-explain2">${product.modelNo}</p>
+							<p id="modelNo" class="txt-explain2">${product.modelNo}</p>
 						</div>
 						<div class="detail-box">
 							<p class="txt-explain">출시일</p>
-							<p class="txt-explain2">${product.releaseDate}</p>
+							<p id="releaseDate" class="txt-explain2">${product.releaseDate}</p>
 						</div>
 						<div class="detail-box">
 							<p class="txt-explain">대표색상</p>
-							<p class="txt-explain2">${product.colorName}</p>
+							<p id="colorName" class="txt-explain2">${product.colorName}</p>
 						</div>
 					</div>
 					<input type="hidden" id="selectProdNo" value="${product.prodNo}">
@@ -113,21 +117,24 @@
 					<div id="delivery" class="clearfix">
 						<h1>배송정보</h1>
 						<div class="delivery-info">
-							<img src="${pageContext.request.contextPath}/assets/imgs/express.jpg" />
+							<img
+								src="${pageContext.request.contextPath}/assets/imgs/express.jpg" />
 							<div class="badge-title">
 								<p class="types">빠른배송</p>
 								<p class="txt-badge">3일 내 도착 예정</p>
 							</div>
 						</div>
 						<div class="delivery-info">
-							<img src="${pageContext.request.contextPath}/assets/imgs/standard.jpg" />
+							<img
+								src="${pageContext.request.contextPath}/assets/imgs/standard.jpg" />
 							<div class="badge-title">
 								<p class="types">일반배송</p>
 								<p class="txt-badge">검수 후 배송 ・ 5-7일 내 도착 예정</p>
 							</div>
 						</div>
 						<div class="delivery-info">
-							<img src="${pageContext.request.contextPath}/assets/imgs/warehouse.jpg" />
+							<img
+								src="${pageContext.request.contextPath}/assets/imgs/warehouse.jpg" />
 							<div class="badge-title">
 								<p class="types">창고보관</p>
 								<p class="txt-badge">배송 없이 창고에 보관 ・ 빠르게 판매 가능</p>
@@ -215,7 +222,8 @@
 						<td>9.5</td>
 					</tr>
 				</table>
-				<p>* 해당 사이즈 정보는 고객 이해를 위한 참고용이며, 브랜드마다 또는 상품 카테고리마다 차이가 있을 수 있습니다. 정확한 내용은 실물 상품 기준으로 공식 제조사/유통사에 확인해 주시기 바랍니다.</p>
+				<p>* 해당 사이즈 정보는 고객 이해를 위한 참고용이며, 브랜드마다 또는 상품 카테고리마다 차이가 있을 수
+					있습니다. 정확한 내용은 실물 상품 기준으로 공식 제조사/유통사에 확인해 주시기 바랍니다.</p>
 			</div>
 			<!-- //테이블 -->
 		</div>
@@ -251,6 +259,15 @@
 	    for (let i = 0; i < sizeButtons.length; i++) {
 	        sizeButtons[i].addEventListener('click', function(event) {
 	            ButtonClick(event);
+	        });
+	    }
+	    
+	 // 작은 이미지 클릭 시 큰 이미지 변경 및 보더 추가
+	    let smallImages = document.querySelectorAll(".img2");
+	    for (let i = 0; i < smallImages.length; i++) {
+	        smallImages[i].addEventListener('click', function(event) {
+	            changeImage(event.target.src);  // 작은 이미지 클릭 시 큰 이미지 변경
+	            setActiveBorder(event.target);  // 선택된 이미지에 보더 추가
 	        });
 	    }
 	});
@@ -358,6 +375,26 @@
 	        });
 	    }
 	});
+	
+	// 작은 이미지 클릭 시 큰 이미지 변경 함수
+	function changeImage(newSrc) {
+	    document.getElementById("img1").src = newSrc;
+	    
+	    
+	}
+	
+	// 선택된 작은 이미지에 보더 추가 및 나머지 보더 제거 함수
+	function setActiveBorder(selectedImage) {
+	    let smallImages = document.querySelectorAll(".img2");
+	    
+	    // 모든 이미지의 보더 제거
+	    smallImages.forEach(function(img) {
+	        img.style.border = "none";
+	    });
+	    
+	    // 클릭한 이미지에만 보더 추가
+	    selectedImage.style.border = "1px solid #000";  // 원하는 보더 스타일 적용
+	}
 
 
 
