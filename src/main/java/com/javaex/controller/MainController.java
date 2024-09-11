@@ -82,7 +82,7 @@ public class MainController {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		System.out.println(authUser);
 		if (authUser == null) {
-			return "user/loginform";
+			return "redirect:/user/loginform";
 		}
 
 		mainService.exeShoppingCartInsert(authUser.getUserNo(), procudtVo.getProdNo(), procudtVo.getProdSize());

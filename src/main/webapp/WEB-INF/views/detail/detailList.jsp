@@ -108,7 +108,7 @@
 					<input type="hidden" id="selectProdNo" value="${product.prodNo}">
 					<!-- 구매버튼, 관심상품 버튼 -->
 					<div id="btn-action" class="clearfix">
-						<button id="btn1" class="clearfix" type="button">구매하기</button>
+						<button id="btn1" class="clearfix" type="button">장바구니로 이동</button>
 						<button id="btn2" type="button">관심상품</button>
 					</div>
 
