@@ -51,7 +51,7 @@
 
 					<!-- 사이즈 옵션 선택 -->
 					<div class="form-size">
-						<p>모든 사이즈</p>
+						<p id = "selected-size">모든 사이즈</p>
 						<div class="more">▼</div>
 					</div>
 
