@@ -118,7 +118,7 @@
 	</insert>
 
 	<!-- Favorites 테이블에 삽입 -->
-	<insert id="insertFavorites" parameterType="map">
+	<insert id="insertFavorite" parameterType="map">
 		INSERT INTO Favorites (userNo, prodNo, prodSize)
 		VALUES (#{userNo}, #{prodNo}, #{prodSize})
 	</insert>

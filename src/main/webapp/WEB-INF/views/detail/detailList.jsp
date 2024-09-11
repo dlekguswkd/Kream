@@ -227,10 +227,12 @@
 	<script>
 	document.addEventListener("DOMContentLoaded", function() {
 
+	    // "모든 사이즈" 버튼을 선택
 	    let sizeButton = document.querySelector('.form-size');
+
+	    // 모달창과 닫기 버튼을 선택
 	    let modalTag = document.querySelector('#buy-modal');
 	    let closeBtn = document.querySelector('.close-btn');
-	    let selectedSize = null; // Store the selected size here
 
 	    // "모든 사이즈" 버튼 클릭 시 모달창 열기
 	    sizeButton.addEventListener('click', function(event) {
@@ -249,6 +251,7 @@
 	            ButtonClick(event);
 	        });
 	    }
+	});
 
 	// 모달창 열기 함수 (상품 정보 포함)
 	function openModal(modal, event) {
@@ -280,66 +283,80 @@
 	    // 모달창 보이기
 	    modal.style.display = 'block';
 	}
-	
-	// 장바구니 버튼 클릭 시 이벤트 처리
-    document.getElementById('btn1').addEventListener('click', function() {
-        if (!selectedSize) {
-            alert("사이즈를 먼저 선택해 주세요");
-        } else {
-            alert("장바구니로 이동되었습니다");
-            // Here, you could add the logic to actually redirect the user
-            // or perform further actions, e.g., send the item to the cart
-        }
-    });
-
-    // 관심상품 버튼 클릭 시 이벤트 처리
-    document.getElementById('btn2').addEventListener('click', function() {
-        if (!selectedSize) {
-            alert("사이즈를 먼저 선택해 주세요");
-        } else {
-            // Logic for adding to the favorite list can go here
-            alert("관심상품에 추가되었습니다");
-        }
-    });
-
 
 	// 모달창 닫기 함수
 	function closeModal(modal) {
 	    modal.style.display = 'none';
 	}
+	
+	
+	// 전역 변수로 selectedSize를 저장
+	let selectedSize = null;
 
-	// 사이즈 버튼 클릭 시 사이즈 값 전달
-    function ButtonClick(event) {
-        let prodSize = event.target.getAttribute('data-prodsize');
-        let prodNo = document.querySelector('#selectProdNo').value;
+	// 사이즈 버튼 클릭 시 사이즈 값을 설정
+	function ButtonClick(event) {
+	    selectedSize = event.target.getAttribute('data-prodsize');
+	    let prodNo = document.querySelector('#selectProdNo').value;
 
-        // Update the size display text to the selected size
-        let selectedSizeText = document.getElementById("selected-size");
-        selectedSizeText.textContent = prodSize;
+	    // 선택한 사이즈 표시
+	    let selectedSizeText = document.getElementById("selected-size");
+	    selectedSizeText.textContent = selectedSize;
 
-        // Save the selected size
-        selectedSize = prodSize;
+	    // 모달창 닫기
+	    let modalTag = document.querySelector('#buy-modal');
+	    closeModal(modalTag);
+	}
 
-        // Close the modal automatically after size selection
-        closeModal(modalTag);
+	// 장바구니 버튼 클릭 이벤트
+	document.getElementById('btn1').addEventListener('click', function() {
+	    if (!selectedSize) {
+	        alert("사이즈를 먼저 선택해 주세요.");
+	    } else {
+	        let prodNo = document.querySelector('#selectProdNo').value;
 
-        // Axios request to send the selected size
-        axios({
-            method: 'get',
-            url: '${pageContext.request.contextPath}/api/shoppingcart/insert',
-            headers: {"Content-Type" : "application/json; charset=utf-8"},
-            params: {
-                prodSize: prodSize,
-                prodNo: prodNo
-            }, 
-            responseType: 'json'
-        }).then(function (response) {
-            console.log(response.data);
-        }).catch(function (error) {
-            console.log(error);
-        });
-    }
-});
+	        // Axios request to send the selected size to shopping cart
+	        axios({
+	            method: 'post', 
+	            url: '${pageContext.request.contextPath}/api/shoppingcart/insert',
+	            headers: {"Content-Type": "application/json; charset=utf-8"}, 
+	            data: {
+	                prodSize: selectedSize, 
+	                prodNo: prodNo
+	            }
+	        }).then(function (response) {
+	            alert("장바구니로 이동되었습니다");
+	        }).catch(function (error) {
+	            console.log("장바구니 추가 중 오류:", error);
+	            alert("장바구니에 추가하는 중 문제가 발생했습니다. 다시 시도해 주세요.");
+	        });
+	    }
+	});
+
+	// 관심상품 버튼 클릭 이벤트
+	document.getElementById('btn2').addEventListener('click', function() {
+	    if (!selectedSize) {
+	        alert("사이즈를 먼저 선택해 주세요.");
+	    } else {
+	        let prodNo = document.querySelector('#selectProdNo').value;
+
+	        // Axios request to add the product to the favorites
+	        axios({
+	            method: 'post', 
+	            url: '${pageContext.request.contextPath}/api/favorite/insert',
+	            headers: {"Content-Type": "application/json; charset=utf-8"}, 
+	            data: {
+	                prodSize: selectedSize, 
+	                prodNo: prodNo
+	            }
+	        }).then(function (response) {
+	            alert("관심목록에 추가되었습니다");
+	        }).catch(function (error) {
+	            console.log("관심목록 추가 중 오류:", error);
+	            alert("관심목록에 추가하는 중 문제가 발생했습니다. 다시 시도해 주세요.");
+	        });
+	    }
+	});
+
 
 
 	</script>

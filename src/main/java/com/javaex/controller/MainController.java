@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.MainService;
 import com.javaex.vo.ProductVo;
@@ -71,42 +73,43 @@ public class MainController {
 		return "detail/detailList"; // JSP 파일 경로
 	}
 
-	/* 장바구니 이동 버튼을 누르면 ShoppingCart 테이블에 insert */
-	@RequestMapping(value = "/api/shoppingcart/insert", method = { RequestMethod.GET, RequestMethod.POST })
-	public String shoppingCartInsert(HttpSession session, @ModelAttribute ProductVo procudtVo) {
-		System.out.println("MainController.paymentInsert()");
+	/* 구매하기 버튼을 누르면 History 테이블에 insert */
+	@RequestMapping(value = "/api/shoppingcart/insert", method = RequestMethod.POST)
+	public ResponseEntity<String> paymentInsert(HttpSession session, @RequestBody ProductVo productVo) {
+	    System.out.println("MainController.paymentInsert()");
 
-		System.out.println(procudtVo);
+	    System.out.println(productVo);
 
-		// 로그인한 session 값을 객체로 가져오기
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		System.out.println(authUser);
-		if (authUser == null) {
-			return "redirect:/user/loginform";
-		}
+	    // 로그인한 session 값을 객체로 가져오기
+	    UserVo authUser = (UserVo) session.getAttribute("authUser");
+	    System.out.println(authUser);
+	    if (authUser == null) {
+	        return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+	    }
 
-		//mainService.exeShoppingCartInsert(authUser.getUserNo(), procudtVo.getProdNo(), procudtVo.getProdSize());
+	    mainService.exeShoppingCartInsert(authUser.getUserNo(), productVo.getProdNo(), productVo.getProdSize());
 
-		return "redirect:/product/detail";
+	    return new ResponseEntity<>("Success", HttpStatus.OK);
 	}
+
 	
-	/* 관심상품 버튼을 누르면 Favorites 테이블에 insert */
-	@RequestMapping(value = "/api/favorites/insert", method = { RequestMethod.GET, RequestMethod.POST })
-	public String FavoritesInsert(HttpSession session, @ModelAttribute ProductVo procudtVo) {
-		System.out.println("MainController.FavoritesInsert()");
+	@RequestMapping(value = "/api/favorite/insert", method = RequestMethod.POST)
+	public ResponseEntity<String> favoriteInsert(HttpSession session, @RequestBody ProductVo productVo) {
+	    System.out.println("MainController.favoriteInsert()");
 
-		System.out.println(procudtVo);
+	    System.out.println(productVo);
 
-		// 로그인한 session 값을 객체로 가져오기
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		System.out.println(authUser);
-		if (authUser == null) {
-			return "redirect:/user/loginform";
-		}
+	    // 로그인한 session 값을 객체로 가져오기
+	    UserVo authUser = (UserVo) session.getAttribute("authUser");
+	    System.out.println(authUser);
+	    if (authUser == null) {
+	        return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+	    }
 
-		mainService.exeFavoritesInsert(authUser.getUserNo(), procudtVo.getProdNo(), procudtVo.getProdSize());
+	    mainService.exefavoriteInsert(authUser.getUserNo(), productVo.getProdNo(), productVo.getProdSize());
 
-		return "redirect:/product/detail";
+	    return new ResponseEntity<>("Success", HttpStatus.OK);
 	}
+
 
 }

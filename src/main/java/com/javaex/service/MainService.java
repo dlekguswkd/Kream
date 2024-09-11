@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.javaex.dao.MainDao;
 import com.javaex.vo.MainVo;
 import com.javaex.vo.ProductVo;
-import com.javaex.vo.PurchaseVo;
 
 @Service
 public class MainService {
@@ -107,7 +106,7 @@ public class MainService {
 		return mainDao.selectProductDetail(prodNo);
 	}
 
-	// 장바구니 이동 버튼 클릭시 ShoppingCart 테이블에 insert
+	// 구매버튼 클릭시 History 테이블에 추가
 	public int exeShoppingCartInsert(int userNo, int prodNo, int prodSize) {
 		// HistoryVo 생성 및 값 설정
 		Map<String, Object> pMap = new HashMap<>();
@@ -121,9 +120,8 @@ public class MainService {
 
 		return count;
 	}
-
-	// 관심상품 클릭시 Favorites 테이블에 insert
-	public int exeFavoritesInsert(int userNo, int prodNo, int prodSize) {
+	
+	public int exefavoriteInsert(int userNo, int prodNo, int prodSize) {
 		// HistoryVo 생성 및 값 설정
 		Map<String, Object> pMap = new HashMap<>();
 		pMap.put("userNo", userNo);
@@ -132,7 +130,7 @@ public class MainService {
 		System.out.println(pMap);
 
 		// DAO를 통해 데이터베이스에 삽입
-		int count = mainDao.insertFavorites(pMap);
+		int count = mainDao.insertFavorite(pMap);
 
 		return count;
 	}
