@@ -65,6 +65,24 @@ public class MainDao {
         
         return count;
     }
+    
+    /* 상품번호 이용해서 카테고리명 조회하기 */
+	public ProductVo selectCategory(int prodNo) {
+		System.out.println("MainDao.selectProductSeriesList()");
+		
+		ProductVo productVo = sqlSession.selectOne("main.selectCategory", prodNo);
+		
+		return productVo;
+	}
+    
+    /* 상품 시리즈 리스트 가져오기 */
+	public List<ProductVo> selectProductSeriesList(String categoryName) {
+		System.out.println("MainDao.selectProductSeriesList()");
+		
+		List<ProductVo> productSeriesList = sqlSession.selectList("main.selectProductSeries", categoryName);
+
+		return productSeriesList;
+	}
 
 
 

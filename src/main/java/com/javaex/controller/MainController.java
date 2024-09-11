@@ -65,11 +65,17 @@ public class MainController {
 
 	@RequestMapping(value = "/product/detail", method = { RequestMethod.GET, RequestMethod.POST })
 	public String productDetail(@RequestParam("prodNo") int prodNo, Model model) {
+		
 		// 상품 정보를 가져온다
 		ProductVo product = mainService.getProductDetail(prodNo);
+		
+		// 선택한 상품의 같은 카테고리 시리즈 가져오기
+		List<ProductVo> productSeries = mainService.exeGetProductSeries(prodNo);
 
 		// JSP에 상품 정보를 전달
 		model.addAttribute("product", product);
+		model.addAttribute("productSeries", productSeries);
+		
 		return "detail/detailList"; // JSP 파일 경로
 	}
 

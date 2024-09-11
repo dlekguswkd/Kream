@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.javaex.dao.MainDao;
 import com.javaex.vo.MainVo;
 import com.javaex.vo.ProductVo;
+import com.javaex.vo.ShoppingCartVo;
 
 @Service
 public class MainService {
@@ -105,6 +106,17 @@ public class MainService {
 	public ProductVo getProductDetail(int prodNo) {
 		return mainDao.selectProductDetail(prodNo);
 	}
+	
+	/* 상품 시리즈 리스트 가져오기 */
+	public List<ProductVo> exeGetProductSeries(int prodNo) {
+		System.out.println("MainService.exeGetProductSeries()");
+		
+		ProductVo productVo = mainDao.selectCategory(prodNo);
+
+		List<ProductVo> productSeriesList = mainDao.selectProductSeriesList(productVo.getCategoryName());
+
+		return productSeriesList;
+	}
 
 	// 구매버튼 클릭시 History 테이블에 추가
 	public int exeShoppingCartInsert(int userNo, int prodNo, int prodSize) {
@@ -134,5 +146,7 @@ public class MainService {
 
 		return count;
 	}
+	
+	
 
 }

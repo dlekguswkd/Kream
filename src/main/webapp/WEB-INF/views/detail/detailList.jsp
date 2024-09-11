@@ -26,10 +26,12 @@
 					<div>
 						<img id="img1" src="${pageContext.request.contextPath}/Kream_products_imgs/${product.saveName}" />
 					</div>
+					<c:forEach items="${requestScope.productSeries}" var="ProductVo">
 					<div id="small-img">
-						<img class="img2" src="${pageContext.request.contextPath}/Kream_products_imgs/${product.saveName}" />
+						<img class="img2" src="${pageContext.request.contextPath}/Kream_products_imgs/${ProductVo.saveName}" />
 						<!-- 여러 이미지를 넣고 싶으면 더 추가 -->
 					</div>
+					</c:forEach>
 				</div>
 
 				<!-- 상품 설명 -->
