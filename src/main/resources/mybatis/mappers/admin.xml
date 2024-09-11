@@ -252,7 +252,7 @@
         JOIN 
             Products p ON s.prodNo = p.prodNo
         JOIN 
-            Category c ON p.categoryNo = c.categoryNo
+            Category c ON p.categoryNo = c.categoryNo where s.shippingStatus = '배송완료'
         LIMIT #{startRowNum}, #{listCnt}
     ]]>
 	</select>

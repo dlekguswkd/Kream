@@ -124,7 +124,7 @@ public class AdminPageDao {
 	}
 
 	public List<PurchaseVo> salehistory2(){
-		List<PurchaseVo> salehistory = sqlsession.selectList("admin.getSaleHistory");
+		List<PurchaseVo> salehistory = sqlsession.selectList("admin.getSaleHistory2");
 		return salehistory;
 	}
 

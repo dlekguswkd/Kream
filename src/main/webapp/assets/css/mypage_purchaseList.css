@@ -63,29 +63,41 @@
 
 /* 구매 내역 항목 */
 .purchase-item {
-	margin-bottom: 20px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 0;
-	border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
 }
 
-/* 구매 상품 정보 */
 .product-info {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Allows the product info to take up remaining space */
 }
 
 .product-info img {
-	width: 80px;
-	height: 80px;
-	border-radius: 10px;
-	margin-right: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    margin-right: 20px;
 }
 
 .product-info p {
-	margin: 0;
+    margin: 0;
+}
+
+/* 구매 상태 */
+.purchase-status {
+    text-align: right;
+    margin-left: auto; /* Pushes the status to the right */
+}
+
+/* 구매 버튼 액션 */
+.purchase-action {
+    text-align: right;
+    margin-left: 20px; /* Add some spacing between status and action */
 }
 
 .product-info p.title {
@@ -98,10 +110,7 @@
 	color: #666;
 }
 
-/* 구매 상태 */
-.purchase-status {
-	text-align: right;
-}
+
 
 .purchase-status p {
 	margin: 0;
@@ -117,6 +126,7 @@
 /* 버튼 */
 .purchase-action {
 	text-align: right;
+	
 }
 
 .purchase-action button {
