@@ -82,7 +82,7 @@ public class UserVo {
 	//Methods
 	@Override
 	public String toString() {
-		return "UserVo [userNum=" + userNo + ", userId=" + userId + ", userPw=" + userPw + ", userName=" + userName
+		return "UserVo [userNo=" + userNo + ", userId=" + userId + ", userPw=" + userPw + ", userName=" + userName
 				+ ", userAddress=" + userAddress + ", favorite=" + favorite + "]";
 	}
 
