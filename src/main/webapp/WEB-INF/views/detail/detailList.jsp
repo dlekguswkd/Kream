@@ -32,8 +32,14 @@
 					</div>
 					<div id="small-img">
 						<c:forEach items="${requestScope.productSeries}" var="ProductVo">
-							<img class="img2"
-								src="${pageContext.request.contextPath}/upload/${ProductVo.saveName}" />
+							<img id="i-${product.prodNo}" class="img2"
+								src="${pageContext.request.contextPath}/upload/${ProductVo.saveName}"
+								data-prodprice="${ProductVo.prodPrice}"
+								data-engname="${ProductVo.engName}"
+								data-korname="${ProductVo.korName}"
+								data-modelno="${ProductVo.modelNo}"
+								data-releasedate="${ProductVo.releaseDate}"
+								data-colorname="${ProductVo.colorName}" />
 						</c:forEach>
 					</div>
 				</div>
@@ -268,6 +274,7 @@
 	        smallImages[i].addEventListener('click', function(event) {
 	            changeImage(event.target.src);  // 작은 이미지 클릭 시 큰 이미지 변경
 	            setActiveBorder(event.target);  // 선택된 이미지에 보더 추가
+	            updateProductDetails(event.target); // 선택된 이미지 값으로 설명 변경
 	        });
 	    }
 	});
@@ -395,6 +402,26 @@
 	    // 클릭한 이미지에만 보더 추가
 	    selectedImage.style.border = "1px solid #000";  // 원하는 보더 스타일 적용
 	}
+	
+	function updateProductDetails(newValue) {
+		// 각 이미지의 data-* 속성을 통해 정보를 가져옴
+	    let price = newValue.dataset.prodprice;
+		let engName = newValue.dataset.engname;
+		let korName = newValue.dataset.korname;
+		let modelNo = newValue.dataset.modelno;
+		let releaseDate = newValue.dataset.releasedate;
+		let colorName = newValue.dataset.colorname;
+
+	    // 가져온 정보를 상품 설명에 업데이트
+	    document.querySelector(".price2").textContent = price + "원";
+	    document.querySelector(".title").textContent = engName;
+	    document.querySelector(".sub-title").textContent = korName;
+	    document.getElementById("modelNo").textContent = modelNo;
+	    document.getElementById("releaseDate").textContent = releaseDate;
+	    document.getElementById("colorName").textContent = colorName;
+		
+	}
+	
 
 
 

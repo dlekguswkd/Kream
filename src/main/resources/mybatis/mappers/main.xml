@@ -136,15 +136,20 @@
 	    <![CDATA[
 	    SELECT  p.prodNo,
 				p.categoryNo,
+                p.modelNo,
 		        c.categoryName,
 				p.engName,
 		        p.korName,
+                c.prodPrice,
 		        p.filePath,
 		        p.fileSize,
 		        p.saveName,
-		        p.orgName
-		    FROM Products p
+		        p.orgName,
+                col.colorName,
+				DATE_FORMAT(c.releaseDate, '%Y-%m-%d') AS releaseDate
+                FROM Products p
 		    JOIN Category c ON p.categoryNo = c.categoryNo
+            JOIN Color col ON c.colorNo = col.colorNo
 		    WHERE c.categoryName = #{categoryName}
 	    ]]>
 	</select>
