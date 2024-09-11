@@ -15,10 +15,10 @@ public class MainDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// Fetch product list with pagination
 	public List<MainVo> selectProductList(Map<String, Integer> limitMap) {
-		return sqlSession.selectList("main.selectProductList", limitMap);
+	    return sqlSession.selectList("main.selectProductList", limitMap);
 	}
+
 
 	// Fetch total product count for pagination
 	public int getTotalProductCount() {

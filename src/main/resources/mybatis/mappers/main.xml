@@ -5,14 +5,16 @@
 
 	<!-- Fetch product list with pagination -->
 
-	<select id="selectProductList"
-		resultType="com.javaex.vo.ProductVo">
-		<![CDATA[SELECT p.prodNo, p.engName, p.saveName, c.prodPrice
-		FROM Products p
-		JOIN Category c ON p.categoryNo = c.categoryNo
-		ORDER BY p.prodNo DESC
-		LIMIT #{startRowNum}, #{listCnt}]]>
+	<select id="selectProductList" resultType="com.javaex.vo.ProductVo">
+    <![CDATA[
+    SELECT p.prodNo, p.engName, p.saveName, c.prodPrice
+    FROM Products p
+    JOIN Category c ON p.categoryNo = c.categoryNo
+    ORDER BY p.prodNo DESC
+    LIMIT #{startRowNum}, #{listCnt}  
+    ]]>
 	</select>
+
 
 
 	<!-- Fetch total product count -->
@@ -23,59 +25,54 @@
 	</select>
 
 	<!-- Fetch all brands -->
-	<select id="selectAllBrands"
-		resultType="com.javaex.vo.ProductVo">
+	<select id="selectAllBrands" resultType="com.javaex.vo.ProductVo">
 		<![CDATA[
 			SELECT brandNo, brandName FROM Brand
 		]]>
 	</select>
 
 	<!-- Fetch all colors -->
-	<select id="selectAllColors"
-		resultType="com.javaex.vo.ProductVo">
+	<select id="selectAllColors" resultType="com.javaex.vo.ProductVo">
     	<![CDATA[
         	SELECT colorNo, colorName, colorCode FROM Color
     	]]>
 	</select>
 
-	<select id="selectPopularProductsByBrand"
-		resultType="com.javaex.vo.ProductVo">
-	<![CDATA[
-    	SELECT 
-        MAX(p.prodNo) AS prodNo, 
-        MAX(p.engName) AS engName, 
-        MAX(p.saveName) AS saveName, 
-        b.brandName
-    	FROM Products p
-    	JOIN Category c ON p.categoryNo = c.categoryNo
-    	JOIN Brand b ON c.brandNo = b.brandNo
-    	GROUP BY b.brandNo
-    	ORDER BY MAX(p.prodNo) DESC
+	<select id="selectPopularProductsByBrand" resultType="com.javaex.vo.ProductVo">
+		<![CDATA[
+		    SELECT 
+		        MAX(p.prodNo) AS prodNo, 
+		        MAX(p.engName) AS engName, 
+		        MAX(p.saveName) AS saveName, 
+		        b.brandName  -- Ensure the brand name is selected
+		    FROM Products p
+		    JOIN Category c ON p.categoryNo = c.categoryNo
+		    JOIN Brand b ON c.brandNo = b.brandNo
+		    GROUP BY b.brandNo
+		    ORDER BY MAX(p.prodNo) DESC
     	]]>
 	</select>
 
-	<select id="selectProductDetail" parameterType="int"
-		resultType="com.javaex.vo.ProductVo">
+	<select id="selectProductDetail" parameterType="int" resultType="com.javaex.vo.ProductVo">
     <![CDATA[
-    SELECT 
-        p.prodNo, 
-        p.engName, 
-        p.korName, 
-        p.modelNo, 
-        p.saveName, 
-        c.prodPrice, 
-        DATE_FORMAT(c.releaseDate, '%Y-%m-%d') AS releaseDate, 
-        col.colorName
-    FROM Products p
-    JOIN Category c ON p.categoryNo = c.categoryNo
-    JOIN Color col ON c.colorNo = col.colorNo
-    WHERE p.prodNo = #{prodNo}
+	    SELECT 
+	        p.prodNo, 
+	        p.engName, 
+	        p.korName, 
+	        p.modelNo, 
+	        p.saveName, 
+	        c.prodPrice, 
+	        DATE_FORMAT(c.releaseDate, '%Y-%m-%d') AS releaseDate, 
+	        col.colorName
+	    FROM Products p
+	    JOIN Category c ON p.categoryNo = c.categoryNo
+	    JOIN Color col ON c.colorNo = col.colorNo
+	    WHERE p.prodNo = #{prodNo}
     ]]>
 	</select>
 
 	<!-- Fetch filtered product list based on brand -->
-	<select id="selectFilteredProductList" parameterType="map"
-		resultType="com.javaex.vo.ProductVo">
+	<select id="selectFilteredProductList" parameterType="map" resultType="com.javaex.vo.ProductVo">
 		SELECT p.prodNo, p.engName, p.saveName, c.prodPrice, c.brandNo
 		FROM
 		Products p
@@ -83,8 +80,7 @@
 		<where>
 			<if test="brandNos != null">
 				c.brandNo IN
-				<foreach item="brandNo" index="index" collection="brandNos"
-					open="(" separator="," close=")">
+				<foreach item="brandNo" index="index" collection="brandNos" open="(" separator="," close=")">
 					#{brandNo}
 				</foreach>
 			</if>
@@ -94,8 +90,7 @@
 	</select>
 
 	<!-- Fetch total filtered product count -->
-	<select id="getFilteredProductCount" parameterType="map"
-		resultType="int">
+	<select id="getFilteredProductCount" parameterType="map" resultType="int">
 		SELECT COUNT(*)
 		FROM Products p
 		JOIN Category c ON p.categoryNo =
@@ -103,8 +98,7 @@
 		<where>
 			<if test="brandNos != null">
 				c.brandNo IN
-				<foreach item="brandNo" index="index" collection="brandNos"
-					open="(" separator="," close=")">
+				<foreach item="brandNo" index="index" collection="brandNos" open="(" separator="," close=")">
 					#{brandNo}
 				</foreach>
 			</if>
@@ -128,8 +122,7 @@
 
 
 	<!-- 상품번호 이용해서 카테고리명 조회하기 -->
-	<select id="selectCategory" parameterType="int"
-		resultType="com.javaex.vo.ProductVo">
+	<select id="selectCategory" parameterType="int" resultType="com.javaex.vo.ProductVo">
 		    <![CDATA[
 		    SELECT c.categoryName
 					 FROM products p 
@@ -139,8 +132,7 @@
 	</select>
 
 	<!-- 같은 시리즈 리스트 가져오기 -->
-	<select id="selectProductSeries" parameterType="String"
-		resultType="com.javaex.vo.ProductVo">
+	<select id="selectProductSeries" parameterType="String" resultType="com.javaex.vo.ProductVo">
 	    <![CDATA[
 	    SELECT  p.prodNo,
 				p.categoryNo,
