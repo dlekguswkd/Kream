@@ -2,6 +2,7 @@ package com.javaex.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -67,7 +68,7 @@ public class UserController {
 
 	/* 로그인 */
 	@RequestMapping(value = "/user/login", method = { RequestMethod.GET, RequestMethod.POST })
-	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
+	public String login(@ModelAttribute UserVo userVo, HttpSession session, Model model) {
 		System.out.println("UserController.loginForm()");
 
 		// 로그인 실행
@@ -84,6 +85,14 @@ public class UserController {
 			System.out.println("유저세션");
 			System.out.println(authUser);
 		}
+		
+		// 만약에 없는 userId 일 경우
+	    if (authUser == null) {
+	        // 인증 실패 (없는 아이디일 경우) - 오류 메시지 설정
+	        model.addAttribute("errorMessage", "아이디와 비밀번호를 다시 확인해주세요.");
+	        // 로그인 폼으로 리다이렉트
+	        return "user/loginForm"; 
+	    }
 
 		// 메인 페이지로 리다이렉트
 		return "redirect:/main/mainform";

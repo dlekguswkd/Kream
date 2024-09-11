@@ -29,6 +29,11 @@
 				<input type="id" id="id" name="userId" required> 
 				<label for="password">비밀번호</label> 
 				<input type="password" id="password" name="userPw" required>
+				
+				<!-- 오류 메시지 표시 -->
+    			<c:if test="${not empty errorMessage}">
+       				<p style="color: red;">${errorMessage}</p>
+    			</c:if>
 
 				<button type="submit">로그인</button>
 			</form>
