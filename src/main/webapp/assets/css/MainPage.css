@@ -226,8 +226,7 @@
 
 .popular_item_name, 
 .products_selling_items_name {
-    font-size: 14px;
-    margin-top: 5px;
+    font-size: 12px;
     white-space: normal; /* Allows line breaks */
     word-wrap: break-word; /* Breaks words if they are too long */
     overflow-wrap: break-word; /* Ensures proper word wrapping */
