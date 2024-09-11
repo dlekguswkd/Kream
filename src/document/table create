@@ -1,0 +1,101 @@
+drop database if exists kream_db;
+create database kream_db;
+
+-- DB 사용
+use kream_db;
+
+drop table if exists Favorites;
+drop table if exists ShoppingCart;
+drop table if exists History;
+drop table if exists Products;
+drop table if exists Category;
+drop table if exists Color;
+drop table if exists Brand;
+drop table if exists Users;
+
+-- 회원 테이블 생성
+create table Users(
+   userNo integer primary key auto_increment,
+   userId varchar(100),
+   userPw varchar(100),
+   userName varchar(50),
+   userAddress varchar(200)
+);
+
+-- 브랜드 테이블 생성
+create table Brand(
+   brandNo integer primary key auto_increment,
+   brandName varchar(100)
+);
+
+-- 색상 테이블 생성
+create table Color(
+   colorNo integer primary key auto_increment,
+   colorName varchar(100),
+   colorCode varchar(50)
+);
+
+-- 카테고리 테이블 생성
+create table Category(
+   categoryNo integer primary key auto_increment,
+   brandNo integer,
+   colorNo integer,
+   categoryName varchar(200),
+   prodPrice integer,
+   releaseDate datetime,
+   FOREIGN KEY(colorNo) REFERENCES Color(colorNo),
+   FOREIGN KEY(brandNo) REFERENCES Brand(brandNo)
+);
+
+-- 상품 테이블 생성
+create table Products(
+   prodNo integer primary key auto_increment,
+   categoryNo integer,
+   engName varchar(500),
+   korName varchar(500),
+   modelNo varchar(500),
+   filePath varchar(500),
+   fileSize integer,
+   saveName varchar(500),
+   orgName varchar(500),
+   FOREIGN KEY(CategoryNo) REFERENCES Category(categoryNo)
+);
+
+-- 관심 테이블 생성
+create table Favorites(
+   favoriteNo integer primary key auto_increment,
+   userNo integer,
+   prodNo integer,
+   prodSize integer,
+   FOREIGN KEY(userNo) REFERENCES Users(userNo),
+   FOREIGN KEY(prodNo) REFERENCES Products(prodNo)
+);
+
+-- 장바구니 테이블 생성
+create table ShoppingCart(
+   cartNo integer primary key auto_increment,
+   userNo integer,
+   prodNo integer,
+   prodSize integer,
+   FOREIGN KEY(userNo) REFERENCES Users(userNo),
+   FOREIGN KEY(prodNo) REFERENCES Products(prodNo)
+);
+
+-- 주문/구매내역 테이블 생성
+create table History(
+   historyNo integer primary key auto_increment,
+   userNo integer,
+   prodNo integer,
+   shippingStatus varchar(100),
+   prodPrice integer,
+   prodSize integer,
+   purchaseDate datetime,
+   reciptNo int,
+   FOREIGN KEY(userNo) REFERENCES Users(userNo),
+   FOREIGN KEY(prodNo) REFERENCES Products(prodNo)
+);
+
+
+-- CREATE USER 'kream'@'%' IDENTIFIED BY 'kream';
+-- GRANT ALL PRIVILEGES ON kream_db.* TO 'kream'@'%';
+-- FLUSH PRIVILEGES;
