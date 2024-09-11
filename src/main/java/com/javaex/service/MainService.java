@@ -19,37 +19,35 @@ public class MainService {
 	private MainDao mainDao;
 
 	public Map<String, Object> getProductList(int crtPage) {
-		int listCnt = 10; // Items per page
-		crtPage = (crtPage > 0) ? crtPage : 1;
-		int startRowNum = (crtPage - 1) * listCnt;
+	    int listCnt = 16; // Items per page (should be 16 as you mentioned)
+	    crtPage = (crtPage > 0) ? crtPage : 1;
+	    int startRowNum = (crtPage - 1) * listCnt; // Calculate start row
 
-		Map<String, Integer> limitMap = new HashMap<>();
-		limitMap.put("listCnt", listCnt);
-		limitMap.put("startRowNum", startRowNum);
+	    Map<String, Integer> limitMap = new HashMap<>();
+	    limitMap.put("listCnt", listCnt);
+	    limitMap.put("startRowNum", startRowNum);
 
-		// Fetch paginated product list
-		List<MainVo> productList = mainDao.selectProductList(limitMap);
+	    // Fetch paginated product list
+	    List<MainVo> productList = mainDao.selectProductList(limitMap);
 
-		// Fetch total product count for pagination
-		int totalCnt = mainDao.getTotalProductCount();
-
-		// Fetch all brands and colors
-		List<ProductVo> brandList = mainDao.selectAllBrands();
+	    // Fetch total product count for pagination
+	    int totalCnt = mainDao.getTotalProductCount();
+	    List<ProductVo> brandList = mainDao.selectAllBrands();
 		List<ProductVo> colorList = mainDao.selectAllColors();
 
-		// Pagination logic
-		int pageBtnCount = 5;
-		int endPageBtnNo = (int) Math.ceil((double) crtPage / pageBtnCount) * pageBtnCount;
-		int startPageBtnNo = (endPageBtnNo - pageBtnCount) + 1;
+	    // Pagination logic
+	    int pageBtnCount = 5; 
+	    int endPageBtnNo = (int) Math.ceil((double) crtPage / pageBtnCount) * pageBtnCount;
+	    int startPageBtnNo = (endPageBtnNo - pageBtnCount) + 1;
 
-		boolean next = listCnt * endPageBtnNo < totalCnt;
-		if (!next) {
-			endPageBtnNo = (int) Math.ceil((double) totalCnt / listCnt);
-		}
-		boolean prev = (startPageBtnNo != 1);
+	    boolean next = listCnt * endPageBtnNo < totalCnt;
+	    if (!next) {
+	        endPageBtnNo = (int) Math.ceil((double) totalCnt / listCnt);
+	    }
+	    boolean prev = (startPageBtnNo != 1);
 
-		Map<String, Object> pMap = new HashMap<>();
-		pMap.put("next", next);
+	    Map<String, Object> pMap = new HashMap<>();
+	    pMap.put("next", next);
 		pMap.put("prev", prev);
 		pMap.put("productList", productList);
 		pMap.put("brandList", brandList);
@@ -57,12 +55,13 @@ public class MainService {
 		pMap.put("startPageBtnNo", startPageBtnNo);
 		pMap.put("endPageBtnNo", endPageBtnNo);
 
-		return pMap;
+	    return pMap;
 	}
+
 
 	public Map<String, Object> getFilteredProducts(Map<String, Object> filterCriteria) {
 		int crtPage = (int) filterCriteria.get("crtPage");
-		int listCnt = 10; // Items per page
+		int listCnt = 16; // Items per page
 		crtPage = (crtPage > 0) ? crtPage : 1;
 		int startRowNum = (crtPage - 1) * listCnt;
 

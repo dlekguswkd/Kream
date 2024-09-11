@@ -34,9 +34,9 @@
 		<!-- Sidebar (filters) -->
 		<div class="sidebar">
 			<div class="sidebar_container">
-				<div class="filter-section">
+				
 					<h2>필터</h2>
-				</div>
+				
 
 				<form action="${pageContext.request.contextPath}/main/mainpageFiltered" method="get">
 					<h4>브랜드</h4>

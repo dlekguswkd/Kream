@@ -10,19 +10,19 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	
 	// 첨부한 파일 화면에 띄우기
-		@Override
-		public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		
-			registry.addResourceHandler("/upload/**")
-				.addResourceLocations("file:C:\\javaStudy\\upload\\");
-		
-		}
+//		@Override
+//		public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//		
+//			registry.addResourceHandler("/upload/**")
+//				.addResourceLocations("file:C:\\javaStudy\\upload\\");
+//		
+//		}
 	
-	//@Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/Kream_products_imgs/**")
-//                .addResourceLocations("file:/Users/yuchan/Desktop/Kream_products_imgs/");
-//    }
+	@Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/Kream_products_imgs/**")
+                .addResourceLocations("file:/Users/yuchan/Desktop/Kream_products_imgs/");
+    }
 
 	
 }

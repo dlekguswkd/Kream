@@ -27,7 +27,7 @@
 			<c:forEach items="${popularProductList}" var="product">
 				<a href="${pageContext.request.contextPath}/product/detail?prodNo=${product.prodNo}" class="popular_item"> <img
 					src="${pageContext.request.contextPath}/Kream_products_imgs/${product.saveName}" alt="${product.engName}" />
-					<div class="popular_item_name">${product.engName}</div>
+					<div class="popular_item_name">${product.brandName}</div> <!-- Display brand name instead of product name -->
 				</a>
 			</c:forEach>
 		</div>
@@ -35,9 +35,9 @@
 
 		<div class="sidebar">
 			<div class="sidebar_container">
-				<div class="filter-section">
-					<h2>필터</h2>
-				</div>
+
+				<h2>필터</h2>
+
 
 				<form action="${pageContext.request.contextPath}/main/mainpageFiltered" method="get">
 					<h4>브랜드</h4>
@@ -63,7 +63,7 @@
 						</div>
 					</div>
 
-					<button type="submit" id = "filter">필터 적용</button>
+					<button type="submit" id="filter">필터 적용</button>
 				</form>
 			</div>
 		</div>
@@ -78,30 +78,27 @@
 					</a>
 				</c:forEach>
 			</div>
-
-
-
-
 		</div>
-		<!-- Pagination -->
+
 		<div id="paging">
 			<ul>
 				<!-- Previous button -->
 				<c:if test="${requestScope.pMap.prev}">
-					<li><a href="${pageContext.request.contextPath}/main/mainpage?crtpage=${requestScope.pMap.startPageBtnNo}">◀</a></li>
+					<li><a href="${pageContext.request.contextPath}/main/mainform?crtpage=${requestScope.pMap.startPageBtnNo}">◀</a></li>
 				</c:if>
 
 				<!-- Page number buttons -->
 				<c:forEach begin="${requestScope.pMap.startPageBtnNo}" end="${requestScope.pMap.endPageBtnNo}" var="page">
-					<li><a href="${pageContext.request.contextPath}/main/mainpage?crtpage=${page}">${page}</a></li>
+					<li><a href="${pageContext.request.contextPath}/main/mainform?crtpage=${page}">${page}</a></li>
 				</c:forEach>
 
 				<!-- Next button -->
 				<c:if test="${requestScope.pMap.next}">
-					<li><a href="${pageContext.request.contextPath}/main/mainpage?crtpage=${requestScope.pMap.endPageBtnNo}">▶</a></li>
+					<li><a href="${pageContext.request.contextPath}/main/mainform?crtpage=${requestScope.pMap.endPageBtnNo}">▶</a></li>
 				</c:if>
 			</ul>
 		</div>
+
 	</div>
 
 
